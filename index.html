@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Samuel Ulises García Vega</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #34495e;
+            --accent: #3498db;
+            --bg: #f8f9fa;
+            --text: #333;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: var(--bg); color: var(--text); line-height: 1.6; }
+        
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 1fr 2fr; gap: 30px; }
+        
+        /* Sidebar (Left Column) */
+        .sidebar { background: var(--primary); color: white; padding: 30px; border-radius: 15px; text-align: center; position: sticky; top: 20px; height: fit-content; }
+        .photo-placeholder { width: 150px; height: 150px; background: #ccc; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; color: #666; font-weight: bold; overflow: hidden; border: 4px solid var(--accent); }
+        .photo-placeholder img { width: 100%; height: 100%; object-fit: cover; }
+        h1 { font-size: 1.8rem; margin-bottom: 5px; }
+        h2 { font-size: 1.2rem; font-weight: 300; color: #bdc3c7; margin-bottom: 20px; }
+        .contact p { font-size: 0.9rem; margin-bottom: 10px; }
+        
+        /* QR Section */
+        .qr-section { margin-top: 30px; background: white; padding: 15px; border-radius: 10px; color: var(--text); }
+        .qr-placeholder { width: 100px; height: 100px; background: #eee; margin: 10px auto; display: flex; align-items: center; justify-content: center; border: 1px dashed #999; }
+        
+        /* Main Content (Right Column) */
+        .main-content { padding: 10px; }
+        section { margin-bottom: 40px; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: transform 0.3s ease; }
+        section:hover { transform: translateY(-5px); }
+        h3 { color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: 5px; margin-bottom: 20px; }
+        
+        /* Experience Timeline */
+        .job { border-left: 3px solid var(--accent); padding-left: 20px; margin-bottom: 25px; position: relative; }
+        .job::before { content: ''; position: absolute; left: -9px; top: 0; width: 15px; height: 15px; background: var(--accent); border-radius: 50%; }
+        .job-title { font-weight: bold; font-size: 1.1rem; color: var(--primary); }
+        .job-date { font-size: 0.85rem; color: #7f8c8d; margin-bottom: 10px; }
+        .job ul { padding-left: 20px; }
+        .job ul li { margin-bottom: 5px; font-size: 0.95rem; }
+        
+        /* Skills & Interests Tags */
+        .tags-container { display: flex; flex-wrap: wrap; gap: 10px; }
+        .tag { background: #e0e6ed; color: var(--primary); padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: 500; transition: all 0.3s ease; }
+        .tag:hover { background: var(--accent); color: white; cursor: default; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; }
+            .sidebar { position: relative; top: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <!-- Reemplaza src="" con la ruta de tu foto, ej: src="mi-foto.jpg" -->
+        <div class="photo-placeholder">
+            <span>Foto aquí</span>
+        </div>
+        <h1>SAMUEL ULISES GARCÍA VEGA[cite: 1]</h1>
+        <h2>EST. Arquitectura[cite: 1]</h2>
+        
+        <div class="contact">
+            <p>📧 ulises.gar132@gmail.com[cite: 1]</p>
+            <p>📱 4423745573[cite: 1]</p>
+        </div>
+
+        <div class="qr-section">
+            <p><strong>PORTAFOLIO[cite: 1]</strong></p>
+            <!-- Reemplaza src="" con tu código QR -->
+            <div class="qr-placeholder">QR Web</div>
+            <p style="font-size: 0.8rem; margin-top: 5px;">Escanea para ver mis proyectos</p>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- Perfil -->
+        <section>
+            <h3>PERFIL PROFESIONAL[cite: 1]</h3>
+            <p>Pasante de Arquitectura con experiencia en oficina y obra pública.[cite: 1] He participado en desarrollo de planos, modelado 3D y supervisión en sitio, con enfoque en procesos constructivos, coordinación técnica y resolución de problemas en campo.[cite: 1]</p>
+        </section>
+
+        <!-- Experiencia -->
+        <section>
+            <h3>EXPERIENCIA LABORAL[cite: 1]</h3>
+            
+            <div class="job">
+                <div class="job-title">Arquitecto Jr.| BIM[cite: 1]</div>
+                <div class="job-date">(Mar 2025-Jun 2026)[cite: 1]</div>
+                <ul>
+                    <li>Desarrollo de modelos BIM con información constructiva.[cite: 1]</li>
+                    <li>Cuantificaciones y catálogos de conceptos desde el modelo[cite: 1]</li>
+                    <li>Resoluciones constructivas y apoyo en decisiones de diseño[cite: 1]</li>
+                    <li>Producción de renders y VR para presentación[cite: 1]</li>
+                    <li>Coordinación con clientes, proveedores y equipo de trabajo[cite: 1]</li>
+                    <li>Gestión y seguimiento de actividades del proyecto[cite: 1]</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <div class="job-title">Dibujante Arquitectónico[cite: 1]</div>
+                <div class="job-date">(Ene 2024-Mar 2025)[cite: 1]</div>
+                <ul>
+                    <li>Elaboración de planos arquitectónicos y constructivos[cite: 1]</li>
+                    <li>Modelado 3D para visualización de proyectos[cite: 1]</li>
+                    <li>Apoyo en cuantificación de generadores[cite: 1]</li>
+                    <li>Coordinación con proveedores y seguimiento de materiales[cite: 1]</li>
+                    <li>Participación en levantamientos y visitas de obra[cite: 1]</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <div class="job-title">Auxiliar en Supervisión de Obra 1i[cite: 1]</div>
+                <div class="job-date">(Jun 2022-Oct 2022)[cite: 1]</div>
+                <ul>
+                    <li>Supervisión de procesos constructivos en obra[cite: 1]</li>
+                    <li>Control de avances y verificación de calidad[cite: 1]</li>
+                    <li>Coordinación de personal en sitio[cite: 1]</li>
+                    <li>Seguimiento a proveedores y suministros[cite: 1]</li>
+                    <li>Apoyo en cuantificación de obra[cite: 1]</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Software -->
+        <section>
+            <h3>SOFTWARE[cite: 1]</h3>
+            <h4 style="margin-bottom: 10px; color: #7f8c8d;">Dibujo y Modelado[cite: 1]</h4>
+            <div class="tags-container" style="margin-bottom: 20px;">
+                <span class="tag">AutoCad[cite: 1]</span>
+                <span class="tag">Sketchup[cite: 1]</span>
+                <span class="tag">Rhinoceros[cite: 1]</span>
+                <span class="tag">Grasshopper[cite: 1]</span>
+                <span class="tag">Revit[cite: 1]</span>
+                <span class="tag">Archicad[cite: 1]</span>
+            </div>
+            
+            <h4 style="margin-bottom: 10px; color: #7f8c8d;">Render y Post-producción[cite: 1]</h4>
+            <div class="tags-container">
+                <span class="tag">Twinmotion[cite: 1]</span>
+                <span class="tag">Ilustrator[cite: 1]</span>
+                <span class="tag">Photoshop[cite: 1]</span>
+            </div>
+        </section>
+
+        <!-- Intereses y Certificaciones -->
+        <section style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div>
+                <h3>INTERESES[cite: 1]</h3>
+                <div class="tags-container">
+                    <span class="tag">Urbanismo[cite: 1]</span>
+                    <span class="tag">Sustentabilidad[cite: 1]</span>
+                    <span class="tag">Gestión de proyectos[cite: 1]</span>
+                    <span class="tag">Desarrollo BIM de proyectos ejecutivos[cite: 1]</span>
+                </div>
+            </div>
+            <div>
+                <h3>CERTIFICACIONES[cite: 1]</h3>
+                <ul>
+                    <!-- Aquí puedes agregar tus certificaciones, como la CAPM, una vez que presentes el examen -->
+                </ul>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+</body>
+</html>
