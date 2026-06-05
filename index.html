@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV Web - Samuel Ulises García Vega</title>
+    
+    <!-- Importar tipografía Arima Madurai para el nombre -->
+    <link href="https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@300;400&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             /* Paleta de colores */
@@ -13,10 +17,9 @@
             /* Colores web modernos */
             --text-dark: #1a1a1a;
             --text-light: #555555;
-            --bg-page: #f4f7f6; /* Fondo de la pantalla más suave */
+            --bg-page: #f4f7f6;
             --bg-card: #ffffff;
             --bar-bg: #e2e8f0;
-            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
             --shadow-md: 0 10px 25px rgba(0,0,0,0.08);
             --shadow-hover: 0 15px 35px rgba(0,0,0,0.12);
         }
@@ -32,50 +35,41 @@
             background-color: var(--bg-page); 
             color: var(--text-dark); 
             line-height: 1.6; 
-            /* Para que ocupe toda la pantalla suavemente */
             display: flex;
             justify-content: center;
             padding: 40px 20px;
         }
         
-        /* Contenedor principal estilo Tarjeta Web, no hoja de papel */
         .cv-container { 
             background-color: var(--bg-card); 
             max-width: 1100px; 
             width: 100%; 
             display: flex; 
-            border-radius: 16px; /* Bordes redondeados más amigables */
+            border-radius: 16px; 
             box-shadow: var(--shadow-md); 
-            overflow: hidden; /* Mantiene el contenido dentro de las curvas */
+            overflow: hidden; 
         }
         
-        /* --- COLUMNAS --- */
-        .left-column { 
-            flex: 1 1 65%; 
-            padding: 60px; 
-        }
-        
-        .right-column { 
-            flex: 1 1 35%; 
-            padding: 60px 40px; 
-            background-color: #fafafa; 
-            border-left: 1px solid #eee;
-        }
+        .left-column { flex: 1 1 65%; padding: 60px; }
+        .right-column { flex: 1 1 35%; padding: 60px 40px; background-color: #fafafa; border-left: 1px solid #eee; }
         
         /* --- TIPOGRAFÍA Y DISEÑO IZQUIERDA --- */
         h1 { 
-            font-size: 2.5rem; 
-            font-weight: 800; 
-            letter-spacing: -0.5px; 
+            font-family: 'Arima Madurai', serif; /* Tipografía aplicada */
+            font-size: 2.8rem; 
+            font-weight: 400; /* Sin negritas, más esbelta */
+            letter-spacing: 1px; 
             margin-bottom: 8px;
             color: var(--text-dark);
+            line-height: 1.1;
         }
         
         .main-divider { 
             height: 4px; 
             background-color: var(--red); 
             margin-bottom: 40px; 
-            width: 80px; /* Línea de acento moderna en lugar de cruzar toda la página */
+            margin-top: 15px;
+            width: 80px; 
             border-radius: 2px;
         }
         
@@ -101,13 +95,8 @@
             border-radius: 50%;
         }
         
-        .profile-text { 
-            font-size: 1.05rem; 
-            color: var(--text-light); 
-            text-align: left; /* Evita justificar en web, es difícil de leer */
-        }
+        .profile-text { font-size: 1.05rem; color: var(--text-light); text-align: left; }
         
-        /* Tarjetas interactivas de experiencia */
         .job-block { 
             margin-bottom: 25px; 
             padding: 20px;
@@ -123,45 +112,23 @@
             border-color: #f0f0f0;
         }
         
-        .job-title { 
-            font-weight: 700; 
-            font-size: 1.1rem; 
-            color: var(--red); 
-            margin-bottom: 5px; 
-        }
-        
-        .job-date { 
-            font-size: 0.85rem; 
-            color: #888; 
-            margin-bottom: 12px; 
-            font-weight: 500;
-        }
-        
-        .job-block ul { 
-            padding-left: 20px; 
-            font-size: 0.95rem; 
-            color: var(--text-light); 
-        }
-        
+        .job-title { font-weight: 700; font-size: 1.1rem; color: var(--red); margin-bottom: 5px; }
+        .job-date { font-size: 0.85rem; color: #888; margin-bottom: 12px; font-weight: 500; }
+        .job-block ul { padding-left: 20px; font-size: 0.95rem; color: var(--text-light); }
         .job-block ul li { margin-bottom: 6px; }
         
         /* --- DISEÑO DERECHA --- */
         .info-block { margin-bottom: 40px; }
+        .info-block h2 { font-size: 1.4rem; font-weight: 700; color: var(--green); margin-bottom: 15px; }
         
-        .info-block h2 { 
-            font-size: 1.4rem; 
-            font-weight: 700; 
-            color: var(--green); 
-            margin-bottom: 10px; 
-        }
-        
+        /* Estilos para los íconos minimalistas */
         .info-block p { 
             font-size: 0.95rem; 
             color: var(--text-light); 
-            margin-bottom: 5px; 
+            margin-bottom: 10px; 
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
         
         .right-title { 
@@ -176,12 +143,7 @@
             border-bottom: 2px solid var(--bar-bg);
         }
         
-        ul.simple-list { 
-            list-style: none; 
-            font-size: 0.95rem; 
-            color: var(--text-light); 
-        }
-        
+        ul.simple-list { list-style: none; font-size: 0.95rem; color: var(--text-light); }
         ul.simple-list li { margin-bottom: 8px; position: relative; padding-left: 15px; }
         ul.simple-list li::before {
             content: '•';
@@ -191,44 +153,20 @@
             font-weight: bold;
         }
         
-        /* --- BARRAS DE SOFTWARE (RECALIBRACIÓN) --- */
-        .software-category { 
-            font-size: 0.9rem; 
-            font-weight: 600; 
-            color: var(--text-light); 
-            margin-top: 20px; 
-            margin-bottom: 12px; 
-        }
-        
+        /* --- BARRAS DE SOFTWARE --- */
+        .software-category { font-size: 0.9rem; font-weight: 600; color: var(--text-light); margin-top: 20px; margin-bottom: 12px; }
         .skill { margin-bottom: 12px; }
-        
-        .skill-header {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.85rem;
-            color: var(--text-dark);
-            margin-bottom: 5px;
-            font-weight: 500;
-        }
-
-        .bar-bg { 
-            background-color: var(--bar-bg); 
-            height: 8px; /* Barras un poco más gruesas y web */
-            width: 100%; 
-            border-radius: 4px; 
-            overflow: hidden; 
-        }
+        .skill-header { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-dark); margin-bottom: 5px; font-weight: 500; }
+        .bar-bg { background-color: var(--bar-bg); height: 8px; width: 100%; border-radius: 4px; overflow: hidden; }
         
         .bar-fill { 
             background-color: var(--green); 
             height: 100%; 
-            width: 0; /* JS se encarga de llenarlo */
+            width: 0; 
             border-radius: 4px; 
-            /* Aquí está la magia del rebote (Recalibración) */
             transition: width 1.8s cubic-bezier(0.34, 1.56, 0.64, 1); 
         }
         
-        /* Botón Portafolio Moderno */
         .portfolio-btn { 
             background-color: var(--green); 
             color: white; 
@@ -252,18 +190,18 @@
             box-shadow: 0 6px 15px rgba(116, 130, 81, 0.4);
         }
 
-        /* --- MEDIA QUERIES (RESPONSIVO PARA CELULARES) --- */
+        /* --- RESPONSIVO PARA CELULARES --- */
         @media (max-width: 850px) {
             body { padding: 15px; }
             .cv-container { flex-direction: column; }
             
-            /* En celular, la info de contacto va primero */
-            .right-column { order: -1; padding: 40px 30px; border-left: none; border-bottom: 1px solid #eee; }
+            /* El nombre ahora aparecerá primero, ya que no alteramos el orden de las columnas */
             .left-column { padding: 40px 30px; }
+            .right-column { padding: 40px 30px; border-left: none; border-top: 1px solid #eee; }
             
-            h1 { font-size: 2rem; }
+            h1 { font-size: 2.2rem; }
             .job-block { padding: 10px 0; border: none; }
-            .job-block:hover { transform: none; box-shadow: none; } /* Desactiva hover en móviles */
+            .job-block:hover { transform: none; box-shadow: none; }
         }
     </style>
 </head>
@@ -271,9 +209,9 @@
 
 <div class="cv-container">
     
-    <!-- Columna Izquierda (Experiencia) -->
+    <!-- Columna Izquierda (Nombre y Experiencia) -->
     <div class="left-column">
-        <h1>SAMUEL ULISES GARCÍA VEGA</h1>
+        <h1>SAMUEL ULISES<br>GARCÍA VEGA</h1>
         <div class="main-divider"></div>
         
         <div class="section-title">Perfil Profesional</div>
@@ -324,8 +262,24 @@
         
         <div class="info-block">
             <h2>Pasante de Arquitectura</h2>
-            <p>✉️ ulises.gar132@gmail.com</p>
-            <p>📱 4423745573</p>
+            
+            <!-- Ícono minimalista de correo -->
+            <p>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                ulises.gar132@gmail.com
+            </p>
+            
+            <!-- Ícono minimalista de celular -->
+            <p>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                    <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                </svg>
+                4423745573
+            </p>
         </div>
 
         <h3 class="right-title">Intereses</h3>
@@ -344,8 +298,6 @@
         <h3 class="right-title">Software</h3>
         
         <div class="software-category">Dibujo y Modelado</div>
-        
-        <!-- Las barras usan data-width para que el JS sepa hasta dónde animar -->
         <div class="skill">
             <div class="skill-header"><span>AutoCad</span><span>85%</span></div>
             <div class="bar-bg"><div class="bar-fill" data-width="85%"></div></div>
@@ -372,7 +324,6 @@
         </div>
 
         <div class="software-category">Render y Post-producción</div>
-        
         <div class="skill">
             <div class="skill-header"><span>Twinmotion</span><span>85%</span></div>
             <div class="bar-bg"><div class="bar-fill" data-width="85%"></div></div>
@@ -386,14 +337,12 @@
             <div class="bar-bg"><div class="bar-fill" data-width="80%"></div></div>
         </div>
 
-        <!-- Botón Portafolio -->
         <a href="#" class="portfolio-btn">Ir al Portafolio</a>
         
     </div>
 
 </div>
 
-<!-- Script: Anima las barras al hacer scroll (Intersection Observer) y da efecto cascada -->
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const bars = document.querySelectorAll('.bar-fill');
@@ -403,14 +352,13 @@
                 if (entry.isIntersecting) {
                     const bar = entry.target;
                     const width = bar.getAttribute('data-width');
-                    // Pequeño retraso para dar efecto de "cascada"
                     setTimeout(() => {
                         bar.style.width = width;
                     }, 200); 
-                    observer.unobserve(bar); // Deja de observar una vez animado
+                    observer.unobserve(bar); 
                 }
             });
-        }, { threshold: 0.5 }); // Se activa cuando el 50% de la barra es visible en pantalla
+        }, { threshold: 0.5 }); 
 
         bars.forEach(bar => {
             observer.observe(bar);
