@@ -3,232 +3,267 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV - Samuel Ulises García Vega</title>
+    <title>CV Web - Samuel Ulises García Vega</title>
     <style>
         :root {
-            /* Paleta de colores solicitada */
+            /* Paleta de colores */
             --red: #9d0000;
             --green: #748251;
             
-            /* Colores de soporte */
-            --text-dark: #222222;
-            --text-light: #666666;
-            --bg-page: #e9ecef;
-            --bg-cv: #ffffff;
-            --bar-bg: #dedede;
+            /* Colores web modernos */
+            --text-dark: #1a1a1a;
+            --text-light: #555555;
+            --bg-page: #f4f7f6; /* Fondo de la pantalla más suave */
+            --bg-card: #ffffff;
+            --bar-bg: #e2e8f0;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 10px 25px rgba(0,0,0,0.08);
+            --shadow-hover: 0 15px 35px rgba(0,0,0,0.12);
         }
 
         * { 
             box-sizing: border-box; 
             margin: 0; 
             padding: 0; 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
         }
 
         body { 
-            font-family: 'Helvetica Neue', Arial, sans-serif; 
             background-color: var(--bg-page); 
             color: var(--text-dark); 
-            display: flex; 
-            justify-content: center; 
-            padding: 40px 20px; 
-            line-height: 1.5; 
+            line-height: 1.6; 
+            /* Para que ocupe toda la pantalla suavemente */
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
         }
         
+        /* Contenedor principal estilo Tarjeta Web, no hoja de papel */
         .cv-container { 
-            background-color: var(--bg-cv); 
-            max-width: 900px; 
+            background-color: var(--bg-card); 
+            max-width: 1100px; 
             width: 100%; 
             display: flex; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
-            animation: fadeIn 0.8s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            border-radius: 16px; /* Bordes redondeados más amigables */
+            box-shadow: var(--shadow-md); 
+            overflow: hidden; /* Mantiene el contenido dentro de las curvas */
         }
         
-        /* Configuración de Columnas */
+        /* --- COLUMNAS --- */
         .left-column { 
-            flex: 0 0 65%; 
-            padding: 50px; 
-            border-right: 1px solid #eaeaea; 
+            flex: 1 1 65%; 
+            padding: 60px; 
         }
         
         .right-column { 
-            flex: 0 0 35%; 
-            padding: 50px 30px; 
-            background-color: #fdfdfd; 
+            flex: 1 1 35%; 
+            padding: 60px 40px; 
+            background-color: #fafafa; 
+            border-left: 1px solid #eee;
         }
         
-        /* --- ESTILOS DE LA COLUMNA IZQUIERDA --- */
+        /* --- TIPOGRAFÍA Y DISEÑO IZQUIERDA --- */
         h1 { 
-            font-size: 2.1rem; 
-            font-weight: 400; 
-            letter-spacing: 2px; 
-            text-transform: uppercase; 
-            margin-bottom: 5px; 
+            font-size: 2.5rem; 
+            font-weight: 800; 
+            letter-spacing: -0.5px; 
+            margin-bottom: 8px;
+            color: var(--text-dark);
         }
         
         .main-divider { 
-            height: 2px; 
+            height: 4px; 
             background-color: var(--red); 
-            margin-bottom: 30px; 
-            width: 100%; 
+            margin-bottom: 40px; 
+            width: 80px; /* Línea de acento moderna en lugar de cruzar toda la página */
+            border-radius: 2px;
         }
         
-        .section-title-left { 
-            font-size: 1.05rem; 
-            font-weight: 400; 
+        .section-title { 
+            font-size: 1.1rem; 
+            font-weight: 600; 
             text-transform: uppercase; 
-            letter-spacing: 1px; 
-            margin-bottom: 15px; 
-            margin-top: 35px; 
-            display: inline-block; 
-            padding-bottom: 2px; 
+            letter-spacing: 1.5px; 
+            margin-bottom: 20px; 
+            margin-top: 40px; 
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        
-        .title-dark { border-bottom: 1px solid #333; }
-        .title-red { border-bottom: 1px solid var(--red); }
+
+        .section-title::before {
+            content: '';
+            display: block;
+            width: 12px;
+            height: 12px;
+            background-color: var(--red);
+            border-radius: 50%;
+        }
         
         .profile-text { 
-            font-size: 0.9rem; 
+            font-size: 1.05rem; 
             color: var(--text-light); 
-            text-align: justify; 
+            text-align: left; /* Evita justificar en web, es difícil de leer */
         }
         
-        /* Bloques de Experiencia */
-        .job-block { margin-bottom: 25px; transition: transform 0.2s ease; }
-        .job-block:hover { transform: translateX(5px); }
+        /* Tarjetas interactivas de experiencia */
+        .job-block { 
+            margin-bottom: 25px; 
+            padding: 20px;
+            border-radius: 10px;
+            background: #fff;
+            border: 1px solid transparent;
+            transition: all 0.3s ease; 
+        }
+        
+        .job-block:hover { 
+            transform: translateY(-5px); 
+            box-shadow: var(--shadow-hover);
+            border-color: #f0f0f0;
+        }
         
         .job-title { 
-            font-weight: 600; 
-            font-size: 0.95rem; 
-            color: var(--text-dark); 
-            border-bottom: 1px solid var(--red); 
-            display: inline-block; 
-            padding-bottom: 1px; 
-            margin-bottom: 2px; 
+            font-weight: 700; 
+            font-size: 1.1rem; 
+            color: var(--red); 
+            margin-bottom: 5px; 
         }
         
         .job-date { 
-            font-size: 0.8rem; 
-            color: #999; 
-            margin-bottom: 10px; 
+            font-size: 0.85rem; 
+            color: #888; 
+            margin-bottom: 12px; 
+            font-weight: 500;
         }
         
         .job-block ul { 
             padding-left: 20px; 
-            font-size: 0.85rem; 
+            font-size: 0.95rem; 
             color: var(--text-light); 
         }
         
-        .job-block ul li { margin-bottom: 4px; }
+        .job-block ul li { margin-bottom: 6px; }
         
-        /* --- ESTILOS DE LA COLUMNA DERECHA --- */
-        .info-block { 
-            border-top: 1px solid var(--green); 
-            border-bottom: 1px solid var(--green); 
-            padding: 15px 0; 
-            margin-bottom: 30px; 
-        }
+        /* --- DISEÑO DERECHA --- */
+        .info-block { margin-bottom: 40px; }
         
         .info-block h2 { 
-            font-size: 1.2rem; 
-            font-weight: 400; 
-            color: var(--text-dark); 
-            margin-bottom: 5px; 
+            font-size: 1.4rem; 
+            font-weight: 700; 
+            color: var(--green); 
+            margin-bottom: 10px; 
         }
         
         .info-block p { 
-            font-size: 0.85rem; 
+            font-size: 0.95rem; 
             color: var(--text-light); 
-            margin-bottom: 2px; 
+            margin-bottom: 5px; 
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .right-title { 
-            font-size: 1rem; 
-            font-weight: 400; 
+            font-size: 0.9rem; 
+            font-weight: 700; 
             text-transform: uppercase; 
             letter-spacing: 1px; 
             color: var(--text-dark); 
-            border-top: 1px solid var(--green); 
-            padding-top: 10px; 
             margin-bottom: 15px; 
-            margin-top: 25px;
+            margin-top: 35px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid var(--bar-bg);
         }
         
         ul.simple-list { 
             list-style: none; 
-            font-size: 0.85rem; 
+            font-size: 0.95rem; 
             color: var(--text-light); 
         }
         
-        ul.simple-list li { margin-bottom: 5px; }
+        ul.simple-list li { margin-bottom: 8px; position: relative; padding-left: 15px; }
+        ul.simple-list li::before {
+            content: '•';
+            color: var(--green);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
         
-        /* Barras de Software */
+        /* --- BARRAS DE SOFTWARE (RECALIBRACIÓN) --- */
         .software-category { 
             font-size: 0.9rem; 
-            font-weight: 400; 
-            color: var(--text-dark); 
-            margin-top: 15px; 
-            margin-bottom: 10px; 
-        }
-        
-        .skill { 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between; 
-            margin-bottom: 8px; 
-        }
-        
-        .skill-name { 
-            font-size: 0.8rem; 
+            font-weight: 600; 
             color: var(--text-light); 
-            width: 45%; 
+            margin-top: 20px; 
+            margin-bottom: 12px; 
         }
         
+        .skill { margin-bottom: 12px; }
+        
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
         .bar-bg { 
             background-color: var(--bar-bg); 
-            height: 6px; 
-            width: 50%; 
-            border-radius: 3px; 
+            height: 8px; /* Barras un poco más gruesas y web */
+            width: 100%; 
+            border-radius: 4px; 
             overflow: hidden; 
         }
         
         .bar-fill { 
             background-color: var(--green); 
             height: 100%; 
-            width: 0; /* Empieza en 0 para la animación web */
-            border-radius: 3px; 
-            transition: width 1.5s ease-out; 
+            width: 0; /* JS se encarga de llenarlo */
+            border-radius: 4px; 
+            /* Aquí está la magia del rebote (Recalibración) */
+            transition: width 1.8s cubic-bezier(0.34, 1.56, 0.64, 1); 
         }
         
-        /* Portafolio Botón / Enlace */
-        .portfolio-box { 
+        /* Botón Portafolio Moderno */
+        .portfolio-btn { 
             background-color: var(--green); 
             color: white; 
             text-align: center; 
-            padding: 12px; 
-            font-size: 0.9rem; 
-            font-weight: bold; 
+            padding: 15px; 
+            font-size: 1rem; 
+            font-weight: 600; 
             letter-spacing: 1px;
-            margin-top: 10px; 
+            margin-top: 40px; 
+            border-radius: 8px;
             cursor: pointer; 
-            transition: background-color 0.3s;
+            transition: all 0.3s;
             text-decoration: none;
             display: block;
+            box-shadow: 0 4px 10px rgba(116, 130, 81, 0.3);
         }
         
-        .portfolio-box:hover { 
+        .portfolio-btn:hover { 
             background-color: #5c6841; 
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(116, 130, 81, 0.4);
         }
 
-        /* Diseño Responsivo para Móviles */
-        @media (max-width: 768px) {
+        /* --- MEDIA QUERIES (RESPONSIVO PARA CELULARES) --- */
+        @media (max-width: 850px) {
+            body { padding: 15px; }
             .cv-container { flex-direction: column; }
-            .left-column { border-right: none; padding: 40px 20px 20px; }
-            .right-column { padding: 20px 20px 40px; }
+            
+            /* En celular, la info de contacto va primero */
+            .right-column { order: -1; padding: 40px 30px; border-left: none; border-bottom: 1px solid #eee; }
+            .left-column { padding: 40px 30px; }
+            
+            h1 { font-size: 2rem; }
+            .job-block { padding: 10px 0; border: none; }
+            .job-block:hover { transform: none; box-shadow: none; } /* Desactiva hover en móviles */
         }
     </style>
 </head>
@@ -236,15 +271,15 @@
 
 <div class="cv-container">
     
-    <!-- Columna Izquierda (Contenido Principal) -->
+    <!-- Columna Izquierda (Experiencia) -->
     <div class="left-column">
         <h1>SAMUEL ULISES GARCÍA VEGA</h1>
         <div class="main-divider"></div>
         
-        <h2 class="section-title-left title-dark">PERFIL PROFESIONAL:</h2>
+        <div class="section-title">Perfil Profesional</div>
         <p class="profile-text">Pasante de Arquitectura con experiencia en oficina y obra pública. He participado en desarrollo de planos, modelado 3D y supervisión en sitio, con enfoque en procesos constructivos, coordinación técnica y resolución de problemas en campo.</p>
         
-        <h2 class="section-title-left title-red">EXPERIENCIA LABORAL:</h2>
+        <div class="section-title" style="--red: var(--green);">Experiencia Laboral</div>
         
         <div class="job-block">
             <div class="job-title">Arquitecto Jr.| BIM</div>
@@ -284,16 +319,16 @@
         </div>
     </div>
 
-    <!-- Columna Derecha (Barra Lateral Minimalista) -->
+    <!-- Columna Derecha (Info y Software) -->
     <div class="right-column">
         
         <div class="info-block">
             <h2>Pasante de Arquitectura</h2>
-            <p>ulises.gar132@gmail.com</p>
-            <p>4423745573</p>
+            <p>✉️ ulises.gar132@gmail.com</p>
+            <p>📱 4423745573</p>
         </div>
 
-        <h3 class="right-title">INTERESES:</h3>
+        <h3 class="right-title">Intereses</h3>
         <ul class="simple-list">
             <li>Urbanismo</li>
             <li>Sustentabilidad</li>
@@ -301,77 +336,85 @@
             <li>Desarrollo BIM de proyectos ejecutivos</li>
         </ul>
 
-        <h3 class="right-title">CERTIFICACIONES:</h3>
+        <h3 class="right-title">Certificaciones</h3>
         <ul class="simple-list">
             <li><strong>Preparación para CAPM</strong><br>Project Management Institute</li>
         </ul>
 
-        <h3 class="right-title">SOFTWARE:</h3>
+        <h3 class="right-title">Software</h3>
         
         <div class="software-category">Dibujo y Modelado</div>
         
+        <!-- Las barras usan data-width para que el JS sepa hasta dónde animar -->
         <div class="skill">
-            <span class="skill-name">AutoCad</span>
-            <div class="bar-bg"><div class="bar-fill" style="width: 85%;"></div></div>
+            <div class="skill-header"><span>AutoCad</span><span>85%</span></div>
+            <div class="bar-bg"><div class="bar-fill" data-width="85%"></div></div>
         </div>
         <div class="skill">
-            <span class="skill-name">Sketchup</span>
-            <div class="bar-bg"><div class="bar-fill" style="width: 90%;"></div></div>
+            <div class="skill-header"><span>Sketchup</span><span>90%</span></div>
+            <div class="bar-bg"><div class="bar-fill" data-width="90%"></div></div>
         </div>
         <div class="skill">
-            <span class="skill-name">Rhinoceros</span>
-            <div class="bar-bg"><div class="bar-fill" style="width: 70%;"></div></div>
+            <div class="skill-header"><span>Rhinoceros</span><span>70%</span></div>
+            <div class="bar-bg"><div class="bar-fill" data-width="70%"></div></div>
         </div>
         <div class="skill">
-            <span class="skill-name">Grasshopper</span>
-            <div class="bar-bg"><div class="bar-fill" style="width: 60%;"></div></div>
+            <div class="skill-header"><span>Grasshopper</span><span>60%</span></div>
+            <div class="bar-bg"><div class="bar-fill" data-width="60%"></div></div>
         </div>
         <div class="skill">
-            <span class="skill-name">Revit</span>
-            <div class="bar-bg"><div class="bar-fill" style="width: 75%;"></div></div>
+            <div class="skill-header"><span>Revit</span><span>75%</span></div>
+            <div class="bar-bg"><div class="bar-fill" data-width="75%"></div></div>
         </div>
         <div class="skill">
-            <span class="skill-name">Archicad</span>
-            <div class="bar-bg"><div class="bar-fill" style="width: 95%;"></div></div>
+            <div class="skill-header"><span>Archicad</span><span>95%</span></div>
+            <div class="bar-bg"><div class="bar-fill" data-width="95%"></div></div>
         </div>
 
         <div class="software-category">Render y Post-producción</div>
         
         <div class="skill">
-            <span class="skill-name">Twinmotion</span>
-            <div class="bar-bg"><div class="bar-fill" style="width: 85%;"></div></div>
+            <div class="skill-header"><span>Twinmotion</span><span>85%</span></div>
+            <div class="bar-bg"><div class="bar-fill" data-width="85%"></div></div>
         </div>
         <div class="skill">
-            <span class="skill-name">Ilustrator</span>
-            <div class="bar-bg"><div class="bar-fill" style="width: 75%;"></div></div>
+            <div class="skill-header"><span>Ilustrator</span><span>75%</span></div>
+            <div class="bar-bg"><div class="bar-fill" data-width="75%"></div></div>
         </div>
         <div class="skill">
-            <span class="skill-name">Photoshop</span>
-            <div class="bar-bg"><div class="bar-fill" style="width: 80%;"></div></div>
+            <div class="skill-header"><span>Photoshop</span><span>80%</span></div>
+            <div class="bar-bg"><div class="bar-fill" data-width="80%"></div></div>
         </div>
 
-        <h3 class="right-title" style="border-top: none; padding-top: 0;"></h3>
-        <!-- Reemplaza el # por el enlace real a tu página web o portafolio -->
-        <a href="#" class="portfolio-box">PORTAFOLIO</a>
+        <!-- Botón Portafolio -->
+        <a href="#" class="portfolio-btn">Ir al Portafolio</a>
         
     </div>
 
 </div>
 
-<!-- Script para animar las barras de progreso verdes al cargar la página -->
+<!-- Script: Anima las barras al hacer scroll (Intersection Observer) y da efecto cascada -->
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const bars = document.querySelectorAll('.bar-fill');
-        setTimeout(() => {
-            bars.forEach(bar => {
-                // Forzamos un pequeño repintado para que la animación CSS se active suavemente
-                const targetWidth = bar.style.width;
-                bar.style.width = '0';
-                setTimeout(() => {
-                    bar.style.width = targetWidth;
-                }, 100);
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const bar = entry.target;
+                    const width = bar.getAttribute('data-width');
+                    // Pequeño retraso para dar efecto de "cascada"
+                    setTimeout(() => {
+                        bar.style.width = width;
+                    }, 200); 
+                    observer.unobserve(bar); // Deja de observar una vez animado
+                }
             });
-        }, 300);
+        }, { threshold: 0.5 }); // Se activa cuando el 50% de la barra es visible en pantalla
+
+        bars.forEach(bar => {
+            observer.observe(bar);
+        });
     });
 </script>
 
