@@ -9,11 +9,9 @@
     
     <style>
         :root {
-            /* Paleta de colores */
             --red: #9d0000;
             --green: #748251;
             
-            /* Colores web modernos */
             --text-dark: #1a1a1a;
             --text-light: #555555;
             --bg-page: #f4f7f6;
@@ -45,17 +43,28 @@
             max-width: 1100px; 
             width: 100%; 
             display: flex; 
+            flex-direction: row; /* Fuerza estructura en fila para computadoras */
             border-radius: 16px; 
             box-shadow: var(--shadow-md); 
             overflow: hidden; 
         }
         
-        .left-column { flex: 1 1 65%; padding: 60px; }
-        .right-column { flex: 1 1 35%; padding: 60px 40px; background-color: #fafafa; border-left: 1px solid #eee; display: flex; flex-direction: column; }
+        /* --- PROPORCIÓN ESTRICTA DE COLUMNAS --- */
+        .left-column { 
+            width: 65%; /* Ancho fijo para que no se aplaste */
+            padding: 60px; 
+        }
+        
+        .right-column { 
+            width: 35%; /* Ancho fijo para que se mantenga como barra lateral */
+            padding: 60px 40px; 
+            background-color: #fafafa; 
+            border-left: 1px solid #eee; 
+            display: flex; 
+            flex-direction: column; 
+        }
         
         /* --- TIPOGRAFÍA Y DISEÑO IZQUIERDA --- */
-        
-        /* Contenedor para que la línea mida exactamente lo mismo que el nombre */
         .title-wrapper {
             display: inline-block;
             margin-bottom: 35px;
@@ -74,7 +83,7 @@
         .main-divider { 
             height: 4px; 
             background-color: var(--red); 
-            width: 100%; /* Toma el 100% del title-wrapper */
+            width: 100%; 
             border-radius: 2px;
         }
         
@@ -94,7 +103,7 @@
         .section-title::before {
             content: '';
             display: block;
-            width: 12px;
+            min-width: 12px;
             height: 12px;
             background-color: var(--red);
             border-radius: 50%;
@@ -175,10 +184,9 @@
         .marquee-container {
             width: 100%;
             overflow: hidden;
-            margin-top: auto; /* Empuja esto al fondo si hay espacio */
+            margin-top: auto; 
             padding-top: 30px;
             position: relative;
-            /* Efecto de desvanecimiento en las orillas */
             -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
             mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
         }
@@ -191,12 +199,11 @@
         }
 
         .marquee-track:hover {
-            animation-play-state: paused; /* Se pausa al pasar el cursor */
+            animation-play-state: paused; 
         }
 
         @keyframes scroll-left {
             0% { transform: translateX(0); }
-            /* Se mueve exactamente a la mitad para hacer un loop infinito sin saltos */
             100% { transform: translateX(calc(-50% - 7.5px)); } 
         }
 
@@ -245,8 +252,9 @@
             body { padding: 15px; }
             .cv-container { flex-direction: column; }
             
-            .left-column { padding: 40px 30px; }
-            .right-column { padding: 40px 30px; border-left: none; border-top: 1px solid #eee; }
+            /* En celular quitamos el ancho fijo del 65/35% y volvemos al 100% */
+            .left-column, .right-column { width: 100%; padding: 40px 30px; }
+            .right-column { border-left: none; border-top: 1px solid #eee; }
             
             h1 { font-size: 2.2rem; }
             .title-wrapper { margin-bottom: 25px; }
@@ -262,7 +270,6 @@
     <!-- Columna Izquierda (Nombre y Experiencia) -->
     <div class="left-column">
         
-        <!-- Contenedor dinámico de título y línea roja -->
         <div class="title-wrapper">
             <h1>SAMUEL ULISES<br>GARCÍA VEGA</h1>
             <div class="main-divider"></div>
@@ -271,7 +278,6 @@
         <div class="section-title">Perfil Profesional</div>
         <p class="profile-text">Pasante de Arquitectura con experiencia en oficina y obra pública. He participado en desarrollo de planos, modelado 3D y supervisión en sitio, con enfoque en procesos constructivos, coordinación técnica y resolución de problemas en campo.</p>
         
-        <!-- El punto ahora utiliza la variable general --red -->
         <div class="section-title">Experiencia Laboral</div>
         
         <div class="job-block">
@@ -368,7 +374,6 @@
             <div class="bar-bg"><div class="bar-fill" data-width="60%"></div></div>
         </div>
         <div class="skill">
-            <!-- Barra de Revit ajustada al 50% -->
             <div class="skill-header"><span>Revit</span><span>50%</span></div>
             <div class="bar-bg"><div class="bar-fill" data-width="50%"></div></div>
         </div>
@@ -391,7 +396,6 @@
             <div class="bar-bg"><div class="bar-fill" data-width="80%"></div></div>
         </div>
 
-        <!-- Banda de íconos de software (Marquee) -->
         <div class="marquee-container">
             <div class="marquee-track">
                 <!-- Set 1 -->
@@ -404,7 +408,7 @@
                 <div class="marquee-icon">Tm</div>
                 <div class="marquee-icon">Ai</div>
                 <div class="marquee-icon">Ps</div>
-                <!-- Set 2 (Duplicado exacto para hacer el loop infinito perfecto) -->
+                <!-- Set 2 -->
                 <div class="marquee-icon">Ac</div>
                 <div class="marquee-icon">Sk</div>
                 <div class="marquee-icon">Rh</div>
