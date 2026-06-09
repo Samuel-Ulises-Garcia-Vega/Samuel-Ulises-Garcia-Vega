@@ -18,6 +18,7 @@
             --bg-page: #f4f7f6;
             --bg-card: #ffffff;
             --shadow-md: 0 10px 25px rgba(0,0,0,0.08);
+            --shadow-hover: 0 15px 35px rgba(0,0,0,0.12);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
@@ -29,23 +30,26 @@
         .left-column { width: 65%; padding: 60px; }
         .right-column { width: 35%; padding: 60px 40px; background-color: #fafafa; border-left: 1px solid #eee; display: flex; flex-direction: column; }
         
-        /* IZQUIERDA */
+        /* IZQUIERDA (ROJO) */
         .title-wrapper { display: inline-block; margin-bottom: 25px; }
         h1 { font-family: 'Arima Madurai', serif; font-size: 2.8rem; font-weight: 400; letter-spacing: 1px; margin-bottom: 8px; color: var(--text-dark); line-height: 1.1; }
         .main-divider { height: 4px; background-color: var(--red); width: 100%; border-radius: 2px; }
         .header-contact { margin-bottom: 40px; }
         .header-contact .role { font-size: 1.3rem; font-weight: 700; color: var(--red); margin-bottom: 12px; }
+        .contact-info-group { display: flex; gap: 25px; flex-wrap: wrap; }
         .contact-item { font-size: 0.95rem; color: var(--text-light); display: flex; align-items: center; gap: 8px; font-weight: 500; margin-bottom: 8px; }
         
         .section-title { font-size: 1.1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 20px; margin-top: 40px; color: var(--text-dark); border-bottom: 2px solid var(--red); padding-bottom: 8px; }
         
         .profile-text { font-size: 1.05rem; color: var(--text-light); text-align: justify; font-weight: 400; }
-        .job-block { margin-bottom: 25px; padding: 20px; border-radius: 10px; background: #fff; }
+        .job-block { margin-bottom: 25px; padding: 20px; border-radius: 10px; background: #fff; border: 1px solid transparent; transition: all 0.3s ease; }
+        .job-block:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); border-color: #f0f0f0; }
         .job-title { font-weight: 700; font-size: 1.1rem; color: var(--red); margin-bottom: 5px; }
         .job-date { font-size: 0.85rem; color: #888; margin-bottom: 12px; font-weight: 500; }
         .job-block ul { padding-left: 20px; font-size: 0.95rem; color: var(--text-light); font-weight: 400; }
+        .job-block ul li { margin-bottom: 6px; }
         
-        /* DERECHA (TODO VERDE) */
+        /* DERECHA (VERDE) */
         .right-title { font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dark); margin-bottom: 15px; margin-top: 35px; padding-bottom: 5px; border-bottom: 2px solid var(--green); }
         ul.simple-list { list-style: none; font-size: 0.95rem; color: var(--text-light); font-weight: 400; }
         ul.simple-list li { margin-bottom: 8px; position: relative; padding-left: 15px; }
@@ -58,7 +62,7 @@
         .skill-name { font-size: 0.9rem; font-weight: 500; color: var(--text-dark); }
         .skill-level { font-size: 0.75rem; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: 1px; }
         
-        .portfolio-btn { background-color: var(--green); color: white; text-align: center; padding: 15px; font-size: 1rem; font-weight: 700; letter-spacing: 1px; margin-top: auto; border-radius: 8px; cursor: pointer; transition: all 0.3s; text-decoration: none; display: block; }
+        .portfolio-btn { background-color: var(--green); color: white; text-align: center; padding: 15px; font-size: 1rem; font-weight: 700; letter-spacing: 1px; margin-top: 40px; border-radius: 8px; cursor: pointer; transition: all 0.3s; text-decoration: none; display: block; }
         .portfolio-btn:hover { background-color: var(--green-hover); transform: translateY(-2px); }
     </style>
 </head>
@@ -66,17 +70,59 @@
 
 <div class="cv-container">
     <div class="left-column">
-        <h1>SAMUEL ULISES<br>GARCÍA VEGA</h1>
-        <div class="main-divider"></div>
+        <div class="title-wrapper">
+            <h1>SAMUEL ULISES<br>GARCÍA VEGA</h1>
+            <div class="main-divider"></div>
+        </div>
+
         <div class="header-contact">
             <div class="role">Pasante de Arquitectura</div>
+            <div class="contact-info-group">
+                <div class="contact-item">ulises.gar132@gmail.com</div>
+                <div class="contact-item">4423745573</div>
+            </div>
         </div>
+        
         <div class="section-title">Perfil Profesional</div>
-        <p class="profile-text">Pasante de Arquitectura con experiencia en el desarrollo de proyectos ejecutivos mediante metodología BIM, enfocado en la documentación constructiva, coordinación técnica y seguimiento de proyectos arquitectónicos.</p>
+        <p class="profile-text">Pasante de Arquitectura con experiencia en el desarrollo de proyectos ejecutivos mediante metodología BIM, enfocado en la documentación constructiva, coordinación técnica y seguimiento de proyectos arquitectónicos. He participado en procesos de diseño, modelado 3D, cuantificación y supervisión de obra, integrando herramientas digitales para optimizar la comunicación y ejecución de proyectos.</p>
+        
         <div class="section-title">Experiencia Laboral</div>
+        
         <div class="job-block">
             <div class="job-title">Arquitecto Jr.| BIM</div>
             <div class="job-date">(Mar 2025-Jun 2026)</div>
+            <ul>
+                <li>Desarrollo de modelos BIM con información constructiva.</li>
+                <li>Cuantificaciones y catálogos de conceptos desde el modelo.</li>
+                <li>Resoluciones constructivas y apoyo en decisiones de diseño.</li>
+                <li>Producción de renders y VR para presentación.</li>
+                <li>Coordinación con clientes, proveedores y equipo de trabajo.</li>
+                <li>Gestión y seguimiento de actividades del proyecto.</li>
+            </ul>
+        </div>
+
+        <div class="job-block">
+            <div class="job-title">Dibujante Arquitectónico</div>
+            <div class="job-date">(Ene 2024-Mar 2025)</div>
+            <ul>
+                <li>Elaboración de planos arquitectónicos y constructivos.</li>
+                <li>Modelado 3D para visualización de proyectos.</li>
+                <li>Apoyo en cuantificación de generadores.</li>
+                <li>Coordinación con proveedores y seguimiento de materiales.</li>
+                <li>Participación en levantamientos y visitas de obra.</li>
+            </ul>
+        </div>
+
+        <div class="job-block">
+            <div class="job-title">Auxiliar en Supervisión de Obra 1i</div>
+            <div class="job-date">(Jun 2022-Oct 2022)</div>
+            <ul>
+                <li>Supervisión de procesos constructivos en obra.</li>
+                <li>Control de avances y verificación de calidad.</li>
+                <li>Coordinación de personal en sitio.</li>
+                <li>Seguimiento a proveedores y suministros.</li>
+                <li>Apoyo en cuantificación de obra.</li>
+            </ul>
         </div>
     </div>
 
@@ -86,10 +132,25 @@
         <ul class="simple-list">
             <li>Urbanismo</li>
             <li>Sustentabilidad</li>
+            <li>Gestión de proyectos</li>
+            <li>Desarrollo BIM de proyectos ejecutivos</li>
+        </ul>
+        <h3 class="right-title">Certificaciones</h3>
+        <ul class="simple-list">
+            <li><strong>Preparación para CAPM</strong><br>Project Management Institute</li>
         </ul>
         <h3 class="right-title">Software</h3>
+        <div class="software-category">Dibujo y Modelado</div>
         <div class="skill"><span class="skill-name">Archicad</span><span class="skill-level">EXPERTO</span></div>
+        <div class="skill"><span class="skill-name">Sketchup</span><span class="skill-level">AVANZADO</span></div>
+        <div class="skill"><span class="skill-name">AutoCad</span><span class="skill-level">AVANZADO</span></div>
+        <div class="skill"><span class="skill-name">Revit</span><span class="skill-level">INTERMEDIO</span></div>
+        <div class="skill"><span class="skill-name">Rhinoceros</span><span class="skill-level">INTERMEDIO</span></div>
         <div class="skill"><span class="skill-name">Grasshopper</span><span class="skill-level">BÁSICO</span></div>
+        <div class="software-category">Render y Post-producción</div>
+        <div class="skill"><span class="skill-name">Twinmotion</span><span class="skill-level">AVANZADO</span></div>
+        <div class="skill"><span class="skill-name">Photoshop</span><span class="skill-level">BÁSICO</span></div>
+        <div class="skill"><span class="skill-name">Ilustrator</span><span class="skill-level">BÁSICO</span></div>
         <a href="#" class="portfolio-btn">Ir al Portafolio</a>
     </div>
 </div>
