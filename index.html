@@ -9,9 +9,11 @@
     
     <style>
         :root {
+            /* Paleta de colores */
             --red: #9d0000;
             --green: #748251;
             
+            /* Colores web modernos */
             --text-dark: #1a1a1a;
             --text-light: #555555;
             --bg-page: #f4f7f6;
@@ -43,7 +45,7 @@
             max-width: 1100px; 
             width: 100%; 
             display: flex; 
-            flex-direction: row; /* Fuerza estructura en fila para computadoras */
+            flex-direction: row; 
             border-radius: 16px; 
             box-shadow: var(--shadow-md); 
             overflow: hidden; 
@@ -51,12 +53,12 @@
         
         /* --- PROPORCIÓN ESTRICTA DE COLUMNAS --- */
         .left-column { 
-            width: 65%; /* Ancho fijo para que no se aplaste */
+            width: 65%; 
             padding: 60px; 
         }
         
         .right-column { 
-            width: 35%; /* Ancho fijo para que se mantenga como barra lateral */
+            width: 35%; 
             padding: 60px 40px; 
             background-color: #fafafa; 
             border-left: 1px solid #eee; 
@@ -67,7 +69,7 @@
         /* --- TIPOGRAFÍA Y DISEÑO IZQUIERDA --- */
         .title-wrapper {
             display: inline-block;
-            margin-bottom: 35px;
+            margin-bottom: 25px;
         }
 
         h1 { 
@@ -85,6 +87,33 @@
             background-color: var(--red); 
             width: 100%; 
             border-radius: 2px;
+        }
+
+        /* --- NUEVO BLOQUE DE CONTACTO --- */
+        .header-contact {
+            margin-bottom: 40px;
+        }
+
+        .header-contact .role {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--green);
+            margin-bottom: 12px;
+        }
+
+        .contact-info-group {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
         }
         
         .section-title { 
@@ -109,7 +138,7 @@
             border-radius: 50%;
         }
         
-        .profile-text { font-size: 1.05rem; color: var(--text-light); text-align: left; }
+        .profile-text { font-size: 1.05rem; color: var(--text-light); text-align: justify; }
         
         .job-block { 
             margin-bottom: 25px; 
@@ -132,18 +161,6 @@
         .job-block ul li { margin-bottom: 6px; }
         
         /* --- DISEÑO DERECHA --- */
-        .info-block { margin-bottom: 40px; }
-        .info-block h2 { font-size: 1.4rem; font-weight: 700; color: var(--green); margin-bottom: 15px; }
-        
-        .info-block p { 
-            font-size: 0.95rem; 
-            color: var(--text-light); 
-            margin-bottom: 10px; 
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
         .right-title { 
             font-size: 0.9rem; 
             font-weight: 700; 
@@ -156,6 +173,10 @@
             border-bottom: 2px solid var(--bar-bg);
         }
         
+        .right-title.first {
+            margin-top: 0;
+        }
+
         ul.simple-list { list-style: none; font-size: 0.95rem; color: var(--text-light); }
         ul.simple-list li { margin-bottom: 8px; position: relative; padding-left: 15px; }
         ul.simple-list li::before {
@@ -252,12 +273,11 @@
             body { padding: 15px; }
             .cv-container { flex-direction: column; }
             
-            /* En celular quitamos el ancho fijo del 65/35% y volvemos al 100% */
             .left-column, .right-column { width: 100%; padding: 40px 30px; }
             .right-column { border-left: none; border-top: 1px solid #eee; }
             
             h1 { font-size: 2.2rem; }
-            .title-wrapper { margin-bottom: 25px; }
+            .contact-info-group { flex-direction: column; gap: 10px; }
             .job-block { padding: 10px 0; border: none; }
             .job-block:hover { transform: none; box-shadow: none; }
         }
@@ -267,16 +287,38 @@
 
 <div class="cv-container">
     
-    <!-- Columna Izquierda (Nombre y Experiencia) -->
+    <!-- Columna Izquierda -->
     <div class="left-column">
         
+        <!-- Nombre y línea roja -->
         <div class="title-wrapper">
             <h1>SAMUEL ULISES<br>GARCÍA VEGA</h1>
             <div class="main-divider"></div>
         </div>
+
+        <!-- Información de Contacto -->
+        <div class="header-contact">
+            <div class="role">Pasante de Arquitectura</div>
+            <div class="contact-info-group">
+                <div class="contact-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    ulises.gar132@gmail.com
+                </div>
+                <div class="contact-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                        <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                    </svg>
+                    4423745573
+                </div>
+            </div>
+        </div>
         
         <div class="section-title">Perfil Profesional</div>
-        <p class="profile-text">Pasante de Arquitectura con experiencia en oficina y obra pública. He participado en desarrollo de planos, modelado 3D y supervisión en sitio, con enfoque en procesos constructivos, coordinación técnica y resolución de problemas en campo.</p>
+        <p class="profile-text">Pasante de Arquitectura con experiencia en el desarrollo de proyectos ejecutivos mediante metodología BIM, enfocado en la documentación constructiva, coordinación técnica y seguimiento de proyectos arquitectónicos. He participado en procesos de diseño, modelado 3D, cuantificación y supervisión de obra, integrando herramientas digitales para optimizar la comunicación y ejecución de proyectos.</p>
         
         <div class="section-title">Experiencia Laboral</div>
         
@@ -318,30 +360,10 @@
         </div>
     </div>
 
-    <!-- Columna Derecha (Info y Software) -->
+    <!-- Columna Derecha -->
     <div class="right-column">
         
-        <div class="info-block">
-            <h2>Pasante de Arquitectura</h2>
-            
-            <p>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                    <polyline points="22,6 12,13 2,6"></polyline>
-                </svg>
-                ulises.gar132@gmail.com
-            </p>
-            
-            <p>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
-                    <line x1="12" y1="18" x2="12.01" y2="18"></line>
-                </svg>
-                4423745573
-            </p>
-        </div>
-
-        <h3 class="right-title">Intereses</h3>
+        <h3 class="right-title first">Intereses</h3>
         <ul class="simple-list">
             <li>Urbanismo</li>
             <li>Sustentabilidad</li>
