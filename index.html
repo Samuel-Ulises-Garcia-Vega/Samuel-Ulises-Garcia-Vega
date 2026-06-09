@@ -9,8 +9,9 @@
     
     <style>
         :root {
+            /* Paleta unificada: Monocromático + Acento Rojo */
             --red: #9d0000;
-            --green: #748251;
+            --red-hover: #7a0000; /* Rojo más oscuro para el hover del botón */
             
             --text-dark: #1a1a1a;
             --text-light: #555555;
@@ -84,7 +85,7 @@
         .contact-info-group { display: flex; gap: 25px; flex-wrap: wrap; }
         .contact-item { font-size: 0.95rem; color: var(--text-light); display: flex; align-items: center; gap: 8px; font-weight: 500; }
         
-        /* --- SUBTÍTULOS COLUMNA IZQUIERDA (Sin línea abajo) --- */
+        /* --- SUBTÍTULOS COLUMNA IZQUIERDA (Puntos eliminados, línea roja agregada) --- */
         .section-title { 
             font-size: 1.1rem; 
             font-weight: 700; 
@@ -93,18 +94,8 @@
             margin-bottom: 20px; 
             margin-top: 40px; 
             color: var(--text-dark);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .section-title::before {
-            content: '';
-            display: block;
-            min-width: 12px;
-            height: 12px;
-            background-color: var(--red);
-            border-radius: 50%;
+            border-bottom: 2px solid var(--red);
+            padding-bottom: 8px;
         }
         
         .profile-text { font-size: 1.05rem; color: var(--text-light); text-align: justify; font-weight: 400; }
@@ -129,7 +120,7 @@
         .job-block ul { padding-left: 20px; font-size: 0.95rem; color: var(--text-light); font-weight: 400; }
         .job-block ul li { margin-bottom: 6px; }
         
-        /* --- DISEÑO DERECHA (AHORA CON LA LÍNEA ROJA) --- */
+        /* --- DISEÑO DERECHA --- */
         .right-title { 
             font-size: 0.9rem; 
             font-weight: 700; 
@@ -139,16 +130,18 @@
             margin-bottom: 15px; 
             margin-top: 35px;
             padding-bottom: 5px;
-            border-bottom: 2px solid var(--red); /* Línea roja movida aquí */
+            border-bottom: 2px solid var(--red);
         }
 
         .right-title.first { margin-top: 0; }
 
         ul.simple-list { list-style: none; font-size: 0.95rem; color: var(--text-light); font-weight: 400; }
         ul.simple-list li { margin-bottom: 8px; position: relative; padding-left: 15px; }
+        
+        /* Viñetas en rojo */
         ul.simple-list li::before {
             content: '•';
-            color: var(--green);
+            color: var(--red); 
             position: absolute;
             left: 0;
             font-weight: bold;
@@ -196,15 +189,16 @@
             color: var(--text-dark);
         }
 
+        /* Niveles en rojo */
         .skill-level {
             font-size: 0.75rem;
             font-weight: 700;
-            color: var(--green);
+            color: var(--red); 
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        /* --- BANDA DE ÍCONOS ANIMADA --- */
+        /* --- BANDA DE ÍCONOS ANIMADA (AHORA ROJA) --- */
         .marquee-container {
             width: 100%;
             overflow: hidden;
@@ -234,8 +228,8 @@
             width: 42px;
             height: 42px;
             background-color: white;
-            border: 1.5px solid var(--green);
-            color: var(--green);
+            border: 1.5px solid var(--red); /* Borde rojo */
+            color: var(--red); /* Texto rojo */
             border-radius: 10px;
             display: flex;
             align-items: center;
@@ -246,9 +240,9 @@
             box-shadow: var(--shadow-sm);
         }
         
-        /* --- BOTÓN PORTAFOLIO --- */
+        /* --- BOTÓN PORTAFOLIO (ROJO) --- */
         .portfolio-btn { 
-            background-color: var(--green); 
+            background-color: var(--red); 
             color: white; 
             text-align: center; 
             padding: 15px; 
@@ -261,13 +255,13 @@
             transition: all 0.3s;
             text-decoration: none;
             display: block;
-            box-shadow: 0 4px 10px rgba(116, 130, 81, 0.3);
+            box-shadow: 0 4px 10px rgba(157, 0, 0, 0.3); /* Sombra roja sutil */
         }
         
         .portfolio-btn:hover { 
-            background-color: #5c6841; 
+            background-color: var(--red-hover); 
             transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(116, 130, 81, 0.4);
+            box-shadow: 0 6px 15px rgba(157, 0, 0, 0.4);
         }
 
         /* --- RESPONSIVO --- */
