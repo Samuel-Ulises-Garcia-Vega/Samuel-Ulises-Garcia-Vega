@@ -2,63 +2,310 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Portafolio Profesional - Samuel García</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio - Samuel Ulises García Vega</title>
+    <!-- Importando las tipografías del CV -->
+    <link href="https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@400;700&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
     <style>
+        :root {
+            /* Paleta de colores acordada */
+            --red: #9d0000;
+            --green: #748251;
+            --text-dark: #1a1a1a;
+            --text-light: #555555;
+            --bg-page: #f4f7f6;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { overflow-x: hidden; background: #f4f7f6; }
+        body { overflow: hidden; background: var(--bg-page); color: var(--text-dark); }
         
-        /* Contenedor que permite el scroll horizontal entre estaciones */
-        .container { display: flex; width: 600vw; height: 100vh; scroll-snap-type: x mandatory; }
-        section { width: 100vw; height: 100vh; display: flex; scroll-snap-align: start; }
+        /* Contenedor Horizontal para las 7 láminas */
+        .portfolio-container { 
+            display: flex; 
+            width: 700vw; /* 7 secciones */
+            height: 100vh; 
+            overflow-x: auto; 
+            scroll-snap-type: x mandatory; 
+            scroll-behavior: smooth;
+            /* Ocultar barra de scroll para estética de presentación */
+            scrollbar-width: none; 
+        }
+        .portfolio-container::-webkit-scrollbar { display: none; }
+
+        section { 
+            width: 100vw; 
+            height: 100vh; 
+            display: flex; 
+            scroll-snap-align: start; 
+            position: relative;
+            padding-bottom: 80px; /* Evita que el footer tape el contenido */
+        }
         
-        /* Layout dividido 50/50 */
-        .visual-side { width: 50vw; background: #ddd; display: flex; align-items: center; justify-content: center; position: relative; }
-        .text-side { width: 50vw; padding: 80px; display: flex; flex-direction: column; justify-content: center; }
+        /* División 50/50 */
+        .visual-side { 
+            width: 50vw; 
+            background: #e2e8f0; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            position: relative; 
+            border-right: 1px solid #d1d5db;
+        }
         
-        /* Navegación inferior (Barra fija) */
-        .footer-nav { position: fixed; bottom: 0; width: 100%; height: 80px; background: white; display: flex; align-items: center; padding: 0 40px; border-top: 2px solid #9d0000; z-index: 10; }
-        .layer-controls { display: flex; gap: 15px; margin-right: auto; }
-        .nav-dots { display: flex; gap: 10px; }
-        .dot { width: 12px; height: 12px; border-radius: 50%; background: #ccc; }
-        .dot.active { background: #9d0000; }
+        /* El recuadro verde para la imagen/modelo/mapa */
+        .visual-placeholder {
+            width: 80%;
+            height: 70%;
+            border: 2px dashed var(--green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--green);
+            font-weight: bold;
+            background-color: rgba(116, 130, 81, 0.05);
+        }
+
+        /* Título de la lámina (Marca de agua inferior derecha) */
+        .section-watermark {
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            font-family: 'Arima Madurai', serif;
+            font-size: 4.5rem;
+            color: var(--text-dark);
+            opacity: 0.08;
+            font-weight: 700;
+            line-height: 1;
+            pointer-events: none; /* Evita que estorbe al hacer clic en el modelo */
+        }
+
+        /* Columna de Texto */
+        .text-side { 
+            width: 50vw; 
+            padding: 60px 80px; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            background: #ffffff;
+        }
+
+        .text-side h1 {
+            font-family: 'Arima Madurai', serif;
+            font-size: 3rem;
+            color: var(--red);
+            margin-bottom: 20px;
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+
+        .text-side p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
         
-        button { padding: 8px 16px; background: #748251; color: white; border: none; cursor: pointer; }
+        /* Navegación Inferior Fija (El "Eje Constructivo") */
+        .footer-nav { 
+            position: fixed; 
+            bottom: 0; 
+            width: 100vw; 
+            height: 80px; 
+            background: #ffffff; 
+            display: flex; 
+            align-items: center; 
+            padding: 0 40px; 
+            border-top: 3px solid var(--red); 
+            z-index: 10; 
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .layer-controls { 
+            display: flex; 
+            gap: 15px; 
+            margin-right: auto; 
+        }
+        
+        .layer-btn { 
+            padding: 10px 20px; 
+            background: var(--green); 
+            color: white; 
+            border: none; 
+            cursor: pointer; 
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        
+        .layer-btn:hover {
+            background: #5c6841;
+        }
+
+        /* Los 7 puntos indicadores de posición */
+        .nav-container {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .dot { 
+            width: 12px; 
+            height: 12px; 
+            border-radius: 50%; 
+            background: #d1d5db; 
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .dot.active { 
+            background: var(--red); 
+            transform: scale(1.3); /* Hace que el punto actual se vea más grande */
+        }
+
     </style>
 </head>
 <body>
 
-<!-- Navegación Fija -->
+<!-- Navegación Fija Inferior -->
 <div class="footer-nav">
     <div class="layer-controls" id="layer-btns">
-        <!-- Los botones aparecerán aquí dinámicamente -->
-        <button onclick="changeLayer('Capa 1')">Capa 1</button>
-        <button onclick="changeLayer('Capa 2')">Capa 2</button>
+        <!-- Estos botones cambiarán dinámicamente con JS después -->
+        <button class="layer-btn">Capa 1</button>
+        <button class="layer-btn">Capa 2</button>
+        <button class="layer-btn">Capa 3</button>
+        <button class="layer-btn">Capa 4</button>
     </div>
-    <div class="nav-dots">
-        <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    <div class="nav-container">
+        <!-- Los 7 nodos de navegación en la línea roja -->
+        <a href="#portada" class="dot active" title="Portada"></a>
+        <a href="#indice" class="dot" title="Índice"></a>
+        <a href="#bim" class="dot" title="BIM"></a>
+        <a href="#tesis" class="dot" title="Tesis"></a>
+        <a href="#rhino" class="dot" title="Rhinoceros"></a>
+        <a href="#carpinteria" class="dot" title="Carpintería"></a>
+        <a href="#visualizacion" class="dot" title="Visualización"></a>
     </div>
 </div>
 
-<!-- Contenedor de Proyectos -->
-<div class="container">
-    <section id="bim">
-        <div class="visual-side" id="visual-bim">
-            <!-- Cuadro verde de imagen/modelo -->
-            <h2 style="color:#748251;">VISUALIZADOR BIM</h2>
+<!-- Contenedor Principal (El plano horizontal) -->
+<div class="portfolio-container" id="scroll-container">
+    
+    <!-- 1. PORTADA -->
+    <section id="portada">
+        <div class="visual-side">
+            <div class="visual-placeholder">IMAGEN PRINCIPAL (PORTADA)</div>
+            <div class="section-watermark">PORTADA</div>
         </div>
         <div class="text-side">
-            <h1>BIM COORDINACIÓN</h1>
-            <p>Descripción técnica del proyecto...</p>
+            <h1 style="color: var(--text-dark);">PORTAFOLIO</h1>
+            <p style="color: var(--red); font-weight: bold; font-size: 1.3rem;">Arq. Samuel Ulises García Vega</p>
+            <p>TEXTO GENERAL</p>
         </div>
     </section>
-    <!-- Aquí irían las siguientes secciones (Tesis, Rinho, etc.) -->
+
+    <!-- 2. PRESENTACIÓN DE PROYECTOS -->
+    <section id="indice">
+        <div class="visual-side">
+            <div class="visual-placeholder">DIAGRAMA / MAPA DE PROYECTOS</div>
+            <div class="section-watermark">ÍNDICE</div>
+        </div>
+        <div class="text-side">
+            <h1>PROYECTOS</h1>
+            <p>1. BIM<br>2. TESIS<br>3. RINHO<br>4. CARPINTERIA<br>5. VISUALIZACIÓN</p>
+        </div>
+    </section>
+
+    <!-- 3. BIM -->
+    <section id="bim">
+        <div class="visual-side">
+            <div class="visual-placeholder">MODELO DINÁMICO BIM</div>
+            <div class="section-watermark">BIM</div>
+        </div>
+        <div class="text-side">
+            <h1>BIM</h1>
+            <p>TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL.</p>
+        </div>
+    </section>
+
+    <!-- 4. TESIS -->
+    <section id="tesis">
+        <div class="visual-side">
+            <div class="visual-placeholder">MAPAS Y DIAGRAMAS</div>
+            <div class="section-watermark">TESIS</div>
+        </div>
+        <div class="text-side">
+            <h1>TESIS</h1>
+            <p>TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL.</p>
+        </div>
+    </section>
+
+    <!-- 5. RINHO -->
+    <section id="rhino">
+        <div class="visual-side">
+            <div class="visual-placeholder">MODELO RINHO / GRASSHOPPER</div>
+            <div class="section-watermark">RINHO</div>
+        </div>
+        <div class="text-side">
+            <h1>RINHO</h1>
+            <p>TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL.</p>
+        </div>
+    </section>
+
+    <!-- 6. CARPINTERIA -->
+    <section id="carpinteria">
+        <div class="visual-side">
+            <div class="visual-placeholder">MODELO 3D CARPINTERIA / DESPIECE</div>
+            <div class="section-watermark">MOBILIARIO</div>
+        </div>
+        <div class="text-side">
+            <h1>CARPINTERIA</h1>
+            <p>TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL.</p>
+        </div>
+    </section>
+
+    <!-- 7. VISUALIZACIÓN -->
+    <section id="visualizacion">
+        <div class="visual-side">
+            <div class="visual-placeholder">RENDERS / VR</div>
+            <div class="section-watermark">VISUALIZACIÓN</div>
+        </div>
+        <div class="text-side">
+            <h1>VISUALIZACIÓN</h1>
+            <p>TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL.</p>
+        </div>
+    </section>
+
 </div>
 
+<!-- Motor de interacción para el indicador de posición -->
 <script>
-    function changeLayer(layer) {
-        console.log("Cambiando a: " + layer);
-        // Aquí programaremos la lógica para cambiar la imagen o modelo 3D
-    }
+    const container = document.getElementById('scroll-container');
+    const dots = document.querySelectorAll('.dot');
+    const sections = document.querySelectorAll('section');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Apagar todos los círculos
+                dots.forEach(dot => dot.classList.remove('active'));
+                
+                // Encender en color rojo el círculo que coincide con la lámina en pantalla
+                const index = Array.from(sections).indexOf(entry.target);
+                if(dots[index]) dots[index].classList.add('active');
+            }
+        });
+    }, {
+        root: container,
+        threshold: 0.5 // Se activa cuando al menos el 50% de la lámina es visible
+    });
+
+    sections.forEach(section => observer.observe(section));
 </script>
 
 </body>
