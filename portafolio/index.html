@@ -45,7 +45,7 @@
             flex-direction: column;
             justify-content: flex-end; 
             background: #ffffff; 
-            padding-bottom: 60px; /* Separación del fondo de la pantalla */
+            padding-bottom: 60px; 
         }
 
         .cover-content {
@@ -103,7 +103,7 @@
 
         .section-watermark {
             position: absolute;
-            bottom: 100px; /* Subido ligeramente para no chocar con la barra */
+            bottom: 100px;
             right: 30px;
             font-family: 'Arima Madurai', serif;
             font-size: 4.5rem;
@@ -116,7 +116,7 @@
 
         .text-side { 
             width: 50vw; 
-            padding: 60px 80px 140px 80px; /* Padding inferior extra por la barra */
+            padding: 60px 80px 140px 80px; 
             display: flex; 
             flex-direction: column; 
             justify-content: center; 
@@ -141,7 +141,7 @@
         
         /* --- NAVEGACIÓN INDIVIDUAL POR LÁMINA --- */
         .footer-nav { 
-            position: absolute; /* Ahora vive dentro de la lámina, no en la pantalla global */
+            position: absolute; 
             bottom: 0; 
             left: 0;
             width: 100vw; 
@@ -158,7 +158,7 @@
             display: flex; 
             gap: 15px; 
             margin-right: auto; 
-            width: 30%; /* Mantiene el flex balanceado */
+            width: 30%; 
         }
         
         .layer-btn { 
@@ -199,9 +199,30 @@
             transform: scale(1.3); 
         }
 
+        /* --- ZONAS DE NAVEGACIÓN TIPO INSTAGRAM --- */
+        .tap-zone {
+            position: fixed;
+            top: 0;
+            height: calc(100vh - 80px); /* Deja libre el espacio de la barra inferior */
+            width: 15vw; 
+            z-index: 5;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .tap-zone:hover {
+            background: rgba(0, 0, 0, 0.02); 
+        }
+
+        .tap-left { left: 0; }
+        .tap-right { right: 0; }
+
     </style>
 </head>
 <body>
+
+<div class="tap-zone tap-left" id="tap-left" title="Lámina Anterior"></div>
+<div class="tap-zone tap-right" id="tap-right" title="Siguiente Lámina"></div>
 
 <div class="portfolio-container" id="scroll-container">
     
@@ -223,8 +244,7 @@
             <p>1. BIM<br>2. TESIS<br>3. RINHO<br>4. CARPINTERIA<br>5. VISUALIZACIÓN</p>
         </div>
         <div class="footer-nav">
-            <div class="layer-controls">
-                </div>
+            <div class="layer-controls"></div>
             <div class="nav-container">
                 <a href="#portada" class="dot" title="Portada"></a>
                 <a href="#indice" class="dot active" title="Índice"></a>
@@ -371,6 +391,31 @@
     </section>
 
 </div>
+
+<script>
+    const tapLeft = document.getElementById('tap-left');
+    const tapRight = document.getElementById('tap-right');
+    const scrollContainer = document.getElementById('scroll-container');
+
+    // Tap derecho para avanzar
+    tapRight.addEventListener('click', () => {
+        scrollContainer.scrollBy({ left: window.innerWidth, behavior: 'smooth' });
+    });
+
+    // Tap izquierdo para retroceder
+    tapLeft.addEventListener('click', () => {
+        scrollContainer.scrollBy({ left: -window.innerWidth, behavior: 'smooth' });
+    });
+
+    // Flechas del teclado
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') {
+            scrollContainer.scrollBy({ left: window.innerWidth, behavior: 'smooth' });
+        } else if (e.key === 'ArrowLeft') {
+            scrollContainer.scrollBy({ left: -window.innerWidth, behavior: 'smooth' });
+        }
+    });
+</script>
 
 </body>
 </html>
