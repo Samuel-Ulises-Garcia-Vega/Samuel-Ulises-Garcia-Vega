@@ -18,10 +18,10 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         body { overflow: hidden; background: var(--bg-page); color: var(--text-dark); }
         
-        /* Contenedor Horizontal */
+        /* Contenedor Horizontal Corregido */
         .portfolio-container { 
             display: flex; 
-            width: 700vw; 
+            width: 100vw; /* La ventana principal mide solo 1 pantalla de ancho */
             height: 100vh; 
             overflow-x: auto; 
             scroll-snap-type: x mandatory; 
@@ -30,9 +30,9 @@
         }
         .portfolio-container::-webkit-scrollbar { display: none; }
 
-        /* Cada sección es relativa para contener su propia barra inferior */
+        /* Cada sección desborda el contenedor para permitir el scroll */
         section { 
-            width: 100vw; 
+            flex: 0 0 100vw; /* Obliga a la lámina a medir exactamente 100vw sin encogerse */
             height: 100vh; 
             display: flex; 
             scroll-snap-align: start; 
@@ -86,7 +86,7 @@
             justify-content: center; 
             position: relative; 
             border-right: 1px solid #d1d5db;
-            padding-bottom: 80px; /* Espacio para que la barra no tape el modelo */
+            padding-bottom: 80px; 
         }
         
         .visual-placeholder {
@@ -203,7 +203,7 @@
         .tap-zone {
             position: fixed;
             top: 0;
-            height: calc(100vh - 80px); /* Deja libre el espacio de la barra inferior */
+            height: calc(100vh - 80px); 
             width: 15vw; 
             z-index: 5;
             cursor: pointer;
@@ -221,11 +221,13 @@
 </head>
 <body>
 
+<!-- Sensores de navegación tipo Instagram -->
 <div class="tap-zone tap-left" id="tap-left" title="Lámina Anterior"></div>
 <div class="tap-zone tap-right" id="tap-right" title="Siguiente Lámina"></div>
 
 <div class="portfolio-container" id="scroll-container">
     
+    <!-- 1. PORTADA -->
     <section id="portada" class="cover-section">
         <div class="cover-content">
             <div class="cover-name">Arq. Samuel Ulises García Vega</div>
@@ -234,6 +236,7 @@
         </div>
     </section>
 
+    <!-- 2. PRESENTACIÓN DE PROYECTOS -->
     <section id="indice">
         <div class="visual-side">
             <div class="visual-placeholder">DIAGRAMA / MAPA DE PROYECTOS</div>
@@ -257,6 +260,7 @@
         </div>
     </section>
 
+    <!-- 3. BIM -->
     <section id="bim">
         <div class="visual-side">
             <div class="visual-placeholder">MODELO DINÁMICO BIM</div>
@@ -284,6 +288,7 @@
         </div>
     </section>
 
+    <!-- 4. TESIS -->
     <section id="tesis">
         <div class="visual-side">
             <div class="visual-placeholder">MAPAS Y DIAGRAMAS</div>
@@ -311,6 +316,7 @@
         </div>
     </section>
 
+    <!-- 5. RINHO -->
     <section id="rhino">
         <div class="visual-side">
             <div class="visual-placeholder">MODELO RINHO / GRASSHOPPER</div>
@@ -337,6 +343,7 @@
         </div>
     </section>
 
+    <!-- 6. CARPINTERIA -->
     <section id="carpinteria">
         <div class="visual-side">
             <div class="visual-placeholder">MODELO 3D CARPINTERIA / DESPIECE</div>
@@ -364,6 +371,7 @@
         </div>
     </section>
 
+    <!-- 7. VISUALIZACIÓN -->
     <section id="visualizacion">
         <div class="visual-side">
             <div class="visual-placeholder">RENDERS / VR</div>
@@ -392,6 +400,7 @@
 
 </div>
 
+<!-- Lógica de navegación táctil y teclado -->
 <script>
     const tapLeft = document.getElementById('tap-left');
     const tapRight = document.getElementById('tap-right');
