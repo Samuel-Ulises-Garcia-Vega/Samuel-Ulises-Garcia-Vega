@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Portafolio Profesional - Samuel García</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { overflow-x: hidden; background: #f4f7f6; }
+        
+        /* Contenedor que permite el scroll horizontal entre estaciones */
+        .container { display: flex; width: 600vw; height: 100vh; scroll-snap-type: x mandatory; }
+        section { width: 100vw; height: 100vh; display: flex; scroll-snap-align: start; }
+        
+        /* Layout dividido 50/50 */
+        .visual-side { width: 50vw; background: #ddd; display: flex; align-items: center; justify-content: center; position: relative; }
+        .text-side { width: 50vw; padding: 80px; display: flex; flex-direction: column; justify-content: center; }
+        
+        /* Navegación inferior (Barra fija) */
+        .footer-nav { position: fixed; bottom: 0; width: 100%; height: 80px; background: white; display: flex; align-items: center; padding: 0 40px; border-top: 2px solid #9d0000; z-index: 10; }
+        .layer-controls { display: flex; gap: 15px; margin-right: auto; }
+        .nav-dots { display: flex; gap: 10px; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; background: #ccc; }
+        .dot.active { background: #9d0000; }
+        
+        button { padding: 8px 16px; background: #748251; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<!-- Navegación Fija -->
+<div class="footer-nav">
+    <div class="layer-controls" id="layer-btns">
+        <!-- Los botones aparecerán aquí dinámicamente -->
+        <button onclick="changeLayer('Capa 1')">Capa 1</button>
+        <button onclick="changeLayer('Capa 2')">Capa 2</button>
+    </div>
+    <div class="nav-dots">
+        <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    </div>
+</div>
+
+<!-- Contenedor de Proyectos -->
+<div class="container">
+    <section id="bim">
+        <div class="visual-side" id="visual-bim">
+            <!-- Cuadro verde de imagen/modelo -->
+            <h2 style="color:#748251;">VISUALIZADOR BIM</h2>
+        </div>
+        <div class="text-side">
+            <h1>BIM COORDINACIÓN</h1>
+            <p>Descripción técnica del proyecto...</p>
+        </div>
+    </section>
+    <!-- Aquí irían las siguientes secciones (Tesis, Rinho, etc.) -->
+</div>
+
+<script>
+    function changeLayer(layer) {
+        console.log("Cambiando a: " + layer);
+        // Aquí programaremos la lógica para cambiar la imagen o modelo 3D
+    }
+</script>
+
+</body>
+</html>
