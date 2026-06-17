@@ -30,33 +30,32 @@
         }
         .portfolio-container::-webkit-scrollbar { display: none; }
 
+        /* Cada sección es relativa para contener su propia barra inferior */
         section { 
             width: 100vw; 
             height: 100vh; 
             display: flex; 
             scroll-snap-align: start; 
             position: relative;
-            padding-bottom: 80px; 
         }
         
-        /* --- LÁMINA 1: PORTADA MINIMALISTA --- */
+        /* --- LÁMINA 1: PORTADA MINIMALISTA (SIN BARRA) --- */
         .cover-section {
             display: flex;
             flex-direction: column;
             justify-content: flex-end; 
             background: #ffffff; 
-            padding-bottom: 0; /* Quitamos el padding inferior aquí para que no estorbe */
+            padding-bottom: 60px; /* Separación del fondo de la pantalla */
         }
 
         .cover-content {
             width: 100%;
-            margin-bottom: 120px; /* Ajusta la altura de la línea roja aquí */
         }
 
         .cover-name {
             text-align: right;
             padding-right: 80px;
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             font-weight: 300;
             color: var(--text-dark);
             margin-bottom: 8px;
@@ -64,18 +63,18 @@
 
         .cover-line {
             width: 100%;
-            height: 4px;
+            height: 3px;
             background-color: var(--red);
         }
 
         .cover-title {
             text-align: right;
             padding-right: 80px;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 400;
             color: var(--text-dark);
-            letter-spacing: 3px;
-            margin-top: 8px;
+            letter-spacing: 4px;
+            margin-top: 10px;
         }
 
         /* --- LÁMINAS 2 A 7: DISEÑO DIVIDIDO 50/50 --- */
@@ -87,6 +86,7 @@
             justify-content: center; 
             position: relative; 
             border-right: 1px solid #d1d5db;
+            padding-bottom: 80px; /* Espacio para que la barra no tape el modelo */
         }
         
         .visual-placeholder {
@@ -103,7 +103,7 @@
 
         .section-watermark {
             position: absolute;
-            bottom: 20px;
+            bottom: 100px; /* Subido ligeramente para no chocar con la barra */
             right: 30px;
             font-family: 'Arima Madurai', serif;
             font-size: 4.5rem;
@@ -116,7 +116,7 @@
 
         .text-side { 
             width: 50vw; 
-            padding: 60px 80px; 
+            padding: 60px 80px 140px 80px; /* Padding inferior extra por la barra */
             display: flex; 
             flex-direction: column; 
             justify-content: center; 
@@ -139,34 +139,26 @@
             margin-bottom: 20px;
         }
         
-        /* --- NAVEGACIÓN INFERIOR FIJA --- */
+        /* --- NAVEGACIÓN INDIVIDUAL POR LÁMINA --- */
         .footer-nav { 
-            position: fixed; 
+            position: absolute; /* Ahora vive dentro de la lámina, no en la pantalla global */
             bottom: 0; 
+            left: 0;
             width: 100vw; 
             height: 80px; 
             background: #ffffff; 
             display: flex; 
             align-items: center; 
             padding: 0 40px; 
-            border-top: 3px solid var(--red); 
+            border-top: 2px solid var(--red); 
             z-index: 10; 
-            box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
-            /* Transición para que aparezca/desaparezca de forma elegante */
-            transition: opacity 0.4s ease, transform 0.4s ease; 
-        }
-
-        /* Clase para ocultar el menú en la portada */
-        .footer-nav.hidden {
-            opacity: 0;
-            pointer-events: none;
-            transform: translateY(100%);
         }
         
         .layer-controls { 
             display: flex; 
             gap: 15px; 
             margin-right: auto; 
+            width: 30%; /* Mantiene el flex balanceado */
         }
         
         .layer-btn { 
@@ -181,9 +173,7 @@
             transition: background 0.3s;
         }
         
-        .layer-btn:hover {
-            background: #5c6841;
-        }
+        .layer-btn:hover { background: #5c6841; }
 
         .nav-container {
             position: absolute;
@@ -213,24 +203,6 @@
 </head>
 <body>
 
-<div class="footer-nav hidden" id="main-footer">
-    <div class="layer-controls" id="layer-btns">
-        <button class="layer-btn">Capa 1</button>
-        <button class="layer-btn">Capa 2</button>
-        <button class="layer-btn">Capa 3</button>
-        <button class="layer-btn">Capa 4</button>
-    </div>
-    <div class="nav-container">
-        <a href="#portada" class="dot active" title="Portada"></a>
-        <a href="#indice" class="dot" title="Índice"></a>
-        <a href="#bim" class="dot" title="BIM"></a>
-        <a href="#tesis" class="dot" title="Tesis"></a>
-        <a href="#rhino" class="dot" title="Rhinoceros"></a>
-        <a href="#carpinteria" class="dot" title="Carpintería"></a>
-        <a href="#visualizacion" class="dot" title="Visualización"></a>
-    </div>
-</div>
-
 <div class="portfolio-container" id="scroll-container">
     
     <section id="portada" class="cover-section">
@@ -250,6 +222,19 @@
             <h1>PROYECTOS</h1>
             <p>1. BIM<br>2. TESIS<br>3. RINHO<br>4. CARPINTERIA<br>5. VISUALIZACIÓN</p>
         </div>
+        <div class="footer-nav">
+            <div class="layer-controls">
+                </div>
+            <div class="nav-container">
+                <a href="#portada" class="dot" title="Portada"></a>
+                <a href="#indice" class="dot active" title="Índice"></a>
+                <a href="#bim" class="dot" title="BIM"></a>
+                <a href="#tesis" class="dot" title="Tesis"></a>
+                <a href="#rhino" class="dot" title="Rhinoceros"></a>
+                <a href="#carpinteria" class="dot" title="Carpintería"></a>
+                <a href="#visualizacion" class="dot" title="Visualización"></a>
+            </div>
+        </div>
     </section>
 
     <section id="bim">
@@ -260,6 +245,22 @@
         <div class="text-side">
             <h1>BIM</h1>
             <p>TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL.</p>
+        </div>
+        <div class="footer-nav">
+            <div class="layer-controls">
+                <button class="layer-btn">Estructura</button>
+                <button class="layer-btn">Instalaciones</button>
+                <button class="layer-btn">Cuantificación</button>
+            </div>
+            <div class="nav-container">
+                <a href="#portada" class="dot" title="Portada"></a>
+                <a href="#indice" class="dot" title="Índice"></a>
+                <a href="#bim" class="dot active" title="BIM"></a>
+                <a href="#tesis" class="dot" title="Tesis"></a>
+                <a href="#rhino" class="dot" title="Rhinoceros"></a>
+                <a href="#carpinteria" class="dot" title="Carpintería"></a>
+                <a href="#visualizacion" class="dot" title="Visualización"></a>
+            </div>
         </div>
     </section>
 
@@ -272,6 +273,22 @@
             <h1>TESIS</h1>
             <p>TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL.</p>
         </div>
+        <div class="footer-nav">
+            <div class="layer-controls">
+                <button class="layer-btn">Mapa 1</button>
+                <button class="layer-btn">Mapa 2</button>
+                <button class="layer-btn">Diagrama</button>
+            </div>
+            <div class="nav-container">
+                <a href="#portada" class="dot" title="Portada"></a>
+                <a href="#indice" class="dot" title="Índice"></a>
+                <a href="#bim" class="dot" title="BIM"></a>
+                <a href="#tesis" class="dot active" title="Tesis"></a>
+                <a href="#rhino" class="dot" title="Rhinoceros"></a>
+                <a href="#carpinteria" class="dot" title="Carpintería"></a>
+                <a href="#visualizacion" class="dot" title="Visualización"></a>
+            </div>
+        </div>
     </section>
 
     <section id="rhino">
@@ -282,6 +299,21 @@
         <div class="text-side">
             <h1>RINHO</h1>
             <p>TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL.</p>
+        </div>
+        <div class="footer-nav">
+            <div class="layer-controls">
+                <button class="layer-btn">Forma Base</button>
+                <button class="layer-btn">Panelizado</button>
+            </div>
+            <div class="nav-container">
+                <a href="#portada" class="dot" title="Portada"></a>
+                <a href="#indice" class="dot" title="Índice"></a>
+                <a href="#bim" class="dot" title="BIM"></a>
+                <a href="#tesis" class="dot" title="Tesis"></a>
+                <a href="#rhino" class="dot active" title="Rhinoceros"></a>
+                <a href="#carpinteria" class="dot" title="Carpintería"></a>
+                <a href="#visualizacion" class="dot" title="Visualización"></a>
+            </div>
         </div>
     </section>
 
@@ -294,6 +326,22 @@
             <h1>CARPINTERIA</h1>
             <p>TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL.</p>
         </div>
+        <div class="footer-nav">
+            <div class="layer-controls">
+                <button class="layer-btn">Modelo 3D</button>
+                <button class="layer-btn">Despiece</button>
+                <button class="layer-btn">Tabla de Cortes</button>
+            </div>
+            <div class="nav-container">
+                <a href="#portada" class="dot" title="Portada"></a>
+                <a href="#indice" class="dot" title="Índice"></a>
+                <a href="#bim" class="dot" title="BIM"></a>
+                <a href="#tesis" class="dot" title="Tesis"></a>
+                <a href="#rhino" class="dot" title="Rhinoceros"></a>
+                <a href="#carpinteria" class="dot active" title="Carpintería"></a>
+                <a href="#visualizacion" class="dot" title="Visualización"></a>
+            </div>
+        </div>
     </section>
 
     <section id="visualizacion">
@@ -305,42 +353,24 @@
             <h1>VISUALIZACIÓN</h1>
             <p>TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL.</p>
         </div>
+        <div class="footer-nav">
+            <div class="layer-controls">
+                <button class="layer-btn">Render Exterior</button>
+                <button class="layer-btn">Render Interior</button>
+            </div>
+            <div class="nav-container">
+                <a href="#portada" class="dot" title="Portada"></a>
+                <a href="#indice" class="dot" title="Índice"></a>
+                <a href="#bim" class="dot" title="BIM"></a>
+                <a href="#tesis" class="dot" title="Tesis"></a>
+                <a href="#rhino" class="dot" title="Rhinoceros"></a>
+                <a href="#carpinteria" class="dot" title="Carpintería"></a>
+                <a href="#visualizacion" class="dot active" title="Visualización"></a>
+            </div>
+        </div>
     </section>
 
 </div>
-
-<script>
-    const container = document.getElementById('scroll-container');
-    const dots = document.querySelectorAll('.dot');
-    const sections = document.querySelectorAll('section');
-    const footerNav = document.getElementById('main-footer');
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const index = Array.from(sections).indexOf(entry.target);
-                
-                // Si es la portada (índice 0), oculta la barra de navegación. Si no, muéstrala.
-                if (index === 0) {
-                    footerNav.classList.add('hidden');
-                } else {
-                    footerNav.classList.remove('hidden');
-                }
-
-                // Apagar todos los círculos
-                dots.forEach(dot => dot.classList.remove('active'));
-                
-                // Encender en color rojo el círculo que coincide con la lámina en pantalla
-                if(dots[index]) dots[index].classList.add('active');
-            }
-        });
-    }, {
-        root: container,
-        threshold: 0.5 
-    });
-
-    sections.forEach(section => observer.observe(section));
-</script>
 
 </body>
 </html>
