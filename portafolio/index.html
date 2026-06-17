@@ -14,7 +14,7 @@
             --green: #748251;
             --text-dark: #1a1a1a;
             --text-light: #555555;
-            --bg-page: #f4f7f6;
+            --bg-page: #ffffff; /* Ajustado a blanco para mayor limpieza */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
@@ -23,12 +23,11 @@
         /* Contenedor Horizontal para las 7 láminas */
         .portfolio-container { 
             display: flex; 
-            width: 700vw; /* 7 secciones */
+            width: 700vw; 
             height: 100vh; 
             overflow-x: auto; 
             scroll-snap-type: x mandatory; 
             scroll-behavior: smooth;
-            /* Ocultar barra de scroll para estética de presentación */
             scrollbar-width: none; 
         }
         .portfolio-container::-webkit-scrollbar { display: none; }
@@ -39,10 +38,48 @@
             display: flex; 
             scroll-snap-align: start; 
             position: relative;
-            padding-bottom: 80px; /* Evita que el footer tape el contenido */
+            padding-bottom: 80px; 
         }
         
-        /* División 50/50 */
+        /* --- LÁMINA 1: PORTADA MINIMALISTA --- */
+        .cover-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end; 
+            background: #ffffff; 
+        }
+
+        .cover-content {
+            width: 100%;
+            margin-bottom: 110px; /* Separación de la barra de navegación */
+        }
+
+        .cover-name {
+            text-align: right;
+            padding-right: 80px;
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .cover-line {
+            width: 100%;
+            height: 4px;
+            background-color: var(--red);
+        }
+
+        .cover-title {
+            text-align: right;
+            padding-right: 80px;
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--text-dark);
+            letter-spacing: 3px;
+            margin-top: 8px;
+        }
+
+        /* --- LÁMINAS 2 A 7: DISEÑO DIVIDIDO 50/50 --- */
         .visual-side { 
             width: 50vw; 
             background: #e2e8f0; 
@@ -53,7 +90,6 @@
             border-right: 1px solid #d1d5db;
         }
         
-        /* El recuadro verde para la imagen/modelo/mapa */
         .visual-placeholder {
             width: 80%;
             height: 70%;
@@ -66,7 +102,6 @@
             background-color: rgba(116, 130, 81, 0.05);
         }
 
-        /* Título de la lámina (Marca de agua inferior derecha) */
         .section-watermark {
             position: absolute;
             bottom: 20px;
@@ -77,10 +112,9 @@
             opacity: 0.08;
             font-weight: 700;
             line-height: 1;
-            pointer-events: none; /* Evita que estorbe al hacer clic en el modelo */
+            pointer-events: none; 
         }
 
-        /* Columna de Texto */
         .text-side { 
             width: 50vw; 
             padding: 60px 80px; 
@@ -106,7 +140,7 @@
             margin-bottom: 20px;
         }
         
-        /* Navegación Inferior Fija (El "Eje Constructivo") */
+        /* --- NAVEGACIÓN INFERIOR FIJA --- */
         .footer-nav { 
             position: fixed; 
             bottom: 0; 
@@ -143,7 +177,6 @@
             background: #5c6841;
         }
 
-        /* Los 7 puntos indicadores de posición */
         .nav-container {
             position: absolute;
             left: 50%;
@@ -165,7 +198,7 @@
         
         .dot.active { 
             background: var(--red); 
-            transform: scale(1.3); /* Hace que el punto actual se vea más grande */
+            transform: scale(1.3); 
         }
 
     </style>
@@ -175,14 +208,12 @@
 <!-- Navegación Fija Inferior -->
 <div class="footer-nav">
     <div class="layer-controls" id="layer-btns">
-        <!-- Estos botones cambiarán dinámicamente con JS después -->
         <button class="layer-btn">Capa 1</button>
         <button class="layer-btn">Capa 2</button>
         <button class="layer-btn">Capa 3</button>
         <button class="layer-btn">Capa 4</button>
     </div>
     <div class="nav-container">
-        <!-- Los 7 nodos de navegación en la línea roja -->
         <a href="#portada" class="dot active" title="Portada"></a>
         <a href="#indice" class="dot" title="Índice"></a>
         <a href="#bim" class="dot" title="BIM"></a>
@@ -197,15 +228,11 @@
 <div class="portfolio-container" id="scroll-container">
     
     <!-- 1. PORTADA -->
-    <section id="portada">
-        <div class="visual-side">
-            <div class="visual-placeholder">IMAGEN PRINCIPAL (PORTADA)</div>
-            <div class="section-watermark">PORTADA</div>
-        </div>
-        <div class="text-side">
-            <h1 style="color: var(--text-dark);">PORTAFOLIO</h1>
-            <p style="color: var(--red); font-weight: bold; font-size: 1.3rem;">Arq. Samuel Ulises García Vega</p>
-            <p>TEXTO GENERAL</p>
+    <section id="portada" class="cover-section">
+        <div class="cover-content">
+            <div class="cover-name">Arq. Samuel Ulises García Vega</div>
+            <div class="cover-line"></div>
+            <div class="cover-title">PORTAFOLIO</div>
         </div>
     </section>
 
