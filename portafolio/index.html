@@ -18,10 +18,10 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         body { overflow: hidden; background: var(--bg-page); color: var(--text-dark); }
         
-        /* Contenedor Horizontal Corregido */
+        /* Contenedor Horizontal */
         .portfolio-container { 
             display: flex; 
-            width: 100vw; /* La ventana principal mide solo 1 pantalla de ancho */
+            width: 100vw; 
             height: 100vh; 
             overflow-x: auto; 
             scroll-snap-type: x mandatory; 
@@ -30,16 +30,15 @@
         }
         .portfolio-container::-webkit-scrollbar { display: none; }
 
-        /* Cada sección desborda el contenedor para permitir el scroll */
         section { 
-            flex: 0 0 100vw; /* Obliga a la lámina a medir exactamente 100vw sin encogerse */
+            flex: 0 0 100vw; 
             height: 100vh; 
             display: flex; 
             scroll-snap-align: start; 
             position: relative;
         }
         
-        /* --- LÁMINA 1: PORTADA MINIMALISTA (SIN BARRA) --- */
+        /* --- LÁMINA 1: PORTADA MINIMALISTA --- */
         .cover-section {
             display: flex;
             flex-direction: column;
@@ -77,7 +76,59 @@
             margin-top: 10px;
         }
 
-        /* --- LÁMINAS 2 A 7: DISEÑO DIVIDIDO 50/50 --- */
+        /* --- LÁMINA 2: ÍNDICE GRID ESTRUCTURAL --- */
+        .grid-index-container {
+            display: flex;
+            width: 100%;
+            height: calc(100vh - 80px); /* Respeta el espacio de la barra inferior */
+            background: #ffffff;
+        }
+
+        .grid-column {
+            flex: 1; /* Divide el espacio en 5 partes iguales */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 80px 40px;
+            border-right: 1px solid #eaeaea;
+            text-decoration: none; /* Quita el subrayado del link */
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .grid-column:hover {
+            background-color: rgba(116, 130, 81, 0.04); /* Fondo verde super tenue */
+        }
+
+        .grid-number {
+            font-family: 'Arima Madurai', serif;
+            font-size: 6rem;
+            color: #e2e8f0; /* Gris claro como marca de agua */
+            font-weight: 700;
+            line-height: 1;
+            transition: all 0.4s ease;
+        }
+
+        .grid-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.4s ease;
+        }
+
+        /* Animaciones al pasar el ratón por la columna */
+        .grid-column:hover .grid-number {
+            color: var(--red);
+            transform: translateY(-10px); /* Sutil salto hacia arriba */
+        }
+
+        .grid-column:hover .grid-title {
+            color: var(--green);
+        }
+
+        /* --- LÁMINAS 3 A 7: DISEÑO DIVIDIDO 50/50 --- */
         .visual-side { 
             width: 50vw; 
             background: #e2e8f0; 
@@ -204,7 +255,7 @@
             position: fixed;
             top: 0;
             height: calc(100vh - 80px); 
-            width: 15vw; 
+            width: 10vw; /* Reducido un poco para no tapar mucho el grid */
             z-index: 5;
             cursor: pointer;
             transition: background 0.3s;
@@ -236,16 +287,32 @@
         </div>
     </section>
 
-    <!-- 2. PRESENTACIÓN DE PROYECTOS -->
+    <!-- 2. PRESENTACIÓN DE PROYECTOS (GRID ESTRUCTURAL) -->
     <section id="indice">
-        <div class="visual-side">
-            <div class="visual-placeholder">DIAGRAMA / MAPA DE PROYECTOS</div>
-            <div class="section-watermark">ÍNDICE</div>
+        <div class="grid-index-container">
+            <a href="#bim" class="grid-column">
+                <div class="grid-number">01</div>
+                <div class="grid-title">BIM</div>
+            </a>
+            <a href="#tesis" class="grid-column">
+                <div class="grid-number">02</div>
+                <div class="grid-title">Tesis</div>
+            </a>
+            <a href="#rhino" class="grid-column">
+                <div class="grid-number">03</div>
+                <div class="grid-title">Rhinoceros</div>
+            </a>
+            <a href="#carpinteria" class="grid-column">
+                <div class="grid-number">04</div>
+                <div class="grid-title">Carpintería</div>
+            </a>
+            <a href="#visualizacion" class="grid-column" style="border-right: none;">
+                <div class="grid-number">05</div>
+                <div class="grid-title">Visualización</div>
+            </a>
         </div>
-        <div class="text-side">
-            <h1>PROYECTOS</h1>
-            <p>1. BIM<br>2. TESIS<br>3. RINHO<br>4. CARPINTERIA<br>5. VISUALIZACIÓN</p>
-        </div>
+        
+        <!-- Pie de plano -->
         <div class="footer-nav">
             <div class="layer-controls"></div>
             <div class="nav-container">
