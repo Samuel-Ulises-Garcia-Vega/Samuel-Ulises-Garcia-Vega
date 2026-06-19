@@ -18,7 +18,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         body { overflow: hidden; background: var(--bg-page); color: var(--text-dark); }
         
-        /* Contenedor Horizontal */
+        /* Contenedor Horizontal Corregido */
         .portfolio-container { 
             display: flex; 
             width: 100vw; 
@@ -30,6 +30,7 @@
         }
         .portfolio-container::-webkit-scrollbar { display: none; }
 
+        /* Cada sección desborda el contenedor para permitir el scroll */
         section { 
             flex: 0 0 100vw; 
             height: 100vh; 
@@ -80,30 +81,30 @@
         .grid-index-container {
             display: flex;
             width: 100%;
-            height: calc(100vh - 80px); /* Respeta el espacio de la barra inferior */
+            height: calc(100vh - 80px); 
             background: #ffffff;
         }
 
         .grid-column {
-            flex: 1; /* Divide el espacio en 5 partes iguales */
+            flex: 1; 
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             padding: 80px 40px;
             border-right: 1px solid #eaeaea;
-            text-decoration: none; /* Quita el subrayado del link */
+            text-decoration: none; 
             transition: all 0.4s ease;
             position: relative;
         }
 
         .grid-column:hover {
-            background-color: rgba(116, 130, 81, 0.04); /* Fondo verde super tenue */
+            background-color: rgba(116, 130, 81, 0.04); 
         }
 
         .grid-number {
             font-family: 'Arima Madurai', serif;
             font-size: 6rem;
-            color: #e2e8f0; /* Gris claro como marca de agua */
+            color: #e2e8f0; 
             font-weight: 700;
             line-height: 1;
             transition: all 0.4s ease;
@@ -118,10 +119,9 @@
             transition: all 0.4s ease;
         }
 
-        /* Animaciones al pasar el ratón por la columna */
         .grid-column:hover .grid-number {
             color: var(--red);
-            transform: translateY(-10px); /* Sutil salto hacia arriba */
+            transform: translateY(-10px); 
         }
 
         .grid-column:hover .grid-title {
@@ -209,7 +209,7 @@
             display: flex; 
             gap: 15px; 
             margin-right: auto; 
-            width: 30%; 
+            width: 40%; 
         }
         
         .layer-btn { 
@@ -255,7 +255,7 @@
             position: fixed;
             top: 0;
             height: calc(100vh - 80px); 
-            width: 10vw; /* Reducido un poco para no tapar mucho el grid */
+            width: 10vw; 
             z-index: 5;
             cursor: pointer;
             transition: background 0.3s;
@@ -287,7 +287,7 @@
         </div>
     </section>
 
-    <!-- 2. PRESENTACIÓN DE PROYECTOS (GRID ESTRUCTURAL) -->
+    <!-- 2. PRESENTACIÓN DE PROYECTOS -->
     <section id="indice">
         <div class="grid-index-container">
             <a href="#bim" class="grid-column">
@@ -311,8 +311,6 @@
                 <div class="grid-title">Visualización</div>
             </a>
         </div>
-        
-        <!-- Pie de plano -->
         <div class="footer-nav">
             <div class="layer-controls"></div>
             <div class="nav-container">
@@ -334,14 +332,15 @@
             <div class="section-watermark">BIM</div>
         </div>
         <div class="text-side">
-            <h1>BIM</h1>
-            <p>TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL.</p>
+            <h1>DESARROLLO BIM</h1>
+            <p>Desarrollo de proyectos ejecutivos y documentación técnica integral. Gestión avanzada de modelos en Archicad, optimización de combinaciones de capas para la supervisión de obra y extracción de cuantificaciones precisas. La centralización de la información permite anticipar resoluciones constructivas en sitio y ofrecer presentaciones claras y eficientes mediante BIMx.</p>
         </div>
         <div class="footer-nav">
             <div class="layer-controls">
+                <button class="layer-btn">Modelo Integral</button>
                 <button class="layer-btn">Estructura</button>
-                <button class="layer-btn">Instalaciones</button>
-                <button class="layer-btn">Cuantificación</button>
+                <button class="layer-btn">Red MEP</button>
+                <button class="layer-btn">Documentación</button>
             </div>
             <div class="nav-container">
                 <a href="#portada" class="dot" title="Portada"></a>
@@ -467,23 +466,19 @@
 
 </div>
 
-<!-- Lógica de navegación táctil y teclado -->
 <script>
     const tapLeft = document.getElementById('tap-left');
     const tapRight = document.getElementById('tap-right');
     const scrollContainer = document.getElementById('scroll-container');
 
-    // Tap derecho para avanzar
     tapRight.addEventListener('click', () => {
         scrollContainer.scrollBy({ left: window.innerWidth, behavior: 'smooth' });
     });
 
-    // Tap izquierdo para retroceder
     tapLeft.addEventListener('click', () => {
         scrollContainer.scrollBy({ left: -window.innerWidth, behavior: 'smooth' });
     });
 
-    // Flechas del teclado
     document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowRight') {
             scrollContainer.scrollBy({ left: window.innerWidth, behavior: 'smooth' });
