@@ -55,7 +55,8 @@
         ul.simple-list li { margin-bottom: 8px; position: relative; padding-left: 15px; }
         ul.simple-list li::before { content: '•'; color: var(--green); position: absolute; left: 0; font-weight: bold; }
 
-        .profile-photo { width: 220px; height: 220px; object-fit: cover; object-position: center 15%; border-radius: 0; box-shadow: var(--shadow-md); border: 4px solid #ffffff; margin-bottom: 30px; }
+        /* Corrección de alineación: align-self: center añadido */
+        .profile-photo { align-self: center; width: 220px; height: 220px; object-fit: cover; object-position: center 15%; border-radius: 0; box-shadow: var(--shadow-md); border: 4px solid #ffffff; margin-bottom: 30px; }
         
         .software-category { font-size: 0.9rem; font-weight: 700; color: var(--text-light); margin-top: 20px; margin-bottom: 12px; }
         .skill { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; border-bottom: 1px dashed #e2e8f0; padding-bottom: 4px; }
