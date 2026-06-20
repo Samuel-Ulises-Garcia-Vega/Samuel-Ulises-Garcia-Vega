@@ -16,7 +16,14 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { overflow: hidden; background: var(--bg-page); color: var(--text-dark); }
+        
+        body { 
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden; 
+            background: var(--bg-page); 
+            color: var(--text-dark); 
+        }
         
         .portfolio-container { 
             display: flex; 
@@ -124,7 +131,7 @@
             align-items: center; 
             justify-content: center; 
             position: relative; 
-            border-right: 1px solid #d1d5db;
+            /* Se eliminó el border-right: 1px solid #d1d5db; para quitar la línea gris */
             padding-bottom: 80px; 
             overflow: hidden; 
         }
@@ -210,7 +217,7 @@
             display: flex; 
             gap: 15px; 
             margin-right: auto; 
-            width: 50%; /* Ampliado ligeramente para acomodar los 4 botones */
+            width: 50%; 
         }
         
         .layer-btn { 
@@ -319,7 +326,7 @@
 
     <section id="bim">
         <div class="visual-side" style="background: #ffffff;"> 
-            <img src="IMG/modelo-360-1.png" id="visor-360" class="viewer-360" draggable="false" alt="Modelo BIM 360">
+            <img src="IMG/modelo-360-01.png" id="visor-360" class="viewer-360" draggable="false" alt="Modelo BIM 360">
             <div class="section-watermark">BIM</div>
         </div>
         <div class="text-side">
@@ -454,7 +461,6 @@
 </div>
 
 <script>
-    // --- SCROLL TIPO INSTAGRAM ---
     const tapLeft = document.getElementById('tap-left');
     const tapRight = document.getElementById('tap-right');
     const scrollContainer = document.getElementById('scroll-container');
@@ -475,17 +481,14 @@
         }
     });
 
-    // --- LÓGICA DEL VISOR 360 Y BOTONES BIM ---
     const visor = document.getElementById('visor-360');
     
-    // Botones
     const btnIntegral = document.getElementById('btn-integral');
     const btnEstructura = document.getElementById('btn-estructura');
     const btnMep = document.getElementById('btn-mep');
     const btnDoc = document.getElementById('btn-doc');
     const allBimBtns = [btnIntegral, btnEstructura, btnMep, btnDoc];
 
-    // Variables de estado
     let is360Active = true; 
     const totalFrames = 36;
     let currentFrame = 1;
@@ -493,17 +496,20 @@
     let startX = 0;
     const sensitivity = 15; 
 
-    // Función para limpiar el color activo de todos los botones
     function clearActiveButtons() {
         allBimBtns.forEach(btn => btn.classList.remove('active'));
     }
 
-    // Eventos de los botones (Rutas en MAYÚSCULAS)
+    // Añade ceros a la izquierda automáticamente (ej. 1 -> "01", 10 -> "10")
+    function getPaddedFrame(frame) {
+        return frame.toString().padStart(2, '0');
+    }
+
     btnIntegral.addEventListener('click', () => {
         clearActiveButtons();
         btnIntegral.classList.add('active');
         is360Active = true;
-        visor.src = `IMG/modelo-360-${currentFrame}.png`;
+        visor.src = `IMG/modelo-360-${getPaddedFrame(currentFrame)}.png`;
         visor.style.cursor = 'grab'; 
     });
 
@@ -531,9 +537,6 @@
         visor.style.cursor = 'default';
     });
 
-    // --- LÓGICA DE ROTACIÓN (Solo funciona si is360Active es true) ---
-    
-    // Para Ratón
     visor.addEventListener('mousedown', (e) => {
         if (!is360Active) return;
         isDragging = true;
@@ -556,12 +559,11 @@
                 currentFrame++; 
                 if (currentFrame > totalFrames) currentFrame = 1;
             }
-            visor.src = `IMG/modelo-360-${currentFrame}.png`;
+            visor.src = `IMG/modelo-360-${getPaddedFrame(currentFrame)}.png`;
             startX = e.clientX; 
         }
     });
 
-    // Para Pantallas Táctiles
     visor.addEventListener('touchstart', (e) => {
         if (!is360Active) return;
         isDragging = true;
@@ -585,7 +587,7 @@
                 currentFrame++;
                 if (currentFrame > totalFrames) currentFrame = 1;
             }
-            visor.src = `IMG/modelo-360-${currentFrame}.png`;
+            visor.src = `IMG/modelo-360-${getPaddedFrame(currentFrame)}.png`;
             startX = e.touches[0].clientX;
         }
     }, { passive: false });
