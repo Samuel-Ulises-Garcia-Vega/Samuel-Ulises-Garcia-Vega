@@ -154,6 +154,9 @@
             object-fit: contain; 
             cursor: grab; 
             user-select: none; 
+            mix-blend-mode: multiply; /* Destruye el fondo blanco y artefactos */
+            border: none; 
+            outline: none;
         }
         .viewer-360:active {
             cursor: grabbing; 
@@ -279,7 +282,6 @@
 
 <div class="portfolio-container" id="scroll-container">
     
-    <!-- 1. PORTADA -->
     <section id="portada" class="cover-section">
         <div class="cover-content">
             <div class="cover-name">Arq. Samuel Ulises García Vega</div>
@@ -288,7 +290,6 @@
         </div>
     </section>
 
-    <!-- 2. ÍNDICE -->
     <section id="indice">
         <div class="grid-index-container">
             <a href="#bim" class="grid-column">
@@ -326,7 +327,6 @@
         </div>
     </section>
 
-    <!-- 3. BIM (CON VISOR 360 Y BOTONES) -->
     <section id="bim">
         <div class="visual-side" style="background: #ffffff;"> 
             <img src="IMG/modelo-360-01.png" id="visor-360" class="viewer-360" draggable="false" alt="Modelo BIM 360">
@@ -355,7 +355,6 @@
         </div>
     </section>
 
-    <!-- 4. TESIS -->
     <section id="tesis">
         <div class="visual-side" style="background: #ffffff;"> 
             <div class="visual-placeholder">MAPAS Y DIAGRAMAS</div>
@@ -383,7 +382,6 @@
         </div>
     </section>
 
-    <!-- 5. RINHO -->
     <section id="rhino">
         <div class="visual-side">
             <div class="visual-placeholder">MODELO RINHO / GRASSHOPPER</div>
@@ -410,7 +408,6 @@
         </div>
     </section>
 
-    <!-- 6. CARPINTERIA -->
     <section id="carpinteria">
         <div class="visual-side">
             <div class="visual-placeholder">MODELO 3D CARPINTERIA / DESPIECE</div>
@@ -438,7 +435,6 @@
         </div>
     </section>
 
-    <!-- 7. VISUALIZACIÓN -->
     <section id="visualizacion">
         <div class="visual-side">
             <div class="visual-placeholder">RENDERS / VR</div>
@@ -505,7 +501,6 @@
     let startX = 0;
     const sensitivity = 15; 
     
-    // Aquí definimos qué grupo de fotos está activo
     let currentPrefix = 'modelo-360-'; 
 
     function clearActiveButtons() {
@@ -547,7 +542,7 @@
     btnDoc.addEventListener('click', () => {
         clearActiveButtons();
         btnDoc.classList.add('active');
-        is360Active = false; // Este sigue siendo foto estática
+        is360Active = false;
         visor.src = 'IMG/bim-doc.png';
         visor.style.cursor = 'default';
     });
