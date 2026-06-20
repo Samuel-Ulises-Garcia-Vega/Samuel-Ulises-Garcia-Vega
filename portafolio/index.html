@@ -178,4 +178,421 @@
             display: flex; 
             flex-direction: column; 
             justify-content: center; 
-            background: #
+            background: #ffffff;
+        }
+
+        .text-side h1 {
+            font-family: 'Arima Madurai', serif;
+            font-size: 3rem;
+            color: var(--red);
+            margin-bottom: 20px;
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+
+        .text-side p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        
+        /* --- NAVEGACIÓN INFERIOR --- */
+        .footer-nav { 
+            position: absolute; 
+            bottom: 0; 
+            left: 0;
+            width: 100vw; 
+            height: 80px; 
+            background: #ffffff; 
+            display: flex; 
+            align-items: center; 
+            padding: 0 40px; 
+            border-top: 2px solid var(--red); 
+            z-index: 10; 
+        }
+        
+        .layer-controls { 
+            display: flex; 
+            gap: 15px; 
+            margin-right: auto; 
+            width: 50%; 
+        }
+        
+        .layer-btn { 
+            padding: 10px 20px; 
+            background: var(--green); 
+            color: white; 
+            border: none; 
+            cursor: pointer; 
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        
+        .layer-btn:hover, .layer-btn.active { background: #5c6841; }
+
+        .nav-container {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .dot { 
+            width: 12px; 
+            height: 12px; 
+            border-radius: 50%; 
+            background: #d1d5db; 
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .dot.active { background: var(--red); transform: scale(1.3); }
+
+        /* --- ZONAS TÁCTILES --- */
+        .tap-zone {
+            position: fixed;
+            top: 0;
+            height: calc(100vh - 80px); 
+            width: 10vw; 
+            z-index: 5;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .tap-zone:hover { background: rgba(0, 0, 0, 0.02); }
+        .tap-left { left: 0; }
+        .tap-right { right: 0; }
+
+    </style>
+</head>
+<body>
+
+<div class="tap-zone tap-left" id="tap-left" title="Lámina Anterior"></div>
+<div class="tap-zone tap-right" id="tap-right" title="Siguiente Lámina"></div>
+
+<div class="portfolio-container" id="scroll-container">
+    
+    <section id="portada" class="cover-section">
+        <div class="cover-content">
+            <div class="cover-name">Arq. Samuel Ulises García Vega</div>
+            <div class="cover-line"></div>
+            <div class="cover-title">PORTAFOLIO</div>
+        </div>
+    </section>
+
+    <section id="indice">
+        <div class="grid-index-container">
+            <a href="#bim" class="grid-column">
+                <div class="grid-number">01</div>
+                <div class="grid-title">Desarrollo BIM</div>
+            </a>
+            <a href="#tesis" class="grid-column">
+                <div class="grid-number">02</div>
+                <div class="grid-title">Gestión Hídrica Urbana</div>
+            </a>
+            <a href="#rhino" class="grid-column">
+                <div class="grid-number">03</div>
+                <div class="grid-title">Diseño Paramétrico</div>
+            </a>
+            <a href="#carpinteria" class="grid-column">
+                <div class="grid-number">04</div>
+                <div class="grid-title">Diseño de Mobiliario</div>
+            </a>
+            <a href="#visualizacion" class="grid-column" style="border-right: none;">
+                <div class="grid-number">05</div>
+                <div class="grid-title">Comunicación Visual</div>
+            </a>
+        </div>
+        <div class="footer-nav">
+            <div class="layer-controls"></div>
+            <div class="nav-container">
+                <a href="#portada" class="dot" title="Portada"></a>
+                <a href="#indice" class="dot active" title="Índice"></a>
+                <a href="#bim" class="dot" title="Desarrollo BIM"></a>
+                <a href="#tesis" class="dot" title="Gestión Hídrica Urbana"></a>
+                <a href="#rhino" class="dot" title="Diseño Paramétrico"></a>
+                <a href="#carpinteria" class="dot" title="Diseño de Mobiliario"></a>
+                <a href="#visualizacion" class="dot" title="Comunicación Visual"></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="bim">
+        <div class="visual-side" style="background: #ffffff;"> 
+            <img src="IMG/modelo-360-01.png" id="visor-360" class="viewer-360" draggable="false" alt="Modelo BIM 360">
+            <div class="section-watermark">BIM</div>
+        </div>
+        <div class="text-side">
+            <h1>DESARROLLO BIM</h1>
+            <p>Desarrollo de proyectos ejecutivos y documentación técnica integral. Gestión avanzada de modelos en Archicad, optimización de combinaciones de capas para la supervisión de obra y extracción de cuantificaciones precisas. La centralización de la información permite anticipar resoluciones constructivas en sitio y ofrecer presentaciones claras y eficientes mediante BIMx.</p>
+        </div>
+        <div class="footer-nav">
+            <div class="layer-controls">
+                <button class="layer-btn active" id="btn-integral">Modelo Integral</button>
+                <button class="layer-btn" id="btn-estructura">Estructura</button>
+                <button class="layer-btn" id="btn-mep">Red MEP</button>
+                <button class="layer-btn" id="btn-doc">Documentación</button>
+            </div>
+            <div class="nav-container">
+                <a href="#portada" class="dot" title="Portada"></a>
+                <a href="#indice" class="dot" title="Índice"></a>
+                <a href="#bim" class="dot active" title="Desarrollo BIM"></a>
+                <a href="#tesis" class="dot" title="Gestión Hídrica Urbana"></a>
+                <a href="#rhino" class="dot" title="Diseño Paramétrico"></a>
+                <a href="#carpinteria" class="dot" title="Diseño de Mobiliario"></a>
+                <a href="#visualizacion" class="dot" title="Comunicación Visual"></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="tesis">
+        <div class="visual-side" style="background: #ffffff;"> 
+            <div class="visual-placeholder">MAPAS Y DIAGRAMAS</div>
+            <div class="section-watermark">TESIS</div>
+        </div>
+        <div class="text-side">
+            <h1>GESTIÓN HÍDRICA URBANA</h1>
+            <p>Investigación enfocada en el estudio del aprovechamiento y gestión del agua pluvial para la vivienda en colonias populares de la ciudad de Querétaro. A través de un análisis fundamentado en la ecología política hidrosocial y marcos normativos del JMP (UNICEF/OMS), el proyecto expone las dinámicas de desigualdad y propone estrategias de infraestructura urbana sostenible para mitigar el estrés hídrico a escala local.</p>
+        </div>
+        <div class="footer-nav">
+            <div class="layer-controls">
+                <button class="layer-btn active">Ecología Política</button>
+                <button class="layer-btn">Gestión Pluvial</button>
+                <button class="layer-btn">Escala Vivienda</button>
+            </div>
+            <div class="nav-container">
+                <a href="#portada" class="dot" title="Portada"></a>
+                <a href="#indice" class="dot" title="Índice"></a>
+                <a href="#bim" class="dot" title="Desarrollo BIM"></a>
+                <a href="#tesis" class="dot active" title="Gestión Hídrica Urbana"></a>
+                <a href="#rhino" class="dot" title="Diseño Paramétrico"></a>
+                <a href="#carpinteria" class="dot" title="Diseño de Mobiliario"></a>
+                <a href="#visualizacion" class="dot" title="Comunicación Visual"></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="rhino">
+        <div class="visual-side">
+            <div class="visual-placeholder">MODELO RINHO / GRASSHOPPER</div>
+            <div class="section-watermark">RHINO</div>
+        </div>
+        <div class="text-side">
+            <h1>DISEÑO PARAMÉTRICO</h1>
+            <p>TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL.</p>
+        </div>
+        <div class="footer-nav">
+            <div class="layer-controls">
+                <button class="layer-btn">Forma Base</button>
+                <button class="layer-btn">Panelizado</button>
+            </div>
+            <div class="nav-container">
+                <a href="#portada" class="dot" title="Portada"></a>
+                <a href="#indice" class="dot" title="Índice"></a>
+                <a href="#bim" class="dot" title="Desarrollo BIM"></a>
+                <a href="#tesis" class="dot" title="Gestión Hídrica Urbana"></a>
+                <a href="#rhino" class="dot active" title="Diseño Paramétrico"></a>
+                <a href="#carpinteria" class="dot" title="Diseño de Mobiliario"></a>
+                <a href="#visualizacion" class="dot" title="Comunicación Visual"></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="carpinteria">
+        <div class="visual-side">
+            <div class="visual-placeholder">MODELO 3D CARPINTERIA / DESPIECE</div>
+            <div class="section-watermark">MOBILIARIO</div>
+        </div>
+        <div class="text-side">
+            <h1>DISEÑO DE MOBILIARIO</h1>
+            <p>TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL.</p>
+        </div>
+        <div class="footer-nav">
+            <div class="layer-controls">
+                <button class="layer-btn">Modelo 3D</button>
+                <button class="layer-btn">Despiece</button>
+                <button class="layer-btn">Tabla de Cortes</button>
+            </div>
+            <div class="nav-container">
+                <a href="#portada" class="dot" title="Portada"></a>
+                <a href="#indice" class="dot" title="Índice"></a>
+                <a href="#bim" class="dot" title="Desarrollo BIM"></a>
+                <a href="#tesis" class="dot" title="Gestión Hídrica Urbana"></a>
+                <a href="#rhino" class="dot" title="Diseño Paramétrico"></a>
+                <a href="#carpinteria" class="dot active" title="Diseño de Mobiliario"></a>
+                <a href="#visualizacion" class="dot" title="Comunicación Visual"></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="visualizacion">
+        <div class="visual-side">
+            <div class="visual-placeholder">RENDERS / VR</div>
+            <div class="section-watermark">VISUALIZACIÓN</div>
+        </div>
+        <div class="text-side">
+            <h1>COMUNICACIÓN VISUAL</h1>
+            <p>TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL.</p>
+        </div>
+        <div class="footer-nav">
+            <div class="layer-controls">
+                <button class="layer-btn">Render Exterior</button>
+                <button class="layer-btn">Render Interior</button>
+            </div>
+            <div class="nav-container">
+                <a href="#portada" class="dot" title="Portada"></a>
+                <a href="#indice" class="dot" title="Índice"></a>
+                <a href="#bim" class="dot" title="Desarrollo BIM"></a>
+                <a href="#tesis" class="dot" title="Gestión Hídrica Urbana"></a>
+                <a href="#rhino" class="dot" title="Diseño Paramétrico"></a>
+                <a href="#carpinteria" class="dot" title="Diseño de Mobiliario"></a>
+                <a href="#visualizacion" class="dot active" title="Comunicación Visual"></a>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<script>
+    const tapLeft = document.getElementById('tap-left');
+    const tapRight = document.getElementById('tap-right');
+    const scrollContainer = document.getElementById('scroll-container');
+
+    tapRight.addEventListener('click', () => {
+        scrollContainer.scrollBy({ left: window.innerWidth, behavior: 'smooth' });
+    });
+
+    tapLeft.addEventListener('click', () => {
+        scrollContainer.scrollBy({ left: -window.innerWidth, behavior: 'smooth' });
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') {
+            scrollContainer.scrollBy({ left: window.innerWidth, behavior: 'smooth' });
+        } else if (e.key === 'ArrowLeft') {
+            scrollContainer.scrollBy({ left: -window.innerWidth, behavior: 'smooth' });
+        }
+    });
+
+    const visor = document.getElementById('visor-360');
+    
+    const btnIntegral = document.getElementById('btn-integral');
+    const btnEstructura = document.getElementById('btn-estructura');
+    const btnMep = document.getElementById('btn-mep');
+    const btnDoc = document.getElementById('btn-doc');
+    const allBimBtns = [btnIntegral, btnEstructura, btnMep, btnDoc];
+
+    let is360Active = true; 
+    const totalFrames = 36;
+    let currentFrame = 1;
+    let isDragging = false;
+    let startX = 0;
+    const sensitivity = 15; 
+
+    function clearActiveButtons() {
+        allBimBtns.forEach(btn => btn.classList.remove('active'));
+    }
+
+    // Añade ceros a la izquierda automáticamente (ej. 1 -> "01", 10 -> "10")
+    function getPaddedFrame(frame) {
+        return frame.toString().padStart(2, '0');
+    }
+
+    btnIntegral.addEventListener('click', () => {
+        clearActiveButtons();
+        btnIntegral.classList.add('active');
+        is360Active = true;
+        visor.src = `IMG/modelo-360-${getPaddedFrame(currentFrame)}.png`;
+        visor.style.cursor = 'grab'; 
+    });
+
+    btnEstructura.addEventListener('click', () => {
+        clearActiveButtons();
+        btnEstructura.classList.add('active');
+        is360Active = false;
+        visor.src = 'IMG/bim-estructura.png';
+        visor.style.cursor = 'default'; 
+    });
+
+    btnMep.addEventListener('click', () => {
+        clearActiveButtons();
+        btnMep.classList.add('active');
+        is360Active = false;
+        visor.src = 'IMG/bim-mep.png';
+        visor.style.cursor = 'default';
+    });
+
+    btnDoc.addEventListener('click', () => {
+        clearActiveButtons();
+        btnDoc.classList.add('active');
+        is360Active = false;
+        visor.src = 'IMG/bim-doc.png';
+        visor.style.cursor = 'default';
+    });
+
+    visor.addEventListener('mousedown', (e) => {
+        if (!is360Active) return;
+        isDragging = true;
+        startX = e.clientX;
+    });
+
+    window.addEventListener('mouseup', () => {
+        isDragging = false;
+    });
+
+    window.addEventListener('mousemove', (e) => {
+        if (!isDragging || !is360Active) return;
+        const dx = e.clientX - startX;
+        
+        if (Math.abs(dx) > sensitivity) {
+            if (dx > 0) {
+                currentFrame--; 
+                if (currentFrame < 1) currentFrame = totalFrames;
+            } else {
+                currentFrame++; 
+                if (currentFrame > totalFrames) currentFrame = 1;
+            }
+            visor.src = `IMG/modelo-360-${getPaddedFrame(currentFrame)}.png`;
+            startX = e.clientX; 
+        }
+    });
+
+    visor.addEventListener('touchstart', (e) => {
+        if (!is360Active) return;
+        isDragging = true;
+        startX = e.touches[0].clientX;
+    });
+
+    window.addEventListener('touchend', () => {
+        isDragging = false;
+    });
+
+    window.addEventListener('touchmove', (e) => {
+        if (!isDragging || !is360Active) return;
+        e.preventDefault(); 
+        const dx = e.touches[0].clientX - startX;
+        
+        if (Math.abs(dx) > sensitivity) {
+            if (dx > 0) {
+                currentFrame--;
+                if (currentFrame < 1) currentFrame = totalFrames;
+            } else {
+                currentFrame++;
+                if (currentFrame > totalFrames) currentFrame = 1;
+            }
+            visor.src = `IMG/modelo-360-${getPaddedFrame(currentFrame)}.png`;
+            startX = e.touches[0].clientX;
+        }
+    }, { passive: false });
+
+</script>
+
+</body>
+</html>
