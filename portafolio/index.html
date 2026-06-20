@@ -152,7 +152,6 @@
             width: 100%;
             height: 100%;
             object-fit: contain; 
-            transform: scale(1.6); /* ACÁ ESTÁ EL ZOOM PARA QUITAR MÁRGENES BLANCOS */
             cursor: grab; 
             user-select: none; 
         }
@@ -196,6 +195,7 @@
             color: var(--text-light);
             line-height: 1.7;
             margin-bottom: 20px;
+            text-align: justify;
         }
         
         /* --- NAVEGACIÓN INFERIOR --- */
@@ -279,6 +279,7 @@
 
 <div class="portfolio-container" id="scroll-container">
     
+    <!-- 1. PORTADA -->
     <section id="portada" class="cover-section">
         <div class="cover-content">
             <div class="cover-name">Arq. Samuel Ulises García Vega</div>
@@ -287,6 +288,7 @@
         </div>
     </section>
 
+    <!-- 2. ÍNDICE -->
     <section id="indice">
         <div class="grid-index-container">
             <a href="#bim" class="grid-column">
@@ -324,6 +326,7 @@
         </div>
     </section>
 
+    <!-- 3. BIM (CON VISOR 360 Y BOTONES) -->
     <section id="bim">
         <div class="visual-side" style="background: #ffffff;"> 
             <img src="IMG/modelo-360-01.png" id="visor-360" class="viewer-360" draggable="false" alt="Modelo BIM 360">
@@ -352,20 +355,21 @@
         </div>
     </section>
 
+    <!-- 4. TESIS -->
     <section id="tesis">
-        <div class="visual-side">
+        <div class="visual-side" style="background: #ffffff;"> 
             <div class="visual-placeholder">MAPAS Y DIAGRAMAS</div>
             <div class="section-watermark">TESIS</div>
         </div>
         <div class="text-side">
             <h1>GESTIÓN HÍDRICA URBANA</h1>
-            <p>TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL TEXTO GENERAL.</p>
+            <p>Investigación enfocada en el estudio del aprovechamiento y gestión del agua pluvial para la vivienda en colonias populares de la ciudad de Querétaro. A través de un análisis fundamentado en la ecología política hidrosocial y marcos normativos del JMP (UNICEF/OMS), el proyecto expone las dinámicas de desigualdad y propone estrategias de infraestructura urbana sostenible para mitigar el estrés hídrico a escala local.</p>
         </div>
         <div class="footer-nav">
             <div class="layer-controls">
-                <button class="layer-btn">Mapa 1</button>
-                <button class="layer-btn">Mapa 2</button>
-                <button class="layer-btn">Diagrama</button>
+                <button class="layer-btn active">Ecología Política</button>
+                <button class="layer-btn">Gestión Pluvial</button>
+                <button class="layer-btn">Escala Vivienda</button>
             </div>
             <div class="nav-container">
                 <a href="#portada" class="dot" title="Portada"></a>
@@ -379,6 +383,7 @@
         </div>
     </section>
 
+    <!-- 5. RINHO -->
     <section id="rhino">
         <div class="visual-side">
             <div class="visual-placeholder">MODELO RINHO / GRASSHOPPER</div>
@@ -405,6 +410,7 @@
         </div>
     </section>
 
+    <!-- 6. CARPINTERIA -->
     <section id="carpinteria">
         <div class="visual-side">
             <div class="visual-placeholder">MODELO 3D CARPINTERIA / DESPIECE</div>
@@ -432,6 +438,7 @@
         </div>
     </section>
 
+    <!-- 7. VISUALIZACIÓN -->
     <section id="visualizacion">
         <div class="visual-side">
             <div class="visual-placeholder">RENDERS / VR</div>
@@ -461,6 +468,7 @@
 </div>
 
 <script>
+    // --- NAVEGACIÓN LATERAL ---
     const tapLeft = document.getElementById('tap-left');
     const tapRight = document.getElementById('tap-right');
     const scrollContainer = document.getElementById('scroll-container');
@@ -481,6 +489,7 @@
         }
     });
 
+    // --- VISOR 360 MULTI-CAPA ---
     const visor = document.getElementById('visor-360');
     
     const btnIntegral = document.getElementById('btn-integral');
@@ -495,48 +504,55 @@
     let isDragging = false;
     let startX = 0;
     const sensitivity = 15; 
+    
+    // Aquí definimos qué grupo de fotos está activo
+    let currentPrefix = 'modelo-360-'; 
 
     function clearActiveButtons() {
         allBimBtns.forEach(btn => btn.classList.remove('active'));
     }
 
-    // Añade ceros a la izquierda automáticamente (ej. 1 -> "01", 10 -> "10")
     function getPaddedFrame(frame) {
         return frame.toString().padStart(2, '0');
     }
 
+    // --- BOTONES ---
     btnIntegral.addEventListener('click', () => {
         clearActiveButtons();
         btnIntegral.classList.add('active');
         is360Active = true;
-        visor.src = `IMG/modelo-360-${getPaddedFrame(currentFrame)}.png`;
+        currentPrefix = 'modelo-360-';
+        visor.src = `IMG/${currentPrefix}${getPaddedFrame(currentFrame)}.png`;
         visor.style.cursor = 'grab'; 
     });
 
     btnEstructura.addEventListener('click', () => {
         clearActiveButtons();
         btnEstructura.classList.add('active');
-        is360Active = false;
-        visor.src = 'IMG/bim-estructura.png';
-        visor.style.cursor = 'default'; 
+        is360Active = true; 
+        currentPrefix = 'estructura-360-';
+        visor.src = `IMG/${currentPrefix}${getPaddedFrame(currentFrame)}.png`;
+        visor.style.cursor = 'grab'; 
     });
 
     btnMep.addEventListener('click', () => {
         clearActiveButtons();
         btnMep.classList.add('active');
-        is360Active = false;
-        visor.src = 'IMG/bim-mep.png';
-        visor.style.cursor = 'default';
+        is360Active = true; 
+        currentPrefix = 'mep-360-';
+        visor.src = `IMG/${currentPrefix}${getPaddedFrame(currentFrame)}.png`;
+        visor.style.cursor = 'grab';
     });
 
     btnDoc.addEventListener('click', () => {
         clearActiveButtons();
         btnDoc.classList.add('active');
-        is360Active = false;
+        is360Active = false; // Este sigue siendo foto estática
         visor.src = 'IMG/bim-doc.png';
         visor.style.cursor = 'default';
     });
 
+    // --- ROTACIÓN ---
     visor.addEventListener('mousedown', (e) => {
         if (!is360Active) return;
         isDragging = true;
@@ -559,7 +575,7 @@
                 currentFrame++; 
                 if (currentFrame > totalFrames) currentFrame = 1;
             }
-            visor.src = `IMG/modelo-360-${getPaddedFrame(currentFrame)}.png`;
+            visor.src = `IMG/${currentPrefix}${getPaddedFrame(currentFrame)}.png`;
             startX = e.clientX; 
         }
     });
@@ -587,7 +603,7 @@
                 currentFrame++;
                 if (currentFrame > totalFrames) currentFrame = 1;
             }
-            visor.src = `IMG/modelo-360-${getPaddedFrame(currentFrame)}.png`;
+            visor.src = `IMG/${currentPrefix}${getPaddedFrame(currentFrame)}.png`;
             startX = e.touches[0].clientX;
         }
     }, { passive: false });
