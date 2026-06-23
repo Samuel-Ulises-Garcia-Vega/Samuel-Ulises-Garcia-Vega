@@ -163,38 +163,33 @@
             cursor: grabbing; 
         }
 
-        .section-watermark {
-            position: absolute;
-            bottom: 100px;
-            right: 30px;
-            font-family: 'Arima Madurai', serif;
-            font-size: 4.5rem;
-            color: var(--text-dark);
-            opacity: 0.08;
-            font-weight: 700;
-            line-height: 1;
-            pointer-events: none; 
-        }
-
         /* --- NUEVA COMPOSICIÓN EDITORIAL DE TEXTOS --- */
         .text-side { 
             width: 50vw; 
-            padding: 80px 80px 140px 80px; 
+            /* Se redujo el padding inferior de 140px a 100px para pegar el título a la línea */
+            padding: 80px 80px 100px 80px; 
             display: flex; 
             flex-direction: column; 
-            justify-content: space-between; /* Mantiene el título abajo y centra el párrafo */
-            align-items: flex-end; /* Todo se alinea a la derecha */
+            justify-content: space-between; 
+            align-items: flex-end; 
             background: #ffffff;
         }
 
         .text-side p {
-            width: 55%; /* Crea la columna vertical estrecha */
-            font-size: 1.1rem;
+            width: 55%; 
+            font-size: 1.05rem; /* Ajuste sutil para que los textos largos respiren mejor */
             color: var(--text-light);
             line-height: 1.7;
             text-align: justify;
             margin-top: auto;
-            margin-bottom: auto; /* Empuja el título hacia abajo */
+            margin-bottom: auto; 
+        }
+
+        /* Clase exclusiva para dividir el texto de la Tesis en dos columnas */
+        .text-two-columns {
+            width: 80% !important; 
+            column-count: 2;
+            column-gap: 40px;
         }
 
         .text-side h1 {
@@ -336,11 +331,10 @@
         </div>
     </section>
 
-    <!-- 3. BIM -->
+    <!-- 3. BIM (CON VISOR 360 Y BOTONES) -->
     <section id="bim">
         <div class="visual-side" style="background: #ffffff;"> 
             <img src="IMG/modelo-360-01.png" id="visor-360" class="viewer-360" draggable="false" alt="Modelo BIM 360">
-            <div class="section-watermark">BIM</div>
         </div>
         <div class="text-side">
             <p>Desarrollo de proyectos ejecutivos y documentación técnica integral. Gestión avanzada de modelos en Archicad, optimización de combinaciones de capas para la supervisión de obra y extracción de cuantificaciones precisas. La centralización de la información permite anticipar resoluciones constructivas en sitio y ofrecer presentaciones claras y eficientes mediante BIMx.</p>
@@ -369,10 +363,10 @@
     <section id="tesis">
         <div class="visual-side" style="background: #ffffff;"> 
             <div class="visual-placeholder">MAPAS Y DIAGRAMAS<br>(Espacio para imágenes estáticas)</div>
-            <div class="section-watermark">TESIS</div>
         </div>
         <div class="text-side">
-            <p>Investigación enfocada en el estudio del aprovechamiento y gestión del agua pluvial para la vivienda en colonias populares de la ciudad de Querétaro. A través del análisis de la actual crisis hídrica del estado, en el cual se destaca la explotación y gestión de este recurso, exponiendo las dinámicas de desigualdad urbana junto con la carencia de infraestructura pluvial de la ciudad. Esta investigación propone estrategias de infraestructura urbana, habitacional sostenible y adaptable para mitigar el estrés hídrico a escala local.</p>
+            <!-- NOTA: Aquí se aplica la clase "text-two-columns" -->
+            <p class="text-two-columns">Investigación enfocada en el estudio del aprovechamiento y gestión del agua pluvial para la vivienda en colonias populares de la ciudad de Querétaro. A través del análisis de la actual crisis hídrica del estado, en el cual se destaca la explotación y gestión de este recurso, exponiendo las dinámicas de desigualdad urbana junto con la carencia de infraestructura pluvial de la ciudad. Esta investigación propone estrategias de infraestructura urbana, habitacional sostenible y adaptable para mitigar el estrés hídrico a escala local.</p>
             <h1>GESTIÓN HÍDRICA URBANA</h1>
         </div>
         <div class="footer-nav">
@@ -397,10 +391,9 @@
     <section id="rhino">
         <div class="visual-side" style="background: #ffffff;">
             <div class="visual-placeholder">MODELO RHINO / GRASSHOPPER<br>(Espacio para imágenes estáticas o 360)</div>
-            <div class="section-watermark">RHINO</div>
         </div>
         <div class="text-side">
-            <p>Exploración morfológica y optimización geométrica mediante Rhinoceros y Grasshopper. El desarrollo de algoritmos visuales permite una mayor capacidad de iteraciones en el proceso de diseño para formas complejas o geometrías no convencionales.</p>
+            <p>Exploración morfológica y optimización geométrica mediante Rhinoceros y Grasshopper. El desarrollo de algoritmos visuales permite una mayor capacidad de iteraciones en el proceso de diseño para formas complejas o geometrías no convencionales. Esta metodología computacional facilita la integración de variables ambientales y paramétricas en tiempo real, logrando envolventes responsivas y reduciendo significativamente el desperdicio de material mediante la racionalización del panelizado de fachadas.</p>
             <h1>DISEÑO PARAMÉTRICO</h1>
         </div>
         <div class="footer-nav">
@@ -425,10 +418,9 @@
     <section id="carpinteria">
         <div class="visual-side" style="background: #ffffff;">
             <div class="visual-placeholder">MODELO 3D CARPINTERIA / DESPIECE<br>(Espacio para imágenes estáticas o 360)</div>
-            <div class="section-watermark">MOBILIARIO</div>
         </div>
         <div class="text-side">
-            <p>Conceptualización y desarrollo técnico de mobiliario. El proceso abarca desde la exploración espacial hasta la planimetría de la fabricación y el armado del mobiliario. Englobando la generación de despieces, tablas de corte y diagramas de ensamble.</p>
+            <p>Conceptualización y desarrollo técnico de mobiliario. El proceso abarca desde la exploración espacial hasta la planimetría de la fabricación y el armado del mobiliario. Englobando la generación de despieces, tablas de corte y diagramas de ensamble. Se pone especial atención en la selección de los materiales, la solución de las uniones, los herrajes y el estudio ergonómico, asegurando piezas que conjugan durabilidad, limpieza visual y factibilidad productiva a nivel de taller.</p>
             <h1>DISEÑO DE MOBILIARIO</h1>
         </div>
         <div class="footer-nav">
@@ -453,10 +445,9 @@
     <section id="visualizacion">
         <div class="visual-side" style="background: #ffffff;">
             <div class="visual-placeholder">RENDERS / VR<br>(Espacio para imágenes estáticas)</div>
-            <div class="section-watermark">VISUALIZACIÓN</div>
         </div>
         <div class="text-side">
-            <p>Representación visual de proyectos y conceptos arquitectónicos mediante estrategias de renderización 3D, edición fotográfica e ilustración digital. Esto permite la exploración visual de los distintos elementos dentro del diseño y una mayor comprensión espacial.</p>
+            <p>Representación visual de proyectos y conceptos arquitectónicos mediante estrategias de renderización 3D, edición fotográfica e ilustración digital. Esto permite la exploración visual de los distintos elementos dentro del diseño y una mayor comprensión espacial. El flujo de trabajo incluye la cuidadosa configuración de texturas físicas, simulación de iluminación natural y postproducción para transmitir atmósferas precisas, convirtiéndose en el puente de comunicación definitivo entre la visión técnica y el cliente final.</p>
             <h1>COMUNICACIÓN VISUAL</h1>
         </div>
         <div class="footer-nav">
