@@ -44,7 +44,7 @@
             position: relative;
         }
         
-        /* --- LÁMINA 1: PORTADA --- */
+        /* --- LÁMINA PORTADA --- */
         .cover-section {
             display: flex;
             flex-direction: column;
@@ -80,7 +80,7 @@
             margin-top: 10px;
         }
 
-        /* --- LÁMINA 2: ÍNDICE --- */
+        /* --- LÁMINA ÍNDICE --- */
         .grid-index-container {
             display: flex;
             width: 100%;
@@ -123,7 +123,7 @@
         .grid-column:hover .grid-number { color: var(--red); transform: translateY(-10px); }
         .grid-column:hover .grid-title { color: var(--green); }
 
-        /* --- LÁMINAS 3 A 7: DISEÑO 50/50 --- */
+        /* --- ÁREA VISUAL (IZQUIERDA) --- */
         .visual-side { 
             width: 50vw; 
             background: #e2e8f0; 
@@ -148,7 +148,6 @@
             text-align: center;
         }
 
-        /* ESTILOS DEL VISOR 360 */
         .viewer-360 {
             width: 100%;
             height: 100%;
@@ -159,49 +158,68 @@
             border: none; 
             outline: none;
         }
-        .viewer-360:active {
-            cursor: grabbing; 
-        }
+        .viewer-360:active { cursor: grabbing; }
 
-        /* --- NUEVA COMPOSICIÓN EDITORIAL DE TEXTOS --- */
+        /* --- ESTRUCTURA EDITORIAL DE TEXTOS (DERECHA) --- */
         .text-side { 
             width: 50vw; 
-            /* Se redujo el padding inferior de 140px a 100px para pegar el título a la línea */
-            padding: 80px 80px 100px 80px; 
+            padding: 80px 80px 140px 80px; 
             display: flex; 
             flex-direction: column; 
-            justify-content: space-between; 
+            justify-content: center; /* Centra el párrafo verticalmente de forma independiente */
             align-items: flex-end; 
             background: #ffffff;
+            position: relative; /* Clave absoluta para el título */
         }
 
         .text-side p {
-            width: 55%; 
-            font-size: 1.05rem; /* Ajuste sutil para que los textos largos respiren mejor */
+            font-size: 1.05rem; 
             color: var(--text-light);
             line-height: 1.7;
             text-align: justify;
-            margin-top: auto;
-            margin-bottom: auto; 
-        }
-
-        /* Clase exclusiva para dividir el texto de la Tesis en dos columnas */
-        .text-two-columns {
-            width: 80% !important; 
-            column-count: 2;
-            column-gap: 40px;
+            margin: 0;
         }
 
         .text-side h1 {
             font-family: 'Arima Madurai', serif;
-            font-size: 3rem;
             color: var(--red);
             text-align: right;
-            margin-bottom: 0;
-            margin-top: 40px;
-            line-height: 1.1;
             text-transform: uppercase;
+            position: absolute; /* El título se ancla al fondo, sin importar qué tan largo sea el texto */
+            bottom: 85px; /* Exactamente a 5px por encima del footer inferior */
+            right: 80px;
+            margin: 0;
+            line-height: 1;
         }
+
+        /* --- CONFIGURACIONES INDIVIDUALES POR LÁMINA --- */
+        
+        /* 1. BIM */
+        #bim .text-side p { width: 55%; }
+        #bim .text-side h1 { font-size: 3.5rem; }
+
+        /* 2. TESIS (Gestión Hídrica) */
+        #tesis .text-side p { 
+            width: 80%; 
+            column-count: 2; /* Divide el texto en dos columnas */
+            column-gap: 40px;
+        }
+        #tesis .text-side h1 { 
+            font-size: 2.3rem; 
+            white-space: nowrap; /* Título estrictamente en una sola línea */
+        }
+
+        /* 3. RHINO (Diseño Paramétrico) */
+        #rhino .text-side p { width: 55%; }
+        #rhino .text-side h1 { font-size: 3.5rem; }
+
+        /* 4. CARPINTERÍA (Mobiliario) */
+        #carpinteria .text-side p { width: 55%; }
+        #carpinteria .text-side h1 { font-size: 3.2rem; }
+
+        /* 5. VISUALIZACIÓN */
+        #visualizacion .text-side p { width: 55%; }
+        #visualizacion .text-side h1 { font-size: 3.2rem; }
         
         /* --- NAVEGACIÓN INFERIOR --- */
         .footer-nav { 
@@ -284,7 +302,7 @@
 
 <div class="portfolio-container" id="scroll-container">
     
-    <!-- 1. PORTADA -->
+    <!-- PORTADA -->
     <section id="portada" class="cover-section">
         <div class="cover-content">
             <div class="cover-name">Arq. Samuel Ulises García Vega</div>
@@ -293,7 +311,7 @@
         </div>
     </section>
 
-    <!-- 2. ÍNDICE -->
+    <!-- ÍNDICE -->
     <section id="indice">
         <div class="grid-index-container">
             <a href="#bim" class="grid-column">
@@ -331,13 +349,13 @@
         </div>
     </section>
 
-    <!-- 3. BIM (CON VISOR 360 Y BOTONES) -->
+    <!-- 1. BIM -->
     <section id="bim">
         <div class="visual-side" style="background: #ffffff;"> 
             <img src="IMG/modelo-360-01.png" id="visor-360" class="viewer-360" draggable="false" alt="Modelo BIM 360">
         </div>
         <div class="text-side">
-            <p>Desarrollo de proyectos ejecutivos y documentación técnica integral. Gestión avanzada de modelos en Archicad, optimización de combinaciones de capas para la supervisión de obra y extracción de cuantificaciones precisas. La centralización de la información permite anticipar resoluciones constructivas en sitio y ofrecer presentaciones claras y eficientes mediante BIMx.</p>
+            <p>Desarrollo de proyectos ejecutivos y documentación técnica integral. Gestión avanzada de modelos en Archicad, optimización de combinaciones de capas para la supervisión de obra y extracción de cuantificaciones precisas.</p>
             <h1>DESARROLLO BIM</h1>
         </div>
         <div class="footer-nav">
@@ -359,14 +377,13 @@
         </div>
     </section>
 
-    <!-- 4. TESIS -->
+    <!-- 2. TESIS -->
     <section id="tesis">
         <div class="visual-side" style="background: #ffffff;"> 
             <div class="visual-placeholder">MAPAS Y DIAGRAMAS<br>(Espacio para imágenes estáticas)</div>
         </div>
         <div class="text-side">
-            <!-- NOTA: Aquí se aplica la clase "text-two-columns" -->
-            <p class="text-two-columns">Investigación enfocada en el estudio del aprovechamiento y gestión del agua pluvial para la vivienda en colonias populares de la ciudad de Querétaro. A través del análisis de la actual crisis hídrica del estado, en el cual se destaca la explotación y gestión de este recurso, exponiendo las dinámicas de desigualdad urbana junto con la carencia de infraestructura pluvial de la ciudad. Esta investigación propone estrategias de infraestructura urbana, habitacional sostenible y adaptable para mitigar el estrés hídrico a escala local.</p>
+            <p>Investigación enfocada en el aprovechamiento de agua pluvial para vivienda en la ciudad de Querétaro. Ante la actual crisis hídrica, se exponen dinámicas de desigualdad urbana y se proponen estrategias sostenibles para mitigar el estrés hídrico a escala local.</p>
             <h1>GESTIÓN HÍDRICA URBANA</h1>
         </div>
         <div class="footer-nav">
@@ -387,13 +404,13 @@
         </div>
     </section>
 
-    <!-- 5. RINHO -->
+    <!-- 3. RINHO -->
     <section id="rhino">
         <div class="visual-side" style="background: #ffffff;">
             <div class="visual-placeholder">MODELO RHINO / GRASSHOPPER<br>(Espacio para imágenes estáticas o 360)</div>
         </div>
         <div class="text-side">
-            <p>Exploración morfológica y optimización geométrica mediante Rhinoceros y Grasshopper. El desarrollo de algoritmos visuales permite una mayor capacidad de iteraciones en el proceso de diseño para formas complejas o geometrías no convencionales. Esta metodología computacional facilita la integración de variables ambientales y paramétricas en tiempo real, logrando envolventes responsivas y reduciendo significativamente el desperdicio de material mediante la racionalización del panelizado de fachadas.</p>
+            <p>Exploración morfológica mediante Rhinoceros y Grasshopper. Desarrollo de algoritmos visuales para resolver geometrías no convencionales, adaptación topográfica y optimización del panelizado de fachadas.</p>
             <h1>DISEÑO PARAMÉTRICO</h1>
         </div>
         <div class="footer-nav">
@@ -414,13 +431,13 @@
         </div>
     </section>
 
-    <!-- 6. CARPINTERIA -->
+    <!-- 4. CARPINTERIA -->
     <section id="carpinteria">
         <div class="visual-side" style="background: #ffffff;">
             <div class="visual-placeholder">MODELO 3D CARPINTERIA / DESPIECE<br>(Espacio para imágenes estáticas o 360)</div>
         </div>
         <div class="text-side">
-            <p>Conceptualización y desarrollo técnico de mobiliario. El proceso abarca desde la exploración espacial hasta la planimetría de la fabricación y el armado del mobiliario. Englobando la generación de despieces, tablas de corte y diagramas de ensamble. Se pone especial atención en la selección de los materiales, la solución de las uniones, los herrajes y el estudio ergonómico, asegurando piezas que conjugan durabilidad, limpieza visual y factibilidad productiva a nivel de taller.</p>
+            <p>Conceptualización y desarrollo técnico de mobiliario. El proceso abarca desde la exploración espacial y ergonómica hasta la planimetría de fabricación, generando despieces y tablas de corte precisas.</p>
             <h1>DISEÑO DE MOBILIARIO</h1>
         </div>
         <div class="footer-nav">
@@ -441,13 +458,13 @@
         </div>
     </section>
 
-    <!-- 7. VISUALIZACIÓN -->
+    <!-- 5. VISUALIZACIÓN -->
     <section id="visualizacion">
         <div class="visual-side" style="background: #ffffff;">
             <div class="visual-placeholder">RENDERS / VR<br>(Espacio para imágenes estáticas)</div>
         </div>
         <div class="text-side">
-            <p>Representación visual de proyectos y conceptos arquitectónicos mediante estrategias de renderización 3D, edición fotográfica e ilustración digital. Esto permite la exploración visual de los distintos elementos dentro del diseño y una mayor comprensión espacial. El flujo de trabajo incluye la cuidadosa configuración de texturas físicas, simulación de iluminación natural y postproducción para transmitir atmósferas precisas, convirtiéndose en el puente de comunicación definitivo entre la visión técnica y el cliente final.</p>
+            <p>Representación fotorrealista de proyectos arquitectónicos mediante renderización 3D y edición fotográfica. Enfoque en la iluminación, materialidad y composición para transmitir la escala y atmósfera espacial.</p>
             <h1>COMUNICACIÓN VISUAL</h1>
         </div>
         <div class="footer-nav">
