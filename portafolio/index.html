@@ -192,19 +192,19 @@
         
         .layer-controls { 
             display: flex; 
-            gap: 15px; 
+            gap: 10px; 
             margin-right: auto; 
-            width: 50%; 
+            width: 70%; 
         }
         
         .layer-btn { 
-            padding: 10px 20px; 
+            padding: 8px 15px; 
             background: var(--green); 
             color: white; 
             border: none; 
             cursor: pointer; 
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             border-radius: 4px;
             transition: background 0.3s;
         }
@@ -229,7 +229,6 @@
             transition: all 0.3s ease;
             text-decoration: none;
         }
-        
         .dot.active { background: var(--red); transform: scale(1.3); }
 
         .tap-zone {
@@ -312,9 +311,10 @@
         </div>
         <div class="footer-nav">
             <div class="layer-controls">
-                <button class="layer-btn active" id="btn-integral">Modelo Integral</button>
+                <button class="layer-btn active" id="btn-integral">INTEGRAL</button>
                 <button class="layer-btn" id="btn-estructura">Estructura</button>
                 <button class="layer-btn" id="btn-mep">Red MEP</button>
+                <button class="layer-btn" id="btn-doc" style="background: var(--red);">DOC.</button>
             </div>
             <div class="nav-container">
                 <a href="#portada" class="dot" title="Portada"></a>
@@ -353,13 +353,18 @@
     <!-- 3. RHINO -->
     <section id="rhino">
         <div class="visual-side" style="background: #ffffff;">
-            <div class="visual-placeholder" style="width: 80%; height: 70%; border: 2px dashed var(--green); display: flex; align-items: center; justify-content: center; color: var(--green); font-weight: bold; background-color: rgba(116, 130, 81, 0.05); text-align: center;">MODELO RHINO / GRASSHOPPER<br>(Espacio para imágenes estáticas o 360)</div>
+            <model-viewer id="rhino-viewer" src="IMG/CUBIERTA.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" style="width: 100%; height: 100%;"></model-viewer>
         </div>
         <div class="text-side">
             <p>Exploración morfológica y optimización geométrica mediante Rhinoceros y Grasshopper. El desarrollo de algoritmos visuales permite una mayor capacidad de iteraciones en el proceso de diseño para formas complejas o geometrías no convencionales.</p>
             <h1>DISEÑO PARAMÉTRICO</h1>
         </div>
         <div class="footer-nav">
+            <div class="layer-controls">
+                <button class="layer-btn active" id="btn-cubierta">CUBIERTA</button>
+                <button class="layer-btn" id="btn-geom">EXP. GEOMÉTRICA</button>
+                <button class="layer-btn" id="btn-algoritmo" style="background: var(--red);">ALGORITMO</button>
+            </div>
             <div class="nav-container">
                 <a href="#portada" class="dot" title="Portada"></a>
                 <a href="#indice" class="dot" title="Índice"></a>
@@ -427,17 +432,29 @@
     tapRight.addEventListener('click', () => scrollContainer.scrollBy({ left: window.innerWidth, behavior: 'smooth' }));
     tapLeft.addEventListener('click', () => scrollContainer.scrollBy({ left: -window.innerWidth, behavior: 'smooth' }));
 
-    // --- LÓGICA BIM (MODELOS GLB) ---
+    // --- LÓGICA BIM ---
     const bimViewer = document.getElementById('bim-viewer');
     const btnIntegral = document.getElementById('btn-integral');
     const btnEstructura = document.getElementById('btn-estructura');
     const btnMep = document.getElementById('btn-mep');
 
-    function updateModel(src) { bimViewer.setAttribute('src', src); }
+    function updateBim(src) { bimViewer.setAttribute('src', src); }
+    btnIntegral.addEventListener('click', () => { updateBim('IMG/INTEGRAL.glb'); });
+    btnEstructura.addEventListener('click', () => { updateBim('IMG/ESTRUCTURAL.glb'); });
+    btnMep.addEventListener('click', () => { updateBim('IMG/MEP.glb'); });
 
-    btnIntegral.addEventListener('click', () => { updateModel('IMG/INTEGRAL.glb'); btnIntegral.classList.add('active'); btnEstructura.classList.remove('active'); btnMep.classList.remove('active'); });
-    btnEstructura.addEventListener('click', () => { updateModel('IMG/ESTRUCTURAL.glb'); btnEstructura.classList.add('active'); btnIntegral.classList.remove('active'); btnMep.classList.remove('active'); });
-    btnMep.addEventListener('click', () => { updateModel('IMG/MEP.glb'); btnMep.classList.add('active'); btnIntegral.classList.remove('active'); btnEstructura.classList.remove('active'); });
+    // --- LÓGICA RHINO ---
+    const rhinoViewer = document.getElementById('rhino-viewer');
+    const btnCubierta = document.getElementById('btn-cubierta');
+    const btnGeom = document.getElementById('btn-geom');
+    const btnAlgoritmo = document.getElementById('btn-algoritmo');
+
+    function updateRhino(src) { rhinoViewer.setAttribute('src', src); }
+    btnCubierta.addEventListener('click', () => { updateRhino('IMG/CUBIERTA.glb'); });
+    btnGeom.addEventListener('click', () => { updateRhino('IMG/EXP_GEOMETRICA.glb'); });
+    btnAlgoritmo.addEventListener('click', () => { 
+        rhinoViewer.innerHTML = '<img src="IMG/ALGORITMO.jpg" style="width:100%; height:100%; object-fit:contain;">'; 
+    });
 </script>
 
 </body>
