@@ -136,19 +136,6 @@
             overflow: hidden; 
         }
         
-        .visual-placeholder {
-            width: 80%;
-            height: 70%;
-            border: 2px dashed var(--green);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--green);
-            font-weight: bold;
-            background-color: rgba(116, 130, 81, 0.05);
-            text-align: center;
-        }
-
         /* --- ESTRUCTURA EDITORIAL DE TEXTOS (DERECHA) --- */
         .text-side { 
             width: 50vw; 
@@ -179,10 +166,10 @@
             right: 80px;
             margin: 0;
             line-height: 1;
-            font-size: 2.8rem;
+            font-size: 2.8rem; 
             white-space: nowrap; 
         }
-
+        
         /* --- CONFIGURACIONES INDIVIDUALES --- */
         #bim .text-side p { width: 55%; }
         #tesis .text-side p { width: 80%; column-count: 2; column-gap: 40px; }
@@ -314,13 +301,13 @@
         </div>
     </section>
 
-    <!-- 1. BIM (ACTUALIZADO CON GLB) -->
+    <!-- 1. BIM -->
     <section id="bim">
         <div class="visual-side" style="background: #ffffff;"> 
             <model-viewer id="bim-viewer" src="IMG/INTEGRAL.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" style="width: 100%; height: 100%;"></model-viewer>
         </div>
         <div class="text-side">
-            <p>Desarrollo de proyectos ejecutivos y documentación técnica integral. Gestión avanzada de modelos en Archicad, optimización de combinaciones de capas para la supervisión de obra y extracción de cuantificaciones precisas.</p>
+            <p>Desarrollo de proyectos ejecutivos y documentación técnica integral. Gestión avanzada de modelos en Archicad, optimización de combinaciones de capas para la supervisión de obra y extracción de cuantificaciones precisas. La centralización de la información permite anticipar resoluciones constructivas en sitio y ofrecer presentaciones claras y eficientes mediante BIMx.</p>
             <h1>DESARROLLO BIM</h1>
         </div>
         <div class="footer-nav">
@@ -344,14 +331,13 @@
     <!-- 2. TESIS -->
     <section id="tesis">
         <div class="visual-side" style="background: #ffffff;"> 
-            <div class="visual-placeholder">MAPAS Y DIAGRAMAS</div>
+            <div class="visual-placeholder" style="width: 80%; height: 70%; border: 2px dashed var(--green); display: flex; align-items: center; justify-content: center; color: var(--green); font-weight: bold; background-color: rgba(116, 130, 81, 0.05); text-align: center;">MAPAS Y DIAGRAMAS<br>(Espacio para imágenes estáticas)</div>
         </div>
         <div class="text-side">
-            <p>Investigación enfocada en el estudio del aprovechamiento y gestión del agua pluvial para la vivienda en colonias populares de la ciudad de Querétaro.</p>
+            <p>Investigación enfocada en el estudio del aprovechamiento y gestión del agua pluvial para la vivienda en colonias populares de la ciudad de Querétaro. A través del análisis de la actual crisis hídrica del estado, en el cual se destaca la explotación y gestión de este recurso, exponiendo las dinámicas de desigualdad urbana junto con la carencia de infraestructura pluvial de la ciudad. Esta investigación propone estrategias de infraestructura urbana, habitacional sostenible y adaptable para mitigar el estrés hídrico a escala local.</p>
             <h1>GESTIÓN HÍDRICA URBANA</h1>
         </div>
         <div class="footer-nav">
-            <div class="layer-controls"></div>
             <div class="nav-container">
                 <a href="#portada" class="dot" title="Portada"></a>
                 <a href="#indice" class="dot" title="Índice"></a>
@@ -367,10 +353,10 @@
     <!-- 3. RHINO -->
     <section id="rhino">
         <div class="visual-side" style="background: #ffffff;">
-            <div class="visual-placeholder">MODELO RHINO</div>
+            <div class="visual-placeholder" style="width: 80%; height: 70%; border: 2px dashed var(--green); display: flex; align-items: center; justify-content: center; color: var(--green); font-weight: bold; background-color: rgba(116, 130, 81, 0.05); text-align: center;">MODELO RHINO / GRASSHOPPER<br>(Espacio para imágenes estáticas o 360)</div>
         </div>
         <div class="text-side">
-            <p>Exploración morfológica y optimización geométrica mediante Rhinoceros y Grasshopper.</p>
+            <p>Exploración morfológica y optimización geométrica mediante Rhinoceros y Grasshopper. El desarrollo de algoritmos visuales permite una mayor capacidad de iteraciones en el proceso de diseño para formas complejas o geometrías no convencionales.</p>
             <h1>DISEÑO PARAMÉTRICO</h1>
         </div>
         <div class="footer-nav">
@@ -389,10 +375,10 @@
     <!-- 4. CARPINTERÍA -->
     <section id="carpinteria">
         <div class="visual-side" style="background: #ffffff;">
-            <div class="visual-placeholder">MODELO CARPINTERÍA</div>
+            <div class="visual-placeholder" style="width: 80%; height: 70%; border: 2px dashed var(--green); display: flex; align-items: center; justify-content: center; color: var(--green); font-weight: bold; background-color: rgba(116, 130, 81, 0.05); text-align: center;">MODELO 3D CARPINTERÍA / DESPIECE<br>(Espacio para imágenes estáticas o 360)</div>
         </div>
         <div class="text-side">
-            <p>Conceptualización y desarrollo técnico de mobiliario.</p>
+            <p>Conceptualización y desarrollo técnico de mobiliario. El proceso abarca desde la exploración espacial hasta la planimetría de la fabricación y el armado del mobiliario. Englobando la generación de despieces, tablas de corte y diagramas de ensamble.</p>
             <h1>DISEÑO DE MOBILIARIO</h1>
         </div>
         <div class="footer-nav">
@@ -411,10 +397,10 @@
     <!-- 5. VISUALIZACIÓN -->
     <section id="visualizacion">
         <div class="visual-side" style="background: #ffffff;">
-            <div class="visual-placeholder">RENDERS</div>
+            <div class="visual-placeholder" style="width: 80%; height: 70%; border: 2px dashed var(--green); display: flex; align-items: center; justify-content: center; color: var(--green); font-weight: bold; background-color: rgba(116, 130, 81, 0.05); text-align: center;">RENDERS / VR<br>(Espacio para imágenes estáticas)</div>
         </div>
         <div class="text-side">
-            <p>Representación visual de proyectos y conceptos arquitectónicos.</p>
+            <p>Representación visual de proyectos y conceptos arquitectónicos mediante estrategias de renderización 3D, edición fotográfica e ilustración digital. Esto permite la exploración visual de los distintos elementos dentro del diseño y una mayor comprensión espacial.</p>
             <h1>COMUNICACIÓN VISUAL</h1>
         </div>
         <div class="footer-nav">
@@ -429,6 +415,7 @@
             </div>
         </div>
     </section>
+
 </div>
 
 <script>
@@ -440,7 +427,7 @@
     tapRight.addEventListener('click', () => scrollContainer.scrollBy({ left: window.innerWidth, behavior: 'smooth' }));
     tapLeft.addEventListener('click', () => scrollContainer.scrollBy({ left: -window.innerWidth, behavior: 'smooth' }));
 
-    // --- LÓGICA BIM (GLB) ---
+    // --- LÓGICA BIM (MODELOS GLB) ---
     const bimViewer = document.getElementById('bim-viewer');
     const btnIntegral = document.getElementById('btn-integral');
     const btnEstructura = document.getElementById('btn-estructura');
@@ -452,5 +439,6 @@
     btnEstructura.addEventListener('click', () => { updateModel('IMG/ESTRUCTURAL.glb'); btnEstructura.classList.add('active'); btnIntegral.classList.remove('active'); btnMep.classList.remove('active'); });
     btnMep.addEventListener('click', () => { updateModel('IMG/MEP.glb'); btnMep.classList.add('active'); btnIntegral.classList.remove('active'); btnEstructura.classList.remove('active'); });
 </script>
+
 </body>
 </html>
