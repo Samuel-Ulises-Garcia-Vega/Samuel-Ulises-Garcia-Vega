@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portafolio - Samuel Ulises García Vega</title>
     <link href="https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@400;700&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
     
     <style>
         :root {
@@ -190,8 +191,8 @@
             right: 80px;
             margin: 0;
             line-height: 1;
-            font-size: 2.8rem; /* TAMAÑO UNIFORMIZADO PARA TODAS LAS LÁMINAS */
-            white-space: nowrap; /* FORZA EL TÍTULO A UNA SOLA LÍNEA */
+            font-size: 2.8rem; 
+            white-space: nowrap; 
         }
 
         /* --- CONFIGURACIONES INDIVIDUALES DE PÁRRAFOS POR LÁMINA --- */
@@ -202,7 +203,7 @@
         /* 2. TESIS (Gestión Hídrica) */
         #tesis .text-side p { 
             width: 80%; 
-            column-count: 2; /* Divide el texto en dos columnas */
+            column-count: 2; 
             column-gap: 40px;
         }
 
@@ -296,7 +297,6 @@
 
 <div class="portfolio-container" id="scroll-container">
     
-    <!-- PORTADA -->
     <section id="portada" class="cover-section">
         <div class="cover-content">
             <div class="cover-name">Arq. Samuel Ulises García Vega</div>
@@ -305,7 +305,6 @@
         </div>
     </section>
 
-    <!-- ÍNDICE -->
     <section id="indice">
         <div class="grid-index-container">
             <a href="#bim" class="grid-column">
@@ -343,7 +342,6 @@
         </div>
     </section>
 
-    <!-- 1. BIM -->
     <section id="bim">
         <div class="visual-side" style="background: #ffffff;"> 
             <img src="IMG/modelo-360-01.png" id="visor-360" class="viewer-360" draggable="false" alt="Modelo BIM 360">
@@ -371,7 +369,6 @@
         </div>
     </section>
 
-    <!-- 2. TESIS -->
     <section id="tesis">
         <div class="visual-side" style="background: #ffffff;"> 
             <div class="visual-placeholder">MAPAS Y DIAGRAMAS<br>(Espacio para imágenes estáticas)</div>
@@ -398,7 +395,6 @@
         </div>
     </section>
 
-    <!-- 3. RINHO -->
     <section id="rhino">
         <div class="visual-side" style="background: #ffffff;">
             <div class="visual-placeholder">MODELO RHINO / GRASSHOPPER<br>(Espacio para imágenes estáticas o 360)</div>
@@ -425,7 +421,6 @@
         </div>
     </section>
 
-    <!-- 4. CARPINTERIA -->
     <section id="carpinteria">
         <div class="visual-side" style="background: #ffffff;">
             <div class="visual-placeholder">MODELO 3D CARPINTERIA / DESPIECE<br>(Espacio para imágenes estáticas o 360)</div>
@@ -452,7 +447,6 @@
         </div>
     </section>
 
-    <!-- 5. VISUALIZACIÓN -->
     <section id="visualizacion">
         <div class="visual-side" style="background: #ffffff;">
             <div class="visual-placeholder">RENDERS / VR<br>(Espacio para imágenes estáticas)</div>
@@ -476,6 +470,16 @@
                 <a href="#carpinteria" class="dot" title="Diseño de Mobiliario"></a>
                 <a href="#visualizacion" class="dot active" title="Comunicación Visual"></a>
             </div>
+        </div>
+    </section>
+
+    <section id="prueba">
+        <div class="visual-side" style="background: #ffffff;">
+            <model-viewer src="IMG/ESTRUCTURA.glb" camera-controls auto-rotate shadow-intensity="0" style="width: 100%; height: 100%; background-color: transparent;"></model-viewer>
+        </div>
+        <div class="text-side">
+            <p>Espacio de pruebas. Verifica que el archivo ESTRUCTURA.glb esté en la carpeta IMG.</p>
+            <h1>PRUEBA MODELO 3D</h1>
         </div>
     </section>
 
