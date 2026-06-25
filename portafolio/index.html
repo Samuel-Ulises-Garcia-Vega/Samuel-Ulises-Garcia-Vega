@@ -302,7 +302,7 @@
 
     <!-- 1. BIM -->
     <section id="bim">
-        <div class="visual-side" style="background: #ffffff;"> 
+        <div class="visual-side" id="bim-viewer-container"> 
             <model-viewer id="bim-viewer" src="IMG/INTEGRAL.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" style="width: 100%; height: 100%;"></model-viewer>
         </div>
         <div class="text-side">
@@ -314,16 +314,7 @@
                 <button class="layer-btn active" id="btn-integral">INTEGRAL</button>
                 <button class="layer-btn" id="btn-estructura">Estructura</button>
                 <button class="layer-btn" id="btn-mep">Red MEP</button>
-                <button class="layer-btn" id="btn-doc" style="background: var(--red);">DOC.</button>
-            </div>
-            <div class="nav-container">
-                <a href="#portada" class="dot" title="Portada"></a>
-                <a href="#indice" class="dot" title="Índice"></a>
-                <a href="#bim" class="dot active" title="Desarrollo BIM"></a>
-                <a href="#tesis" class="dot" title="Gestión Hídrica Urbana"></a>
-                <a href="#rhino" class="dot" title="Diseño Paramétrico"></a>
-                <a href="#carpinteria" class="dot" title="Diseño de Mobiliario"></a>
-                <a href="#visualizacion" class="dot" title="Comunicación Visual"></a>
+                <button class="layer-btn" id="btn-doc">DOC.</button>
             </div>
         </div>
     </section>
@@ -352,7 +343,7 @@
 
     <!-- 3. RHINO -->
     <section id="rhino">
-        <div class="visual-side" style="background: #ffffff;">
+        <div class="visual-side" id="rhino-viewer-container">
             <model-viewer id="rhino-viewer" src="IMG/CUBIERTA.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" style="width: 100%; height: 100%;"></model-viewer>
         </div>
         <div class="text-side">
@@ -363,38 +354,25 @@
             <div class="layer-controls">
                 <button class="layer-btn active" id="btn-cubierta">CUBIERTA</button>
                 <button class="layer-btn" id="btn-geom">EXP. GEOMÉTRICA</button>
-                <button class="layer-btn" id="btn-algoritmo" style="background: var(--red);">ALGORITMO</button>
-            </div>
-            <div class="nav-container">
-                <a href="#portada" class="dot" title="Portada"></a>
-                <a href="#indice" class="dot" title="Índice"></a>
-                <a href="#bim" class="dot" title="Desarrollo BIM"></a>
-                <a href="#tesis" class="dot" title="Gestión Hídrica Urbana"></a>
-                <a href="#rhino" class="dot active" title="Diseño Paramétrico"></a>
-                <a href="#carpinteria" class="dot" title="Diseño de Mobiliario"></a>
-                <a href="#visualizacion" class="dot" title="Comunicación Visual"></a>
+                <button class="layer-btn" id="btn-algoritmo">ALGORITMO</button>
             </div>
         </div>
     </section>
 
     <!-- 4. CARPINTERÍA -->
     <section id="carpinteria">
-        <div class="visual-side" style="background: #ffffff;">
-            <div class="visual-placeholder" style="width: 80%; height: 70%; border: 2px dashed var(--green); display: flex; align-items: center; justify-content: center; color: var(--green); font-weight: bold; background-color: rgba(116, 130, 81, 0.05); text-align: center;">MODELO 3D CARPINTERÍA / DESPIECE<br>(Espacio para imágenes estáticas o 360)</div>
+        <div class="visual-side" id="carp-viewer-container">
+            <model-viewer id="carp-viewer" src="IMG/MOD3D.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" style="width: 100%; height: 100%;"></model-viewer>
         </div>
         <div class="text-side">
             <p>Conceptualización y desarrollo técnico de mobiliario. El proceso abarca desde la exploración espacial hasta la planimetría de la fabricación y el armado del mobiliario. Englobando la generación de despieces, tablas de corte y diagramas de ensamble.</p>
             <h1>DISEÑO DE MOBILIARIO</h1>
         </div>
         <div class="footer-nav">
-            <div class="nav-container">
-                <a href="#portada" class="dot" title="Portada"></a>
-                <a href="#indice" class="dot" title="Índice"></a>
-                <a href="#bim" class="dot" title="Desarrollo BIM"></a>
-                <a href="#tesis" class="dot" title="Gestión Hídrica Urbana"></a>
-                <a href="#rhino" class="dot" title="Diseño Paramétrico"></a>
-                <a href="#carpinteria" class="dot active" title="Diseño de Mobiliario"></a>
-                <a href="#visualizacion" class="dot" title="Comunicación Visual"></a>
+            <div class="layer-controls">
+                <button class="layer-btn active" id="btn-3d">3D</button>
+                <button class="layer-btn" id="btn-corte">Corte</button>
+                <button class="layer-btn" id="btn-lista">lista</button>
             </div>
         </div>
     </section>
@@ -432,29 +410,31 @@
     tapRight.addEventListener('click', () => scrollContainer.scrollBy({ left: window.innerWidth, behavior: 'smooth' }));
     tapLeft.addEventListener('click', () => scrollContainer.scrollBy({ left: -window.innerWidth, behavior: 'smooth' }));
 
-    // --- LÓGICA BIM ---
-    const bimViewer = document.getElementById('bim-viewer');
-    const btnIntegral = document.getElementById('btn-integral');
-    const btnEstructura = document.getElementById('btn-estructura');
-    const btnMep = document.getElementById('btn-mep');
+    // Función genérica para mostrar contenido
+    function showContent(containerId, is3d, src) {
+        const container = document.getElementById(containerId);
+        if (is3d) {
+            container.innerHTML = `<model-viewer src="IMG/${src}" camera-controls auto-rotate shadow-intensity="1" style="width: 100%; height: 100%;"></model-viewer>`;
+        } else {
+            container.innerHTML = `<img src="IMG/${src}" style="width:100%; height:100%; object-fit:contain;">`;
+        }
+    }
 
-    function updateBim(src) { bimViewer.setAttribute('src', src); }
-    btnIntegral.addEventListener('click', () => { updateBim('IMG/INTEGRAL.glb'); });
-    btnEstructura.addEventListener('click', () => { updateBim('IMG/ESTRUCTURAL.glb'); });
-    btnMep.addEventListener('click', () => { updateBim('IMG/MEP.glb'); });
+    // --- LÓGICA BIM ---
+    document.getElementById('btn-integral').addEventListener('click', () => showContent('bim-viewer-container', true, 'INTEGRAL.glb'));
+    document.getElementById('btn-estructura').addEventListener('click', () => showContent('bim-viewer-container', true, 'ESTRUCTURAL.glb'));
+    document.getElementById('btn-mep').addEventListener('click', () => showContent('bim-viewer-container', true, 'MEP.glb'));
+    document.getElementById('btn-doc').addEventListener('click', () => showContent('bim-viewer-container', false, 'DOC.jpg'));
 
     // --- LÓGICA RHINO ---
-    const rhinoViewer = document.getElementById('rhino-viewer');
-    const btnCubierta = document.getElementById('btn-cubierta');
-    const btnGeom = document.getElementById('btn-geom');
-    const btnAlgoritmo = document.getElementById('btn-algoritmo');
+    document.getElementById('btn-cubierta').addEventListener('click', () => showContent('rhino-viewer-container', true, 'CUBIERTA.glb'));
+    document.getElementById('btn-geom').addEventListener('click', () => showContent('rhino-viewer-container', true, 'EXP_GEOMETRICA.glb'));
+    document.getElementById('btn-algoritmo').addEventListener('click', () => showContent('rhino-viewer-container', false, 'ALGORITMO.jpg'));
 
-    function updateRhino(src) { rhinoViewer.setAttribute('src', src); }
-    btnCubierta.addEventListener('click', () => { updateRhino('IMG/CUBIERTA.glb'); });
-    btnGeom.addEventListener('click', () => { updateRhino('IMG/EXP_GEOMETRICA.glb'); });
-    btnAlgoritmo.addEventListener('click', () => { 
-        rhinoViewer.innerHTML = '<img src="IMG/ALGORITMO.jpg" style="width:100%; height:100%; object-fit:contain;">'; 
-    });
+    // --- LÓGICA CARPINTERÍA ---
+    document.getElementById('btn-3d').addEventListener('click', () => showContent('carp-viewer-container', true, 'MOD3D.glb'));
+    document.getElementById('btn-corte').addEventListener('click', () => showContent('carp-viewer-container', false, 'CORTE.jpg'));
+    document.getElementById('btn-lista').addEventListener('click', () => showContent('carp-viewer-container', false, 'LISTA.jpg'));
 </script>
 
 </body>
