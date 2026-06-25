@@ -134,6 +134,8 @@
             position: relative; 
             padding-bottom: 80px; 
             overflow: hidden; 
+            /* Transición agregada para expansión dinámica */
+            transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         }
         
         /* --- ESTRUCTURA EDITORIAL DE TEXTOS (DERECHA) --- */
@@ -146,6 +148,8 @@
             align-items: flex-end; 
             background: #ffffff;
             position: relative; 
+            /* Transición agregada para expansión dinámica */
+            transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1), padding 0.6s ease;
         }
 
         .text-side p {
@@ -154,6 +158,7 @@
             line-height: 1.7;
             text-align: justify;
             margin: 0;
+            transition: all 0.6s ease;
         }
 
         .text-side h1 {
@@ -168,12 +173,19 @@
             line-height: 1;
             font-size: 2.8rem; 
             white-space: nowrap; 
+            transition: all 0.6s ease;
         }
         
         /* --- CONFIGURACIONES INDIVIDUALES --- */
         #bim .text-side p { width: 55%; }
         #tesis .text-side p { width: 80%; column-count: 2; column-gap: 40px; }
         #rhino .text-side p, #carpinteria .text-side p, #visualizacion .text-side p { width: 55%; }
+
+        /* --- EXPANSIÓN DINÁMICA (LÁMINA RHINO / ALGORITMO) --- */
+        #rhino.expand-visual .visual-side { width: 75vw; }
+        #rhino.expand-visual .text-side { width: 25vw; padding: 80px 40px 140px 40px; }
+        #rhino.expand-visual .text-side p { width: 100%; font-size: 0.95rem; }
+        #rhino.expand-visual .text-side h1 { font-size: 1.8rem; right: 40px; }
         
         /* --- NAVEGACIÓN INFERIOR --- */
         .footer-nav { 
@@ -456,9 +468,22 @@
     document.getElementById('btn-doc').addEventListener('click', () => showContent('bim-viewer-container', false, 'DOC.jpg'));
 
     // --- LÓGICA RHINO ---
-    document.getElementById('btn-cubierta').addEventListener('click', () => showContent('rhino-viewer-container', true, 'CUBIERTA.glb'));
-    document.getElementById('btn-geom').addEventListener('click', () => showContent('rhino-viewer-container', true, 'EXP_GEOMETRICA.glb'));
-    document.getElementById('btn-algoritmo').addEventListener('click', () => showContent('rhino-viewer-container', false, 'ALGORITMO.jpg'));
+    const rhinoSection = document.getElementById('rhino');
+    
+    document.getElementById('btn-cubierta').addEventListener('click', () => { 
+        showContent('rhino-viewer-container', true, 'CUBIERTA.glb'); 
+        rhinoSection.classList.remove('expand-visual');
+    });
+    
+    document.getElementById('btn-geom').addEventListener('click', () => { 
+        showContent('rhino-viewer-container', true, 'EXP_GEOMETRICA.glb'); 
+        rhinoSection.classList.remove('expand-visual');
+    });
+    
+    document.getElementById('btn-algoritmo').addEventListener('click', () => { 
+        showContent('rhino-viewer-container', false, 'ALGORITMO.jpg'); 
+        rhinoSection.classList.add('expand-visual');
+    });
 
     // --- LÓGICA CARPINTERÍA ---
     document.getElementById('btn-3d').addEventListener('click', () => showContent('carp-viewer-container', true, 'MOD3D.glb'));
