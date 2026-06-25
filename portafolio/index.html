@@ -390,8 +390,8 @@
         <div class="footer-nav">
             <div class="layer-controls">
                 <button class="layer-btn active" id="btn-3d">3D</button>
-                <button class="layer-btn" id="btn-corte">Corte</button>
-                <button class="layer-btn" id="btn-lista">lista</button>
+                <button class="layer-btn" id="btn-corte">DIAGRAMA DE CORTE</button>
+                <button class="layer-btn" id="btn-ensamble">ENSAMBLE</button>
             </div>
             <div class="nav-container">
                 <a href="#portada" class="dot" title="Portada"></a>
@@ -463,7 +463,7 @@
     // --- LÓGICA CARPINTERÍA ---
     document.getElementById('btn-3d').addEventListener('click', () => showContent('carp-viewer-container', true, 'MOD3D.glb'));
     document.getElementById('btn-corte').addEventListener('click', () => showContent('carp-viewer-container', false, 'CORTE.jpg'));
-    document.getElementById('btn-lista').addEventListener('click', () => showContent('carp-viewer-container', false, 'LISTA.jpg'));
+    document.getElementById('btn-ensamble').addEventListener('click', () => showContent('carp-viewer-container', false, 'ENSAMBLE.jpg'));
 </script>
 
 </body>
