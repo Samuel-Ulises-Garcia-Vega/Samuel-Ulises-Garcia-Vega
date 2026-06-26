@@ -351,15 +351,19 @@
 
     <!-- 2. TESIS -->
     <section id="tesis">
-        <div class="visual-side"> 
-            <div class="visual-placeholder" style="width: 80%; height: 70%; border: 2px dashed var(--green); display: flex; align-items: center; justify-content: center; color: var(--green); font-weight: bold; background-color: rgba(116, 130, 81, 0.05); text-align: center;">MAPAS Y DIAGRAMAS<br>(Espacio para imágenes estáticas)</div>
+        <div class="visual-side" id="tesis-viewer-container"> 
+            <img src="IMG/MAPA.png" style="width:98%; height:98%; object-fit:contain; cursor:pointer;" onclick="togglePause()">
         </div>
         <div class="text-side">
             <p>Investigación enfocada en el estudio del aprovechamiento y gestión del agua pluvial para la vivienda en colonias populares de la ciudad de Querétaro. A través del análisis de la actual crisis hídrica del estado, en el cual se destaca la explotación y gestión de este recurso, exponiendo las dinámicas de desigualdad urbana junto con la carencia de infraestructura pluvial de la ciudad. Esta investigación propone estrategias de infraestructura urbana, habitacional sostenible y adaptable para mitigar el estrés hídrico a escala local.</p>
             <h1>GESTIÓN HÍDRICA URBANA</h1>
         </div>
         <div class="footer-nav">
-            <div class="layer-controls"></div>
+            <div class="layer-controls">
+                <button class="layer-btn active" id="btn-mapa">MAPA</button>
+                <button class="layer-btn" id="btn-estrategia">ESTRATEGIA</button>
+                <button class="layer-btn" id="btn-ciclo">CICLO</button>
+            </div>
             <div class="nav-container">
                 <a href="#portada" class="dot" title="Portada"></a>
                 <a href="#indice" class="dot" title="Índice"></a>
@@ -492,6 +496,11 @@
     document.getElementById('btn-estructura').addEventListener('click', () => { clearInterval(docInterval); showContent('bim-viewer-container', true, 'ESTRUCTURAL.glb'); });
     document.getElementById('btn-mep').addEventListener('click', () => { clearInterval(docInterval); showContent('bim-viewer-container', true, 'MEP.glb'); });
     document.getElementById('btn-doc').addEventListener('click', startDocSequence);
+    
+    // --- LÓGICA TESIS ---
+    document.getElementById('btn-mapa').addEventListener('click', () => showContent('tesis-viewer-container', false, 'MAPA.png'));
+    document.getElementById('btn-estrategia').addEventListener('click', () => showContent('tesis-viewer-container', false, 'ESTRATEGIA.png'));
+    document.getElementById('btn-ciclo').addEventListener('click', () => showContent('tesis-viewer-container', false, 'CICLO.png'));
 
     // --- LÓGICA RHINO ---
     const rhinoSection = document.getElementById('rhino');
