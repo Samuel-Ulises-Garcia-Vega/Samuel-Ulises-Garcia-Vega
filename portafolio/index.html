@@ -457,15 +457,38 @@
         if (is3d) {
             container.innerHTML = `<model-viewer src="IMG/${src}" camera-controls auto-rotate shadow-intensity="1" style="width: 100%; height: 100%;"></model-viewer>`;
         } else {
-            container.innerHTML = `<img src="IMG/${src}" style="width:100%; height:100%; object-fit:contain;">`;
+            container.innerHTML = `<img src="IMG/${src}" style="width:100%; height:100%; object-fit:contain; cursor:pointer;" onclick="togglePause()">`;
         }
     }
 
-    // --- LÓGICA BIM ---
-    document.getElementById('btn-integral').addEventListener('click', () => showContent('bim-viewer-container', true, 'INTEGRAL.glb'));
-    document.getElementById('btn-estructura').addEventListener('click', () => showContent('bim-viewer-container', true, 'ESTRUCTURAL.glb'));
-    document.getElementById('btn-mep').addEventListener('click', () => showContent('bim-viewer-container', true, 'MEP.glb'));
-    document.getElementById('btn-doc').addEventListener('click', () => showContent('bim-viewer-container', false, 'DOC.jpg'));
+    // --- LÓGICA BIM (SECUENCIA DOC) ---
+    let docSequence = ['PLANTA_ARQ.png', 'CORTE_ARQ.png', 'TABLA_ARQ.png'];
+    let docIndex = 0;
+    let docInterval = null;
+    let isPaused = false;
+
+    function startDocSequence() {
+        clearInterval(docInterval);
+        isPaused = false;
+        docIndex = 0;
+        showContent('bim-viewer-container', false, docSequence[docIndex]);
+        docInterval = setInterval(() => {
+            if (!isPaused) {
+                docIndex = (docIndex + 1) % docSequence.length;
+                showContent('bim-viewer-container', false, docSequence[docIndex]);
+            }
+        }, 4000);
+    }
+
+    function togglePause() {
+        isPaused = !isPaused;
+    }
+
+    // Eventos BIM
+    document.getElementById('btn-integral').addEventListener('click', () => { clearInterval(docInterval); showContent('bim-viewer-container', true, 'INTEGRAL.glb'); });
+    document.getElementById('btn-estructura').addEventListener('click', () => { clearInterval(docInterval); showContent('bim-viewer-container', true, 'ESTRUCTURAL.glb'); });
+    document.getElementById('btn-mep').addEventListener('click', () => { clearInterval(docInterval); showContent('bim-viewer-container', true, 'MEP.glb'); });
+    document.getElementById('btn-doc').addEventListener('click', startDocSequence);
 
     // --- LÓGICA RHINO ---
     const rhinoSection = document.getElementById('rhino');
