@@ -48,7 +48,7 @@
         /* --- ADAPTACIÓN MÓVIL Y VERTICAL --- */
         @media (max-width: 900px) {
             section { flex-direction: column; }
-            .visual-side, .text-side { width: 100vw !important; height: 50vh !important; }
+            .visual-side, .text-side, #tesis .visual-side, #tesis .text-side { width: 100vw !important; height: 50vh !important; }
             .text-side { padding: 20px; align-items: center; justify-content: flex-start; }
             .text-side p { width: 90% !important; font-size: 0.9rem !important; }
             .text-side h1 { position: static; font-size: 1.8rem; margin-top: 10px; }
@@ -135,9 +135,9 @@
         .grid-column:hover .grid-number { color: var(--red); transform: translateY(-10px); }
         .grid-column:hover .grid-title { color: var(--green); }
 
-        /* --- ÁREA VISUAL (IZQUIERDA) --- */
+        /* --- ÁREA VISUAL (IZQUIERDA) - AHORA 60% --- */
         .visual-side { 
-            width: 50vw; 
+            width: 60vw; 
             background: #ffffff; 
             display: flex; 
             align-items: center; 
@@ -148,9 +148,9 @@
             transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         }
         
-        /* --- ESTRUCTURA EDITORIAL DE TEXTOS (DERECHA) --- */
+        /* --- ESTRUCTURA EDITORIAL DE TEXTOS (DERECHA) - AHORA 40% --- */
         .text-side { 
-            width: 50vw; 
+            width: 40vw; 
             padding: 80px 80px 140px 80px; 
             display: flex; 
             flex-direction: column; 
@@ -186,9 +186,14 @@
         }
         
         /* --- CONFIGURACIONES INDIVIDUALES --- */
-        #bim .text-side p { width: 55%; }
+        /* Ajustamos el ancho de los párrafos para la nueva columna de 40% */
+        #bim .text-side p { width: 70%; }
+        #rhino .text-side p, #carpinteria .text-side p, #visualizacion .text-side p { width: 70%; }
+
+        /* --- EXCEPCIÓN: LÁMINA TESIS SE QUEDA 50/50 --- */
+        #tesis .visual-side { width: 50vw; }
+        #tesis .text-side { width: 50vw; }
         #tesis .text-side p { width: 80%; column-count: 2; column-gap: 40px; }
-        #rhino .text-side p, #carpinteria .text-side p, #visualizacion .text-side p { width: 55%; }
 
         /* --- EXPANSIÓN DINÁMICA (LÁMINA RHINO / ALGORITMO) --- */
         #rhino.expand-visual .visual-side { width: 75vw; }
@@ -324,7 +329,7 @@
     <!-- 1. BIM -->
     <section id="bim">
         <div class="visual-side" id="bim-viewer-container"> 
-            <model-viewer id="bim-viewer" src="IMG/INTEGRAL.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" style="width: 100%; height: 100%;"></model-viewer>
+            <model-viewer id="bim-viewer" src="IMG/INTEGRAL.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="45deg 55deg 2m" field-of-view="30deg" style="width: 100%; height: 100%;"></model-viewer>
         </div>
         <div class="text-side">
             <p>Desarrollo de proyectos ejecutivos y documentación técnica integral. Gestión avanzada de modelos en Archicad, optimización de combinaciones de capas para la supervisión de obra y extracción de cuantificaciones precisas. La centralización de la información permite anticipar resoluciones constructivas en sitio y ofrecer presentaciones claras y eficientes mediante BIMx.</p>
@@ -379,7 +384,7 @@
     <!-- 3. RHINO -->
     <section id="rhino">
         <div class="visual-side" id="rhino-viewer-container">
-            <model-viewer id="rhino-viewer" src="IMG/CUBIERTA.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" style="width: 100%; height: 100%;"></model-viewer>
+            <model-viewer id="rhino-viewer" src="IMG/CUBIERTA.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="45deg 55deg 2m" field-of-view="30deg" style="width: 100%; height: 100%;"></model-viewer>
         </div>
         <div class="text-side">
             <p>Exploración morfológica y optimización geométrica mediante Rhinoceros y Grasshopper. El desarrollo de algoritmos visuales permite una mayor capacidad de iteraciones en el proceso de diseño para formas complejas o geometrías no convencionales.</p>
@@ -406,7 +411,7 @@
     <!-- 4. CARPINTERÍA -->
     <section id="carpinteria">
         <div class="visual-side" id="carp-viewer-container">
-            <model-viewer id="carp-viewer" src="IMG/MOD3D.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" style="width: 100%; height: 100%;"></model-viewer>
+            <model-viewer id="carp-viewer" src="IMG/MOD3D.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="45deg 55deg 2m" field-of-view="30deg" style="width: 100%; height: 100%;"></model-viewer>
         </div>
         <div class="text-side">
             <p>Conceptualización y desarrollo técnico de mobiliario. El proceso abarca desde la exploración espacial hasta la planimetría de la fabricación y el armado del mobiliario. Englobando la generación de despieces, tablas de corte y diagramas de ensamble.</p>
@@ -464,10 +469,14 @@
     tapRight.addEventListener('click', () => scrollContainer.scrollBy({ left: window.innerWidth, behavior: 'smooth' }));
     tapLeft.addEventListener('click', () => scrollContainer.scrollBy({ left: -window.innerWidth, behavior: 'smooth' }));
 
-    // Función genérica para mostrar contenido
+    // Función genérica para mostrar contenido (Actualizada para modelos 3D grandes)
     function showContent(containerId, is3d, src) {
         const container = document.getElementById(containerId);
-        container.innerHTML = is3d ? `<model-viewer src="IMG/${src}" camera-controls auto-rotate shadow-intensity="1" style="width: 100%; height: 100%;"></model-viewer>` : `<img src="IMG/${src}" style="width:98%; height:98%; object-fit:contain; cursor:pointer;" onclick="togglePause()">`;
+        if (is3d) {
+            container.innerHTML = `<model-viewer src="IMG/${src}" camera-controls auto-rotate shadow-intensity="1" camera-orbit="45deg 55deg 2m" field-of-view="30deg" style="width: 100%; height: 100%;"></model-viewer>`;
+        } else {
+            container.innerHTML = `<img src="IMG/${src}" style="width:98%; height:98%; object-fit:contain; cursor:pointer;" onclick="togglePause()">`;
+        }
     }
 
     // --- LÓGICA BIM (SECUENCIA DOC) ---
