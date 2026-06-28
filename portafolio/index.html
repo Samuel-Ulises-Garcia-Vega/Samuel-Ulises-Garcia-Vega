@@ -43,6 +43,7 @@
             display: flex; 
             scroll-snap-align: start; 
             position: relative;
+            overflow: hidden; /* ESTO EVITA QUE EL MAPA INVADA OTRAS LÁMINAS */
         }
 
         /* --- ADAPTACIÓN MÓVIL Y VERTICAL --- */
@@ -200,7 +201,7 @@
         }
         #tesis .text-side p { width: 80%; column-count: 2; column-gap: 40px; }
 
-        /* --- CLASE MAPA ORGÁNICO FIJADA EN ESCALA GIGANTE (+15%) --- */
+        /* --- CLASE MAPA ORGÁNICO: SÓLIDO A LA IZQUIERDA, DESVANECIDO A LA DERECHA --- */
         .organic-img {
             position: absolute;
             width: 150%; 
@@ -208,9 +209,21 @@
             object-fit: contain; 
             left: -15%; 
             z-index: 1;
-            /* Escala base aumentada a 1.61 y desplazamiento ajustado para enmarcar perfecto */
             transform: scale(1.61) translateX(12%);
             transform-origin: center center;
+            /* El degradado hace que del lado derecho se vuelva transparente */
+            -webkit-mask-image: linear-gradient(to right, black 65%, transparent 100%);
+            mask-image: linear-gradient(to right, black 65%, transparent 100%);
+        }
+
+        /* --- NUEVA CLASE PARA EL DIAGRAMA DE CICLO (MÁS GRANDE Y RECORRIDO) --- */
+        .ciclo-img {
+            position: absolute;
+            width: 160%; /* Mucho más grande, como tu recuadro morado */
+            height: 120%;
+            object-fit: contain;
+            left: 10%; /* Lo empuja hacia la derecha invadiendo un poco el área de texto si es necesario */
+            z-index: 1;
         }
 
         /* --- EXPANSIÓN DINÁMICA (LÁMINA RHINO / ALGORITMO) --- */
@@ -385,7 +398,7 @@
         <div class="footer-nav">
             <div class="layer-controls">
                 <button class="layer-btn active" id="btn-mapa">MAPA</button>
-                <button class="layer-btn" id="btn-estrategia">ESTRATEGIA</button>
+                <!-- EL BOTÓN ESTRATEGIA HA SIDO ELIMINADO -->
                 <button class="layer-btn" id="btn-ciclo">CICLO</button>
             </div>
             <div class="nav-container">
@@ -498,8 +511,8 @@
             if(containerId === 'tesis-viewer-container' && src === 'MAPA.png') {
                 container.innerHTML = `<img src="IMG/${src}" class="organic-img">`;
             } else if (containerId === 'tesis-viewer-container' && src === 'CICLO.png') {
-                // Añadimos padding-left del 10% para darle aire al ciclo
-                container.innerHTML = `<img src="IMG/${src}" style="width:90%; height:90%; object-fit:contain; cursor:pointer; padding-left: 10%;" onclick="togglePause()">`;
+                // Ahora usamos la clase específica para que sea gigante
+                container.innerHTML = `<img src="IMG/${src}" class="ciclo-img">`;
             } else {
                 container.innerHTML = `<img src="IMG/${src}" style="width:98%; height:98%; object-fit:contain; cursor:pointer;" onclick="togglePause()">`;
             }
@@ -535,7 +548,6 @@
     
     // --- LÓGICA TESIS ---
     document.getElementById('btn-mapa').addEventListener('click', () => showContent('tesis-viewer-container', false, 'MAPA.png'));
-    document.getElementById('btn-estrategia').addEventListener('click', () => showContent('tesis-viewer-container', false, 'ESTRATEGIA.png'));
     document.getElementById('btn-ciclo').addEventListener('click', () => showContent('tesis-viewer-container', false, 'CICLO.png'));
 
     // --- LÓGICA RHINO ---
