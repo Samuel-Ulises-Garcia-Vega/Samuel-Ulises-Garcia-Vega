@@ -43,7 +43,7 @@
             display: flex; 
             scroll-snap-align: start; 
             position: relative;
-            overflow: hidden; /* ESTO ES VITAL: Evita que el mapa invada las otras láminas */
+            overflow: hidden; /* Mantiene cada lámina en su lugar */
         }
 
         /* --- ADAPTACIÓN MÓVIL Y VERTICAL --- */
@@ -136,7 +136,7 @@
         .grid-column:hover .grid-number { color: var(--red); transform: translateY(-10px); }
         .grid-column:hover .grid-title { color: var(--green); }
 
-        /* --- ÁREA VISUAL (IZQUIERDA) - AHORA 60% --- */
+        /* --- ÁREA VISUAL (IZQUIERDA) --- */
         .visual-side { 
             width: 60vw; 
             background: #ffffff; 
@@ -149,7 +149,7 @@
             transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         }
         
-        /* --- ESTRUCTURA EDITORIAL DE TEXTOS (DERECHA) - AHORA 40% --- */
+        /* --- ESTRUCTURA EDITORIAL DE TEXTOS (DERECHA) --- */
         .text-side { 
             width: 40vw; 
             padding: 80px 80px 140px 80px; 
@@ -157,7 +157,7 @@
             flex-direction: column; 
             justify-content: center; 
             align-items: flex-end; 
-            background: #ffffff;
+            background: transparent; /* TRANSPARENTE PARA QUE EL MAPA FLUYA */
             position: relative; 
             transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1), padding 0.6s ease;
         }
@@ -190,45 +190,36 @@
         #bim .text-side p { width: 70%; }
         #rhino .text-side p, #carpinteria .text-side p, #visualizacion .text-side p { width: 70%; }
 
-        /* --- LÁMINA TESIS (EXCEPCIÓN 50/50) --- */
+        /* --- LÁMINA TESIS --- */
         #tesis .visual-side { 
             width: 50vw; 
-            overflow: visible; /* Permite que el mapa salga hacia la derecha */
+            overflow: visible; 
         }
-        
         #tesis .text-side { 
             width: 50vw; 
-            z-index: 2; /* Mantiene el texto por encima del mapa */
-            background: transparent; /* LA MAGIA: Al ser transparente, elimina la línea de corte tajante */
+            z-index: 2; 
         }
         #tesis .text-side p { width: 80%; column-count: 2; column-gap: 40px; }
 
-        /* --- CLASE MAPA ORGÁNICO --- */
+        /* --- MAPA GIGANTE Y LIBRE --- */
         .organic-img {
             position: absolute;
-            width: 140%; /* Lo suficientemente grande para invadir de forma natural */
-            height: 140%;
-            object-fit: contain; 
-            left: 0; /* Anclado a la izquierda, crece hacia la derecha */
-            z-index: 0; /* Se queda debajo del texto */
+            width: 140vw; /* Invade el espacio de forma masiva */
+            height: auto;
+            left: -10vw; /* Posicionamiento natural */
+            z-index: 0;
+            object-fit: contain;
         }
 
-        /* --- CLASE PARA EL DIAGRAMA DE CICLO --- */
+        /* --- CICLO HÍDRICO AMPLIFICADO (120% + RECORRIDO) --- */
         .ciclo-img {
-            width: 100%; 
-            height: 100%;
+            width: 90%; 
+            height: 90%;
             object-fit: contain;
-            /* Scale elimina el aire blanco extra e iguala tu recuadro morado */
-            transform: scale(1.2); 
+            transform: scale(1.2) translateX(5%); /* Ajuste de tamaño y aire */
             z-index: 1;
         }
 
-        /* --- EXPANSIÓN DINÁMICA (LÁMINA RHINO / ALGORITMO) --- */
-        #rhino.expand-visual .visual-side { width: 75vw; }
-        #rhino.expand-visual .text-side { width: 25vw; padding: 80px 40px 140px 40px; }
-        #rhino.expand-visual .text-side p { width: 100%; font-size: 0.95rem; }
-        #rhino.expand-visual .text-side h1 { font-size: 1.8rem; right: 40px; }
-        
         /* --- NAVEGACIÓN INFERIOR --- */
         .footer-nav { 
             position: absolute; 
@@ -307,7 +298,6 @@
 
 <div class="portfolio-container" id="scroll-container">
     
-    <!-- PORTADA -->
     <section id="portada" class="cover-section">
         <div class="cover-content">
             <div class="cover-name">Arq. Samuel Ulises García Vega</div>
@@ -316,7 +306,6 @@
         </div>
     </section>
 
-    <!-- ÍNDICE -->
     <section id="indice">
         <div class="grid-index-container">
             <a href="#bim" class="grid-column">
@@ -354,7 +343,6 @@
         </div>
     </section>
 
-    <!-- 1. BIM -->
     <section id="bim">
         <div class="visual-side" id="bim-viewer-container"> 
             <model-viewer id="bim-viewer" src="IMG/INTEGRAL.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="45deg 60deg 80%" field-of-view="30deg" style="width: 100%; height: 100%;"></model-viewer>
@@ -382,10 +370,8 @@
         </div>
     </section>
 
-    <!-- 2. TESIS -->
     <section id="tesis">
         <div class="visual-side" id="tesis-viewer-container"> 
-            <!-- Se carga primero el Mapa de forma orgánica -->
             <img src="IMG/MAPA.png" class="organic-img">
         </div>
         <div class="text-side">
@@ -395,7 +381,6 @@
         <div class="footer-nav">
             <div class="layer-controls">
                 <button class="layer-btn active" id="btn-mapa">MAPA</button>
-                <!-- Botón de Estrategia eliminado -->
                 <button class="layer-btn" id="btn-ciclo">CICLO</button>
             </div>
             <div class="nav-container">
@@ -410,7 +395,6 @@
         </div>
     </section>
 
-    <!-- 3. RHINO -->
     <section id="rhino">
         <div class="visual-side" id="rhino-viewer-container">
             <model-viewer id="rhino-viewer" src="IMG/CUBIERTA.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="-50deg 80deg 80%" field-of-view="30deg" style="width: 100%; height: 100%;"></model-viewer>
@@ -437,7 +421,6 @@
         </div>
     </section>
 
-    <!-- 4. CARPINTERÍA -->
     <section id="carpinteria">
         <div class="visual-side" id="carp-viewer-container">
             <model-viewer id="carp-viewer" src="IMG/MOD3D.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="45deg 60deg 80%" field-of-view="30deg" style="width: 100%; height: 100%;"></model-viewer>
@@ -464,7 +447,6 @@
         </div>
     </section>
 
-    <!-- 5. VISUALIZACIÓN -->
     <section id="visualizacion">
         <div class="visual-side">
             <div class="visual-placeholder" style="width: 80%; height: 70%; border: 2px dashed var(--green); display: flex; align-items: center; justify-content: center; color: var(--green); font-weight: bold; background-color: rgba(116, 130, 81, 0.05); text-align: center;">RENDERS / VR<br>(Espacio para imágenes estáticas)</div>
@@ -490,7 +472,6 @@
 </div>
 
 <script>
-    // --- NAVEGACIÓN ---
     const tapLeft = document.getElementById('tap-left');
     const tapRight = document.getElementById('tap-right');
     const scrollContainer = document.getElementById('scroll-container');
@@ -498,13 +479,11 @@
     tapRight.addEventListener('click', () => scrollContainer.scrollBy({ left: window.innerWidth, behavior: 'smooth' }));
     tapLeft.addEventListener('click', () => scrollContainer.scrollBy({ left: -window.innerWidth, behavior: 'smooth' }));
 
-    // Función genérica para mostrar contenido 
     function showContent(containerId, is3d, src, orbit = "45deg 60deg 80%") {
         const container = document.getElementById(containerId);
         if (is3d) {
             container.innerHTML = `<model-viewer src="IMG/${src}" camera-controls auto-rotate shadow-intensity="1" camera-orbit="${orbit}" field-of-view="30deg" style="width: 100%; height: 100%;"></model-viewer>`;
         } else {
-            // Lógica específica por imagen
             if(containerId === 'tesis-viewer-container' && src === 'MAPA.png') {
                 container.innerHTML = `<img src="IMG/${src}" class="organic-img">`;
             } else if (containerId === 'tesis-viewer-container' && src === 'CICLO.png') {
@@ -515,7 +494,6 @@
         }
     }
 
-    // --- LÓGICA BIM (SECUENCIA DOC) ---
     let docSequence = ['PLANTA_ARQ.png', 'CORTE_ARQ.png', 'TABLA_ARQ.png'];
     let docIndex = 0;
     let docInterval = null;
@@ -536,35 +514,19 @@
 
     function togglePause() { isPaused = !isPaused; }
 
-    // Eventos BIM
     document.getElementById('btn-integral').addEventListener('click', () => { clearInterval(docInterval); showContent('bim-viewer-container', true, 'INTEGRAL.glb', '45deg 60deg 80%'); });
     document.getElementById('btn-estructura').addEventListener('click', () => { clearInterval(docInterval); showContent('bim-viewer-container', true, 'ESTRUCTURAL.glb', '45deg 60deg 80%'); });
     document.getElementById('btn-mep').addEventListener('click', () => { clearInterval(docInterval); showContent('bim-viewer-container', true, 'MEP.glb', '-45deg 60deg 80%'); });
     document.getElementById('btn-doc').addEventListener('click', startDocSequence);
     
-    // --- LÓGICA TESIS ---
     document.getElementById('btn-mapa').addEventListener('click', () => showContent('tesis-viewer-container', false, 'MAPA.png'));
     document.getElementById('btn-ciclo').addEventListener('click', () => showContent('tesis-viewer-container', false, 'CICLO.png'));
 
-    // --- LÓGICA RHINO ---
     const rhinoSection = document.getElementById('rhino');
-    
-    document.getElementById('btn-cubierta').addEventListener('click', () => { 
-        showContent('rhino-viewer-container', true, 'CUBIERTA.glb', '-50deg 80deg 80%'); 
-        rhinoSection.classList.remove('expand-visual');
-    });
-    
-    document.getElementById('btn-geom').addEventListener('click', () => { 
-        showContent('rhino-viewer-container', true, 'EXP_GEOMETRICA.glb', '-50deg 80deg 80%'); 
-        rhinoSection.classList.remove('expand-visual');
-    });
-    
-    document.getElementById('btn-algoritmo').addEventListener('click', () => { 
-        showContent('rhino-viewer-container', false, 'ALGORITMO.png'); 
-        rhinoSection.classList.add('expand-visual');
-    });
+    document.getElementById('btn-cubierta').addEventListener('click', () => { showContent('rhino-viewer-container', true, 'CUBIERTA.glb', '-50deg 80deg 80%'); rhinoSection.classList.remove('expand-visual'); });
+    document.getElementById('btn-geom').addEventListener('click', () => { showContent('rhino-viewer-container', true, 'EXP_GEOMETRICA.glb', '-50deg 80deg 80%'); rhinoSection.classList.remove('expand-visual'); });
+    document.getElementById('btn-algoritmo').addEventListener('click', () => { showContent('rhino-viewer-container', false, 'ALGORITMO.png'); rhinoSection.classList.add('expand-visual'); });
 
-    // --- LÓGICA CARPINTERÍA ---
     document.getElementById('btn-3d').addEventListener('click', () => showContent('carp-viewer-container', true, 'MOD3D.glb', '45deg 60deg 80%'));
     document.getElementById('btn-corte').addEventListener('click', () => showContent('carp-viewer-container', false, 'CORTE.jpg'));
     document.getElementById('btn-ensamble').addEventListener('click', () => showContent('carp-viewer-container', false, 'ENSAMBLE.jpg'));
