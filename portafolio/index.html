@@ -192,27 +192,38 @@
         /* --- EXCEPCIÓN: LÁMINA TESIS SE QUEDA 50/50 Y PERMITE SALIRSE DEL CUADRO --- */
         #tesis .visual-side { 
             width: 50vw; 
-            overflow: visible; /* IMPORTANTE: Rompe la caja cuadrada */
+            overflow: visible; 
         }
         #tesis .text-side { 
             width: 50vw; 
-            z-index: 2; /* Mantiene el texto siempre legible por encima */
+            z-index: 2; 
         }
         #tesis .text-side p { width: 80%; column-count: 2; column-gap: 40px; }
 
-        /* NUEVA CLASE PARA EL MAPA ORGÁNICO Y DESVANECIDO */
+        /* NUEVA CLASE PARA EL MAPA ORGÁNICO GIGANTE CON ZOOM */
         .organic-img {
             position: absolute;
-            width: 140%; /* Un 40% más grande que su espacio */
-            height: 140%;
+            width: 180%; /* Aumentado a 180% */
+            height: 180%;
             object-fit: cover;
-            left: -10%; /* Lo centra un poco al crecer */
+            left: -20%; /* Ajuste para mantenerlo centrado */
             z-index: 1;
-            cursor: pointer;
-            /* Máscara radial: Centro sólido (black), bordes transparentes */
-            -webkit-mask-image: radial-gradient(ellipse at 45% 50%, black 40%, transparent 75%);
-            mask-image: radial-gradient(ellipse at 45% 50%, black 40%, transparent 75%);
-            transition: opacity 0.5s ease;
+            cursor: zoom-in; /* Indica que se puede hacer zoom */
+            -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 40%, transparent 75%);
+            mask-image: radial-gradient(ellipse at 50% 50%, black 40%, transparent 75%);
+            transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            transform-origin: center center;
+        }
+
+        /* CLASE QUE SE ACTIVA AL HACER CLIC EN EL MAPA */
+        .organic-img.zoomed-map {
+            transform: scale(1.5); /* Crece un 50% más */
+            left: 10%; /* Se mueve un poco a la derecha para dominar la pantalla */
+            z-index: 20; /* Se pone por encima de todo */
+            cursor: zoom-out;
+            /* Expande la máscara casi por completo para ver los detalles de los bordes */
+            -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 75%, transparent 100%);
+            mask-image: radial-gradient(ellipse at 50% 50%, black 75%, transparent 100%);
         }
 
         /* --- EXPANSIÓN DINÁMICA (LÁMINA RHINO / ALGORITMO) --- */
@@ -376,9 +387,9 @@
 
     <!-- 2. TESIS -->
     <section id="tesis">
-        <!-- AQUI SE APLICA LA CLASE organic-img PARA QUE ROMPA EL CUADRO Y SE DESVANEZCA -->
         <div class="visual-side" id="tesis-viewer-container"> 
-            <img src="IMG/MAPA.png" class="organic-img" onclick="togglePause()">
+            <!-- NUEVA FUNCIÓN onclick="toggleZoom(this)" -->
+            <img src="IMG/MAPA.png" class="organic-img" onclick="toggleZoom(this)" title="Haz clic para hacer zoom">
         </div>
         <div class="text-side">
             <p>Investigación enfocada en el estudio del aprovechamiento y gestión del agua pluvial para la vivienda en colonias populares de la ciudad de Querétaro. A través del análisis de la actual crisis hídrica del estado, en el cual se destaca la explotación y gestión de este recurso, exponiendo las dinámicas de desigualdad urbana junto con la carencia de infraestructura pluvial de la ciudad. Esta investigación propone estrategias de infraestructura urbana, habitacional sostenible y adaptable para mitigar el estrés hídrico a escala local.</p>
@@ -490,15 +501,20 @@
     tapRight.addEventListener('click', () => scrollContainer.scrollBy({ left: window.innerWidth, behavior: 'smooth' }));
     tapLeft.addEventListener('click', () => scrollContainer.scrollBy({ left: -window.innerWidth, behavior: 'smooth' }));
 
-    // Función genérica para mostrar contenido (Actualizada para aplicar la clase orgánica a MAPA.png)
+    // --- NUEVA FUNCIÓN PARA HACER ZOOM EN EL MAPA ---
+    function toggleZoom(element) {
+        element.classList.toggle('zoomed-map');
+    }
+
+    // Función genérica para mostrar contenido (Actualizada para soportar el zoom)
     function showContent(containerId, is3d, src, orbit = "45deg 60deg 80%") {
         const container = document.getElementById(containerId);
         if (is3d) {
             container.innerHTML = `<model-viewer src="IMG/${src}" camera-controls auto-rotate shadow-intensity="1" camera-orbit="${orbit}" field-of-view="30deg" style="width: 100%; height: 100%;"></model-viewer>`;
         } else {
-            // Si es la imagen de MAPA, le ponemos la clase orgánica
+            // Si es la imagen de MAPA, le ponemos la clase orgánica y la función toggleZoom
             if(containerId === 'tesis-viewer-container' && src === 'MAPA.png') {
-                container.innerHTML = `<img src="IMG/${src}" class="organic-img" onclick="togglePause()">`;
+                container.innerHTML = `<img src="IMG/${src}" class="organic-img" onclick="toggleZoom(this)" title="Haz clic para hacer zoom">`;
             } else {
                 // Para todas las demás imágenes normales (como diagramas de BIM, etc)
                 container.innerHTML = `<img src="IMG/${src}" style="width:98%; height:98%; object-fit:contain; cursor:pointer;" onclick="togglePause()">`;
