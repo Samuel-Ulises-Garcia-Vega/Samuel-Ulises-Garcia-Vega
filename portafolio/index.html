@@ -189,10 +189,31 @@
         #bim .text-side p { width: 70%; }
         #rhino .text-side p, #carpinteria .text-side p, #visualizacion .text-side p { width: 70%; }
 
-        /* --- EXCEPCIÓN: LÁMINA TESIS SE QUEDA 50/50 --- */
-        #tesis .visual-side { width: 50vw; }
-        #tesis .text-side { width: 50vw; }
+        /* --- EXCEPCIÓN: LÁMINA TESIS SE QUEDA 50/50 Y PERMITE SALIRSE DEL CUADRO --- */
+        #tesis .visual-side { 
+            width: 50vw; 
+            overflow: visible; /* IMPORTANTE: Rompe la caja cuadrada */
+        }
+        #tesis .text-side { 
+            width: 50vw; 
+            z-index: 2; /* Mantiene el texto siempre legible por encima */
+        }
         #tesis .text-side p { width: 80%; column-count: 2; column-gap: 40px; }
+
+        /* NUEVA CLASE PARA EL MAPA ORGÁNICO Y DESVANECIDO */
+        .organic-img {
+            position: absolute;
+            width: 140%; /* Un 40% más grande que su espacio */
+            height: 140%;
+            object-fit: cover;
+            left: -10%; /* Lo centra un poco al crecer */
+            z-index: 1;
+            cursor: pointer;
+            /* Máscara radial: Centro sólido (black), bordes transparentes */
+            -webkit-mask-image: radial-gradient(ellipse at 45% 50%, black 40%, transparent 75%);
+            mask-image: radial-gradient(ellipse at 45% 50%, black 40%, transparent 75%);
+            transition: opacity 0.5s ease;
+        }
 
         /* --- EXPANSIÓN DINÁMICA (LÁMINA RHINO / ALGORITMO) --- */
         #rhino.expand-visual .visual-side { width: 75vw; }
@@ -355,8 +376,9 @@
 
     <!-- 2. TESIS -->
     <section id="tesis">
+        <!-- AQUI SE APLICA LA CLASE organic-img PARA QUE ROMPA EL CUADRO Y SE DESVANEZCA -->
         <div class="visual-side" id="tesis-viewer-container"> 
-            <img src="IMG/MAPA.png" style="width:98%; height:98%; object-fit:contain; cursor:pointer;" onclick="togglePause()">
+            <img src="IMG/MAPA.png" class="organic-img" onclick="togglePause()">
         </div>
         <div class="text-side">
             <p>Investigación enfocada en el estudio del aprovechamiento y gestión del agua pluvial para la vivienda en colonias populares de la ciudad de Querétaro. A través del análisis de la actual crisis hídrica del estado, en el cual se destaca la explotación y gestión de este recurso, exponiendo las dinámicas de desigualdad urbana junto con la carencia de infraestructura pluvial de la ciudad. Esta investigación propone estrategias de infraestructura urbana, habitacional sostenible y adaptable para mitigar el estrés hídrico a escala local.</p>
@@ -468,13 +490,19 @@
     tapRight.addEventListener('click', () => scrollContainer.scrollBy({ left: window.innerWidth, behavior: 'smooth' }));
     tapLeft.addEventListener('click', () => scrollContainer.scrollBy({ left: -window.innerWidth, behavior: 'smooth' }));
 
-    // Función genérica para mostrar contenido 
+    // Función genérica para mostrar contenido (Actualizada para aplicar la clase orgánica a MAPA.png)
     function showContent(containerId, is3d, src, orbit = "45deg 60deg 80%") {
         const container = document.getElementById(containerId);
         if (is3d) {
             container.innerHTML = `<model-viewer src="IMG/${src}" camera-controls auto-rotate shadow-intensity="1" camera-orbit="${orbit}" field-of-view="30deg" style="width: 100%; height: 100%;"></model-viewer>`;
         } else {
-            container.innerHTML = `<img src="IMG/${src}" style="width:98%; height:98%; object-fit:contain; cursor:pointer;" onclick="togglePause()">`;
+            // Si es la imagen de MAPA, le ponemos la clase orgánica
+            if(containerId === 'tesis-viewer-container' && src === 'MAPA.png') {
+                container.innerHTML = `<img src="IMG/${src}" class="organic-img" onclick="togglePause()">`;
+            } else {
+                // Para todas las demás imágenes normales (como diagramas de BIM, etc)
+                container.innerHTML = `<img src="IMG/${src}" style="width:98%; height:98%; object-fit:contain; cursor:pointer;" onclick="togglePause()">`;
+            }
         }
     }
 
@@ -502,7 +530,6 @@
     // Eventos BIM
     document.getElementById('btn-integral').addEventListener('click', () => { clearInterval(docInterval); showContent('bim-viewer-container', true, 'INTEGRAL.glb', '45deg 60deg 80%'); });
     document.getElementById('btn-estructura').addEventListener('click', () => { clearInterval(docInterval); showContent('bim-viewer-container', true, 'ESTRUCTURAL.glb', '45deg 60deg 80%'); });
-    // Ángulo MEP específico modificado a -45deg horizontal
     document.getElementById('btn-mep').addEventListener('click', () => { clearInterval(docInterval); showContent('bim-viewer-container', true, 'MEP.glb', '-45deg 60deg 80%'); });
     document.getElementById('btn-doc').addEventListener('click', startDocSequence);
     
