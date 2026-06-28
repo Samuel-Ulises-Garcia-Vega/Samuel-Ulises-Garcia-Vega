@@ -43,7 +43,7 @@
             display: flex; 
             scroll-snap-align: start; 
             position: relative;
-            overflow: hidden; /* ESTO EVITA QUE EL MAPA INVADA OTRAS LÁMINAS */
+            overflow: hidden; /* ESTO ES VITAL: Evita que el mapa invada las otras láminas */
         }
 
         /* --- ADAPTACIÓN MÓVIL Y VERTICAL --- */
@@ -190,39 +190,36 @@
         #bim .text-side p { width: 70%; }
         #rhino .text-side p, #carpinteria .text-side p, #visualizacion .text-side p { width: 70%; }
 
-        /* --- EXCEPCIÓN: LÁMINA TESIS SE QUEDA 50/50 Y PERMITE SALIRSE DEL CUADRO --- */
+        /* --- LÁMINA TESIS (EXCEPCIÓN 50/50) --- */
         #tesis .visual-side { 
             width: 50vw; 
-            overflow: visible; 
+            overflow: visible; /* Permite que el mapa salga hacia la derecha */
         }
+        
         #tesis .text-side { 
             width: 50vw; 
-            z-index: 2; 
+            z-index: 2; /* Mantiene el texto por encima del mapa */
+            background: transparent; /* LA MAGIA: Al ser transparente, elimina la línea de corte tajante */
         }
         #tesis .text-side p { width: 80%; column-count: 2; column-gap: 40px; }
 
-        /* --- CLASE MAPA ORGÁNICO: SÓLIDO A LA IZQUIERDA, DESVANECIDO A LA DERECHA --- */
+        /* --- CLASE MAPA ORGÁNICO --- */
         .organic-img {
             position: absolute;
-            width: 150%; 
-            height: 150%;
+            width: 140%; /* Lo suficientemente grande para invadir de forma natural */
+            height: 140%;
             object-fit: contain; 
-            left: -15%; 
-            z-index: 1;
-            transform: scale(1.61) translateX(12%);
-            transform-origin: center center;
-            /* El degradado hace que del lado derecho se vuelva transparente */
-            -webkit-mask-image: linear-gradient(to right, black 65%, transparent 100%);
-            mask-image: linear-gradient(to right, black 65%, transparent 100%);
+            left: 0; /* Anclado a la izquierda, crece hacia la derecha */
+            z-index: 0; /* Se queda debajo del texto */
         }
 
-        /* --- NUEVA CLASE PARA EL DIAGRAMA DE CICLO (MÁS GRANDE Y RECORRIDO) --- */
+        /* --- CLASE PARA EL DIAGRAMA DE CICLO --- */
         .ciclo-img {
-            position: absolute;
-            width: 160%; /* Mucho más grande, como tu recuadro morado */
-            height: 120%;
+            width: 100%; 
+            height: 100%;
             object-fit: contain;
-            left: 10%; /* Lo empuja hacia la derecha invadiendo un poco el área de texto si es necesario */
+            /* Scale elimina el aire blanco extra e iguala tu recuadro morado */
+            transform: scale(1.2); 
             z-index: 1;
         }
 
@@ -388,7 +385,7 @@
     <!-- 2. TESIS -->
     <section id="tesis">
         <div class="visual-side" id="tesis-viewer-container"> 
-            <!-- Imagen permanentemente ampliada -->
+            <!-- Se carga primero el Mapa de forma orgánica -->
             <img src="IMG/MAPA.png" class="organic-img">
         </div>
         <div class="text-side">
@@ -398,7 +395,7 @@
         <div class="footer-nav">
             <div class="layer-controls">
                 <button class="layer-btn active" id="btn-mapa">MAPA</button>
-                <!-- EL BOTÓN ESTRATEGIA HA SIDO ELIMINADO -->
+                <!-- Botón de Estrategia eliminado -->
                 <button class="layer-btn" id="btn-ciclo">CICLO</button>
             </div>
             <div class="nav-container">
@@ -511,7 +508,6 @@
             if(containerId === 'tesis-viewer-container' && src === 'MAPA.png') {
                 container.innerHTML = `<img src="IMG/${src}" class="organic-img">`;
             } else if (containerId === 'tesis-viewer-container' && src === 'CICLO.png') {
-                // Ahora usamos la clase específica para que sea gigante
                 container.innerHTML = `<img src="IMG/${src}" class="ciclo-img">`;
             } else {
                 container.innerHTML = `<img src="IMG/${src}" style="width:98%; height:98%; object-fit:contain; cursor:pointer;" onclick="togglePause()">`;
