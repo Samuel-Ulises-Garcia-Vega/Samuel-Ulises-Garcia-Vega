@@ -260,8 +260,8 @@
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            display: flex; 
-            gap: 15px; 
+            display: flex;
+            gap: 15px;
             align-items: center;
         }
         
@@ -293,8 +293,8 @@
 </head>
 <body>
 
-<div class="tap-zone tap-left" id="tap-left" title="Anterior"></div>
-<div class="tap-zone tap-right" id="tap-right" title="Siguiente"></div>
+<div class="tap-zone tap-left" id="tap-left" title="Lámina Anterior"></div>
+<div class="tap-zone tap-right" id="tap-right" title="Siguiente Lámina"></div>
 
 <div class="portfolio-container" id="scroll-container">
     
@@ -472,16 +472,25 @@
 </div>
 
 <script>
+    const tapLeft = document.getElementById('tap-left');
+    const tapRight = document.getElementById('tap-right');
     const scrollContainer = document.getElementById('scroll-container');
-    document.getElementById('tap-right').addEventListener('click', () => scrollContainer.scrollBy({ left: window.innerWidth, behavior: 'smooth' }));
-    document.getElementById('tap-left').addEventListener('click', () => scrollContainer.scrollBy({ left: -window.innerWidth, behavior: 'smooth' }));
+
+    tapRight.addEventListener('click', () => scrollContainer.scrollBy({ left: window.innerWidth, behavior: 'smooth' }));
+    tapLeft.addEventListener('click', () => scrollContainer.scrollBy({ left: -window.innerWidth, behavior: 'smooth' }));
 
     function showContent(containerId, is3d, src, orbit = "45deg 60deg 80%") {
         const container = document.getElementById(containerId);
         if (is3d) {
             container.innerHTML = `<model-viewer src="IMG/${src}" camera-controls auto-rotate shadow-intensity="1" camera-orbit="${orbit}" field-of-view="30deg" style="width: 100%; height: 100%;"></model-viewer>`;
         } else {
-            container.innerHTML = `<img src="IMG/${src}" style="width:98%; height:98%; object-fit:contain; cursor:pointer;" onclick="togglePause()">`;
+            if(containerId === 'tesis-viewer-container' && src === 'MAPA.png') {
+                container.innerHTML = `<img src="IMG/${src}" class="organic-img">`;
+            } else if (containerId === 'tesis-viewer-container' && src === 'CICLO.png') {
+                container.innerHTML = `<img src="IMG/${src}" class="ciclo-img">`;
+            } else {
+                container.innerHTML = `<img src="IMG/${src}" style="width:98%; height:98%; object-fit:contain; cursor:pointer;" onclick="togglePause()">`;
+            }
         }
     }
 
@@ -522,5 +531,6 @@
     document.getElementById('btn-corte').addEventListener('click', () => showContent('carp-viewer-container', false, 'CORTE.jpg'));
     document.getElementById('btn-ensamble').addEventListener('click', () => showContent('carp-viewer-container', false, 'ENSAMBLE.jpg'));
 </script>
+
 </body>
 </html>
