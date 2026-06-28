@@ -200,26 +200,17 @@
         }
         #tesis .text-side p { width: 80%; column-count: 2; column-gap: 40px; }
 
-        /* --- CLASE MAPA ORGÁNICO OPTIMIZADA PARA FLUIDEZ --- */
+        /* --- CLASE MAPA ORGÁNICO FIJADA EN ESCALA GIGANTE (+15%) --- */
         .organic-img {
             position: absolute;
             width: 150%; 
             height: 150%;
-            object-fit: contain; /* Mantiene la proporción sin cortar los bordes reales */
+            object-fit: contain; 
             left: -15%; 
             z-index: 1;
-            cursor: zoom-in;
-            /* La transición ahora es súper fluida porque solo altera transformaciones GPU */
-            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            /* Escala base aumentada a 1.61 y desplazamiento ajustado para enmarcar perfecto */
+            transform: scale(1.61) translateX(12%);
             transform-origin: center center;
-            transform: scale(1) translateX(0);
-        }
-
-        .organic-img.zoomed-map {
-            /* Al hacer zoom, solo usamos transform para escalar y mover */
-            transform: scale(1.4) translateX(12%);
-            z-index: 20;
-            cursor: zoom-out;
         }
 
         /* --- EXPANSIÓN DINÁMICA (LÁMINA RHINO / ALGORITMO) --- */
@@ -384,7 +375,8 @@
     <!-- 2. TESIS -->
     <section id="tesis">
         <div class="visual-side" id="tesis-viewer-container"> 
-            <img src="IMG/MAPA.png" class="organic-img" onclick="toggleZoom(this)" title="Haz clic para hacer zoom">
+            <!-- Imagen permanentemente ampliada -->
+            <img src="IMG/MAPA.png" class="organic-img">
         </div>
         <div class="text-side">
             <p>Investigación enfocada en el estudio del aprovechamiento y gestión del agua pluvial para la vivienda en colonias populares de la ciudad de Querétaro. A través del análisis de la actual crisis hídrica del estado, en el cual se destaca la explotación y gestión de este recurso, exponiendo las dinámicas de desigualdad urbana junto con la carencia de infraestructura pluvial de la ciudad. Esta investigación propone estrategias de infraestructura urbana, habitacional sostenible y adaptable para mitigar el estrés hídrico a escala local.</p>
@@ -496,11 +488,6 @@
     tapRight.addEventListener('click', () => scrollContainer.scrollBy({ left: window.innerWidth, behavior: 'smooth' }));
     tapLeft.addEventListener('click', () => scrollContainer.scrollBy({ left: -window.innerWidth, behavior: 'smooth' }));
 
-    // --- FUNCIÓN DE ZOOM ---
-    function toggleZoom(element) {
-        element.classList.toggle('zoomed-map');
-    }
-
     // Función genérica para mostrar contenido 
     function showContent(containerId, is3d, src, orbit = "45deg 60deg 80%") {
         const container = document.getElementById(containerId);
@@ -509,7 +496,7 @@
         } else {
             // Lógica específica por imagen
             if(containerId === 'tesis-viewer-container' && src === 'MAPA.png') {
-                container.innerHTML = `<img src="IMG/${src}" class="organic-img" onclick="toggleZoom(this)" title="Haz clic para hacer zoom">`;
+                container.innerHTML = `<img src="IMG/${src}" class="organic-img">`;
             } else if (containerId === 'tesis-viewer-container' && src === 'CICLO.png') {
                 // Añadimos padding-left del 10% para darle aire al ciclo
                 container.innerHTML = `<img src="IMG/${src}" style="width:90%; height:90%; object-fit:contain; cursor:pointer; padding-left: 10%;" onclick="togglePause()">`;
