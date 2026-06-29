@@ -157,9 +157,9 @@
             flex-direction: column; 
             justify-content: center; 
             align-items: flex-end; 
-            background: transparent;
+            background: transparent; /* TRANSPARENTE PARA QUE EL MAPA FLUYA */
             position: relative; 
-            transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1), padding 0.6s ease, opacity 0.4s ease;
+            transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1), padding 0.6s ease;
         }
 
         .text-side p {
@@ -187,23 +187,22 @@
         }
         
         /* --- CONFIGURACIONES INDIVIDUALES --- */
-        #bim .text-side p { width: 95%; } 
+        #bim .text-side p { width: 95%; } /* Texto ampliado hacia la izquierda */
         #rhino .text-side p, #carpinteria .text-side p { width: 70%; }
 
-        /* --- LÁMINA MINERAL (DISTRIBUCIÓN 70/30) --- */
-        #mineral .visual-side { width: 70vw; }
+        /* --- LÁMINA MINERAL (NUEVA CONFIGURACIÓN 100%) --- */
+        #mineral .visual-side { width: 100vw; } /* Ocupa el 100% del ancho */
         #mineral .text-side { 
-            width: 30vw; 
-            padding: 80px 40px 140px 40px; /* Padding ajustado para el 30% */
+            position: absolute; /* Se superpone a la imagen 100% */
+            right: 0; 
+            width: 38vw; 
+            z-index: 2; 
+            background: transparent;
+            transition: opacity 0.5s ease;
         }
-        #mineral .text-side p { width: 95%; }
-        #mineral .text-side h1 { right: 40px; font-size: 2.5rem; }
-
-        /* Clase para ocultar el texto en la Pág 2 y ocupar 100% */
-        #mineral.full-screen .visual-side { width: 100vw; }
-        #mineral.full-screen .text-side { 
-            width: 0vw; 
-            padding: 0;
+        #mineral .text-side p { width: 85%; }
+        /* Clase para ocultar el texto en la Pág 2 */
+        #mineral.hide-text .text-side { 
             opacity: 0; 
             pointer-events: none; 
         }
@@ -222,19 +221,19 @@
         /* --- MAPA GIGANTE Y LIBRE --- */
         .organic-img {
             position: absolute;
-            width: 110vw; 
+            width: 110vw; /* Invade el espacio de forma masiva */
             height: auto;
-            left: -25vw; 
+            left: -25vw; /* Posicionamiento natural */
             z-index: 0;
             object-fit: contain;
         }
 
-        /* --- CICLO HÍDRICO --- */
+        /* --- CICLO HÍDRICO AMPLIFICADO (120% + RECORRIDO) --- */
         .ciclo-img {
             width: 90%; 
             height: 90%;
             object-fit: contain;
-            transform: scale(1.2) translateX(5%); 
+            transform: scale(1.2) translateX(5%); /* Ajuste de tamaño y aire */
             z-index: 1;
         }
 
@@ -467,7 +466,8 @@
 
     <section id="mineral">
         <div class="visual-side" id="mineral-viewer-container">
-            <img src="IMG/PAN1.png" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+            <!-- La imagen inicial abarca el 100% y se alinea a la izquierda -->
+            <img src="IMG/PAN1.png" style="width: 100%; height: 100%; object-fit: contain; object-position: left center;">
         </div>
         <div class="text-side">
             <p>Proyecto arquitectónico y diseño de interiores donde se prioriza la expresión de los materiales, la luz y la textura. La composición busca una integración armónica entre las áreas públicas y los espacios de servicio, manteniendo una estética cálida y terrosa.</p>
@@ -510,8 +510,12 @@
             } else if (containerId === 'tesis-viewer-container' && src === 'CICLO.png') {
                 container.innerHTML = `<img src="IMG/${src}" class="ciclo-img">`;
             } else if (containerId === 'mineral-viewer-container') {
-                // Cover fuerza a la imagen a llenar todo el contenedor sin dejar bordes blancos
-                container.innerHTML = `<img src="IMG/${src}" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">`;
+                // Alineamos PAN1 a la izquierda, y centramos PAN2
+                if (src === 'PAN1.png') {
+                    container.innerHTML = `<img src="IMG/${src}" style="width: 100%; height: 100%; object-fit: contain; object-position: left center;">`;
+                } else {
+                    container.innerHTML = `<img src="IMG/${src}" style="width: 100%; height: 100%; object-fit: contain; object-position: center;">`;
+                }
             } else {
                 container.innerHTML = `<img src="IMG/${src}" style="width:98%; height:98%; object-fit:contain;">`;
             }
@@ -542,14 +546,14 @@
 
     btnPan1.addEventListener('click', () => {
         showContent('mineral-viewer-container', false, 'PAN1.png');
-        mineralSection.classList.remove('full-screen'); // Regresa a la distribución 70/30
+        mineralSection.classList.remove('hide-text'); // Muestra el texto
         btnPan1.classList.add('active');
         btnPan2.classList.remove('active');
     });
 
     btnPan2.addEventListener('click', () => {
         showContent('mineral-viewer-container', false, 'PAN2.png');
-        mineralSection.classList.add('full-screen'); // Expande a 100% y oculta texto
+        mineralSection.classList.add('hide-text'); // Oculta el texto
         btnPan2.classList.add('active');
         btnPan1.classList.remove('active');
     });
