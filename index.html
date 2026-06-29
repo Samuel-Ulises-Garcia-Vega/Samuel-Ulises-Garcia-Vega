@@ -186,6 +186,62 @@
         .skill-name { font-size: 0.9rem; font-weight: 500; color: var(--text-dark); }
         .skill-level { font-size: 0.75rem; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: 1px; }
         
+        /* --- PREVIEW DEL PORTAFOLIO --- */
+        .portfolio-preview-container {
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .preview-box {
+            position: relative;
+            width: 100%;
+            height: 160px; /* Altura de tu miniatura */
+            border-radius: 8px;
+            overflow: hidden;
+            display: block;
+            box-shadow: var(--shadow-sm);
+            border: 2px solid #eaeaea;
+            transition: all 0.3s ease;
+        }
+
+        .preview-box:hover {
+            border-color: var(--green);
+            box-shadow: var(--shadow-md);
+        }
+
+        .preview-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .preview-box:hover .preview-img {
+            transform: scale(1.05);
+        }
+
+        .preview-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(116, 130, 81, 0.85); /* Tono verde con transparencia */
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 2;
+        }
+
+        .preview-box:hover .preview-overlay {
+            opacity: 1;
+        }
+
         /* --- BOTÓN PORTAFOLIO --- */
         .portfolio-btn { 
             background-color: var(--green); 
@@ -195,7 +251,6 @@
             font-size: 1rem; 
             font-weight: 700; 
             letter-spacing: 1px;
-            margin-top: auto; 
             border-radius: 8px; 
             cursor: pointer; 
             transition: all 0.3s;
@@ -220,7 +275,6 @@
             .contact-info-group { flex-direction: column; gap: 10px; }
             .job-block { padding: 10px 0; border: none; }
             .job-block:hover { transform: none; box-shadow: none; }
-            .portfolio-btn { margin-top: 40px; }
         }
     </style>
 </head>
@@ -359,7 +413,13 @@
             <span class="skill-level">BÁSICO</span>
         </div>
 
-        <a href="./portafolio/index.html" class="portfolio-btn" style="margin-top: 40px;">Ir al Portafolio</a>
+        <div class="portfolio-preview-container">
+            <a href="./portafolio/index.html" class="preview-box" title="Ver Portafolio Completo">
+                <div class="preview-overlay">Explorar Proyectos</div>
+                <img src="./portafolio/IMG/PAN1.png" alt="Vista previa del portafolio" class="preview-img">
+            </a>
+            <a href="./portafolio/index.html" class="portfolio-btn">Ir al Portafolio</a>
+        </div>
         
     </div>
 
