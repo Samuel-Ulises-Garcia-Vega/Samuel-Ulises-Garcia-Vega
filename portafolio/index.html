@@ -489,35 +489,15 @@
             } else if (containerId === 'tesis-viewer-container' && src === 'CICLO.png') {
                 container.innerHTML = `<img src="IMG/${src}" class="ciclo-img">`;
             } else {
-                container.innerHTML = `<img src="IMG/${src}" style="width:98%; height:98%; object-fit:contain; cursor:pointer;" onclick="togglePause()">`;
+                container.innerHTML = `<img src="IMG/${src}" style="width:98%; height:98%; object-fit:contain;">`;
             }
         }
     }
 
-    let docSequence = ['PLANTA_ARQ.png', 'CORTE_ARQ.png', 'TABLA_ARQ.png'];
-    let docIndex = 0;
-    let docInterval = null;
-    let isPaused = false;
-
-    function startDocSequence() {
-        clearInterval(docInterval);
-        isPaused = false;
-        docIndex = 0;
-        showContent('bim-viewer-container', false, docSequence[docIndex]);
-        docInterval = setInterval(() => {
-            if (!isPaused) {
-                docIndex = (docIndex + 1) % docSequence.length;
-                showContent('bim-viewer-container', false, docSequence[docIndex]);
-            }
-        }, 4000);
-    }
-
-    function togglePause() { isPaused = !isPaused; }
-
-    document.getElementById('btn-integral').addEventListener('click', () => { clearInterval(docInterval); showContent('bim-viewer-container', true, 'INTEGRAL.glb', '45deg 60deg 80%'); });
-    document.getElementById('btn-estructura').addEventListener('click', () => { clearInterval(docInterval); showContent('bim-viewer-container', true, 'ESTRUCTURAL.glb', '45deg 60deg 80%'); });
-    document.getElementById('btn-mep').addEventListener('click', () => { clearInterval(docInterval); showContent('bim-viewer-container', true, 'MEP.glb', '-45deg 60deg 80%'); });
-    document.getElementById('btn-doc').addEventListener('click', startDocSequence);
+    document.getElementById('btn-integral').addEventListener('click', () => { showContent('bim-viewer-container', true, 'INTEGRAL.glb', '45deg 60deg 80%'); });
+    document.getElementById('btn-estructura').addEventListener('click', () => { showContent('bim-viewer-container', true, 'ESTRUCTURAL.glb', '45deg 60deg 80%'); });
+    document.getElementById('btn-mep').addEventListener('click', () => { showContent('bim-viewer-container', true, 'MEP.glb', '-45deg 60deg 80%'); });
+    document.getElementById('btn-doc').addEventListener('click', () => { showContent('bim-viewer-container', false, 'DOCUMENTACION.png'); });
     
     document.getElementById('btn-mapa').addEventListener('click', () => showContent('tesis-viewer-container', false, 'MAPA.png'));
     document.getElementById('btn-ciclo').addEventListener('click', () => showContent('tesis-viewer-container', false, 'CICLO.png'));
