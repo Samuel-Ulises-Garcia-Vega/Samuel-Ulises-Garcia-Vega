@@ -16,10 +16,11 @@
             --bg-page: #ffffff; 
         }
 
-        /* ESCALADO MAESTRO PROPORCIONAL: 
-           Esto hace que 1rem crezca o se encoja exactamente al mismo ritmo que la caja de 2500x1615 */
+        /* ESCALADO MAESTRO RECUPERADO: 
+           Esta proporción devuelve el tamaño original (16px base) a las fuentes
+           mientras preserva la proporción inquebrantable de la caja en móviles */
         html {
-            font-size: min(0.64vw, 0.99vh);
+            font-size: min(0.96vw, 1.48vh);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
@@ -180,7 +181,7 @@
             font-size: 1.05rem; 
             color: var(--text-light);
             line-height: 1.7;
-            text-align: left; /* CORRECCIÓN: Alineación a la izquierda en lugar de justificado */
+            text-align: left; /* Alineación limpia a la izquierda (sin empalmes) */
             margin: 0;
             transition: all 0.6s ease;
         }
@@ -239,7 +240,7 @@
         /* --- MAPA GIGANTE Y LIBRE --- */
         .organic-img {
             position: absolute;
-            width: 130%; 
+            width: 110%; 
             height: auto;
             left: -25%; 
             z-index: 0;
