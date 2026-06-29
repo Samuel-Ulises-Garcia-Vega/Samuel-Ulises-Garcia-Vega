@@ -18,18 +18,34 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         
+        /* --- FONDO OSCURO PARA EL ESPACIO VACÍO --- */
         body { 
             width: 100vw;
             height: 100vh;
             overflow: hidden; 
-            background: var(--bg-page); 
+            background: #111111; 
             color: var(--text-dark); 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* --- CONTENEDOR MAESTRO DE PROPORCIÓN FIJA (2500x1615) --- */
+        .aspect-box {
+            aspect-ratio: 2500 / 1615;
+            width: 100%;
+            max-width: calc(100vh * (2500 / 1615));
+            max-height: 100vh;
+            position: relative;
+            background: var(--bg-page);
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0,0,0,0.8);
         }
         
         .portfolio-container { 
             display: flex; 
-            width: 100vw; 
-            height: 100vh; 
+            width: 100%; 
+            height: 100%; 
             overflow-x: auto; 
             scroll-snap-type: x mandatory; 
             scroll-behavior: smooth;
@@ -38,23 +54,12 @@
         .portfolio-container::-webkit-scrollbar { display: none; }
 
         section { 
-            flex: 0 0 100vw; 
-            height: 100vh; 
+            flex: 0 0 100%; 
+            height: 100%; 
             display: flex; 
             scroll-snap-align: start; 
             position: relative;
             overflow: hidden; /* Mantiene cada lámina en su lugar */
-        }
-
-        /* --- ADAPTACIÓN MÓVIL Y VERTICAL --- */
-        @media (max-width: 900px) {
-            section { flex-direction: column; }
-            .visual-side, .text-side, #tesis .visual-side, #tesis .text-side { width: 100vw !important; height: 50vh !important; }
-            .text-side { padding: 20px; align-items: center; justify-content: flex-start; }
-            .text-side p { width: 90% !important; font-size: 0.9rem !important; }
-            .text-side h1 { position: static; font-size: 1.8rem; margin-top: 10px; }
-            .cover-name { font-size: 1.5rem !important; padding-right: 20px !important; }
-            .cover-title { font-size: 1.2rem !important; padding-right: 20px !important; }
         }
         
         /* --- LÁMINA PORTADA --- */
@@ -97,7 +102,7 @@
         .grid-index-container {
             display: flex;
             width: 100%;
-            height: calc(100vh - 80px); 
+            height: calc(100% - 80px); 
             background: #ffffff;
         }
 
@@ -138,7 +143,7 @@
 
         /* --- ÁREA VISUAL (IZQUIERDA) --- */
         .visual-side { 
-            width: 60vw; 
+            width: 60%; 
             background: #ffffff; 
             display: flex; 
             align-items: center; 
@@ -151,13 +156,13 @@
         
         /* --- ESTRUCTURA EDITORIAL DE TEXTOS (DERECHA) --- */
         .text-side { 
-            width: 40vw; 
+            width: 40%; 
             padding: 80px 80px 140px 80px; 
             display: flex; 
             flex-direction: column; 
             justify-content: center; 
             align-items: flex-end; 
-            background: transparent; /* TRANSPARENTE PARA QUE EL MAPA FLUYA */
+            background: transparent;
             position: relative; 
             transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1), padding 0.6s ease;
         }
@@ -187,21 +192,20 @@
         }
         
         /* --- CONFIGURACIONES INDIVIDUALES --- */
-        #bim .text-side p { width: 95%; } /* Texto ampliado hacia la izquierda */
+        #bim .text-side p { width: 95%; } 
         #rhino .text-side p, #carpinteria .text-side p { width: 70%; }
 
-        /* --- LÁMINA MINERAL (NUEVA CONFIGURACIÓN 100%) --- */
-        #mineral .visual-side { width: 100vw; } /* Ocupa el 100% del ancho */
+        /* --- LÁMINA MINERAL --- */
+        #mineral .visual-side { width: 100%; } 
         #mineral .text-side { 
-            position: absolute; /* Se superpone a la imagen 100% */
+            position: absolute;
             right: 0; 
-            width: 38vw; 
+            width: 38%; 
             z-index: 2; 
             background: transparent;
             transition: opacity 0.5s ease;
         }
         #mineral .text-side p { width: 85%; }
-        /* Clase para ocultar el texto en la Pág 2 */
         #mineral.hide-text .text-side { 
             opacity: 0; 
             pointer-events: none; 
@@ -209,11 +213,11 @@
 
         /* --- LÁMINA TESIS --- */
         #tesis .visual-side { 
-            width: 50vw; 
+            width: 50%; 
             overflow: visible; 
         }
         #tesis .text-side { 
-            width: 50vw; 
+            width: 50%; 
             z-index: 2; 
         }
         #tesis .text-side p { width: 80%; column-count: 2; column-gap: 40px; }
@@ -221,19 +225,19 @@
         /* --- MAPA GIGANTE Y LIBRE --- */
         .organic-img {
             position: absolute;
-            width: 110vw; /* Invade el espacio de forma masiva */
+            width: 110%; 
             height: auto;
-            left: -25vw; /* Posicionamiento natural */
+            left: -25%; 
             z-index: 0;
             object-fit: contain;
         }
 
-        /* --- CICLO HÍDRICO AMPLIFICADO (120% + RECORRIDO) --- */
+        /* --- CICLO HÍDRICO --- */
         .ciclo-img {
             width: 90%; 
             height: 90%;
             object-fit: contain;
-            transform: scale(1.2) translateX(5%); /* Ajuste de tamaño y aire */
+            transform: scale(1.2) translateX(5%);
             z-index: 1;
         }
 
@@ -242,7 +246,7 @@
             position: absolute; 
             bottom: 0; 
             left: 0;
-            width: 100vw; 
+            width: 100%; 
             height: 80px; 
             background: #ffffff; 
             display: flex; 
@@ -294,10 +298,10 @@
         .dot.active { background: var(--red); transform: scale(1.3); }
 
         .tap-zone {
-            position: fixed;
+            position: absolute;
             top: 0;
-            height: calc(100vh - 80px); 
-            width: 10vw; 
+            height: calc(100% - 80px); 
+            width: 10%; 
             z-index: 5;
             cursor: pointer;
             transition: background 0.3s;
@@ -310,185 +314,188 @@
 </head>
 <body>
 
-<div class="tap-zone tap-left" id="tap-left" title="Lámina Anterior"></div>
-<div class="tap-zone tap-right" id="tap-right" title="Siguiente Lámina"></div>
-
-<div class="portfolio-container" id="scroll-container">
+<div class="aspect-box">
     
-    <section id="portada" class="cover-section">
-        <div class="cover-content">
-            <div class="cover-name">Arq. Samuel Ulises García Vega</div>
-            <div class="cover-line"></div>
-            <div class="cover-title">PORTAFOLIO</div>
-        </div>
-    </section>
+    <div class="tap-zone tap-left" id="tap-left" title="Lámina Anterior"></div>
+    <div class="tap-zone tap-right" id="tap-right" title="Siguiente Lámina"></div>
 
-    <section id="indice">
-        <div class="grid-index-container">
-            <a href="#bim" class="grid-column">
-                <div class="grid-number">01</div>
-                <div class="grid-title">Desarrollo BIM</div>
-            </a>
-            <a href="#tesis" class="grid-column">
-                <div class="grid-number">02</div>
-                <div class="grid-title">Gestión Hídrica Urbana</div>
-            </a>
-            <a href="#rhino" class="grid-column">
-                <div class="grid-number">03</div>
-                <div class="grid-title">Diseño Paramétrico</div>
-            </a>
-            <a href="#carpinteria" class="grid-column">
-                <div class="grid-number">04</div>
-                <div class="grid-title">Diseño de Mobiliario</div>
-            </a>
-            <a href="#mineral" class="grid-column" style="border-right: none;">
-                <div class="grid-number">05</div>
-                <div class="grid-title">MINERAL</div>
-            </a>
-        </div>
-        <div class="footer-nav">
-            <div class="layer-controls"></div>
-            <div class="nav-container">
-                <a href="#portada" class="dot" title="Portada"></a>
-                <a href="#indice" class="dot active" title="Índice"></a>
-                <a href="#bim" class="dot" title="Desarrollo BIM"></a>
-                <a href="#tesis" class="dot" title="Gestión Hídrica Urbana"></a>
-                <a href="#rhino" class="dot" title="Diseño Paramétrico"></a>
-                <a href="#carpinteria" class="dot" title="Diseño de Mobiliario"></a>
-                <a href="#mineral" class="dot" title="MINERAL"></a>
+    <div class="portfolio-container" id="scroll-container">
+        
+        <section id="portada" class="cover-section">
+            <div class="cover-content">
+                <div class="cover-name">Arq. Samuel Ulises García Vega</div>
+                <div class="cover-line"></div>
+                <div class="cover-title">PORTAFOLIO</div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="bim">
-        <div class="visual-side" id="bim-viewer-container"> 
-            <model-viewer id="bim-viewer" src="IMG/INTEGRAL.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="45deg 60deg 80%" field-of-view="30deg" style="width: 100%; height: 100%;"></model-viewer>
-        </div>
-        <div class="text-side">
-            <p>Desarrollo de proyectos ejecutivos y documentación técnica integral. Gestión avanzada de modelos en Archicad, optimización de combinaciones de capas para la supervisión de obra y extracción de cuantificaciones precisas. La centralización de la información permite anticipar resoluciones constructivas en sitio y ofrecer presentaciones claras y eficientes mediante BIMx.</p>
-            <h1>DESARROLLO BIM</h1>
-        </div>
-        <div class="footer-nav">
-            <div class="layer-controls">
-                <button class="layer-btn active" id="btn-integral">INTEGRAL</button>
-                <button class="layer-btn" id="btn-estructura">Estructura</button>
-                <button class="layer-btn" id="btn-mep">Red MEP</button>
-                <button class="layer-btn" id="btn-doc">DOC.</button>
+        <section id="indice">
+            <div class="grid-index-container">
+                <a href="#bim" class="grid-column">
+                    <div class="grid-number">01</div>
+                    <div class="grid-title">Desarrollo BIM</div>
+                </a>
+                <a href="#tesis" class="grid-column">
+                    <div class="grid-number">02</div>
+                    <div class="grid-title">Gestión Hídrica Urbana</div>
+                </a>
+                <a href="#rhino" class="grid-column">
+                    <div class="grid-number">03</div>
+                    <div class="grid-title">Diseño Paramétrico</div>
+                </a>
+                <a href="#carpinteria" class="grid-column">
+                    <div class="grid-number">04</div>
+                    <div class="grid-title">Diseño de Mobiliario</div>
+                </a>
+                <a href="#mineral" class="grid-column" style="border-right: none;">
+                    <div class="grid-number">05</div>
+                    <div class="grid-title">MINERAL</div>
+                </a>
             </div>
-            <div class="nav-container">
-                <a href="#portada" class="dot" title="Portada"></a>
-                <a href="#indice" class="dot" title="Índice"></a>
-                <a href="#bim" class="dot active" title="Desarrollo BIM"></a>
-                <a href="#tesis" class="dot" title="Gestión Hídrica Urbana"></a>
-                <a href="#rhino" class="dot" title="Diseño Paramétrico"></a>
-                <a href="#carpinteria" class="dot" title="Diseño de Mobiliario"></a>
-                <a href="#mineral" class="dot" title="MINERAL"></a>
+            <div class="footer-nav">
+                <div class="layer-controls"></div>
+                <div class="nav-container">
+                    <a href="#portada" class="dot" title="Portada"></a>
+                    <a href="#indice" class="dot active" title="Índice"></a>
+                    <a href="#bim" class="dot" title="Desarrollo BIM"></a>
+                    <a href="#tesis" class="dot" title="Gestión Hídrica Urbana"></a>
+                    <a href="#rhino" class="dot" title="Diseño Paramétrico"></a>
+                    <a href="#carpinteria" class="dot" title="Diseño de Mobiliario"></a>
+                    <a href="#mineral" class="dot" title="MINERAL"></a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="tesis">
-        <div class="visual-side" id="tesis-viewer-container"> 
-            <img src="IMG/MAPA.png" class="organic-img">
-        </div>
-        <div class="text-side">
-            <p>Investigación enfocada en el estudio del aprovechamiento y gestión del agua pluvial para la vivienda en colonias populares de la ciudad de Querétaro. A través del análisis de la actual crisis hídrica del estado, en el cual se destaca la explotación y gestión de este recurso, exponiendo las dinámicas de desigualdad urbana junto con la carencia de infraestructura pluvial de la ciudad. Esta investigación propone estrategias de infraestructura urbana, habitacional sostenible y adaptable para mitigar el estrés hídrico a escala local.</p>
-            <h1>GESTIÓN HÍDRICA URBANA</h1>
-        </div>
-        <div class="footer-nav">
-            <div class="layer-controls">
-                <button class="layer-btn active" id="btn-mapa">MAPA</button>
-                <button class="layer-btn" id="btn-ciclo">CICLO</button>
+        <section id="bim">
+            <div class="visual-side" id="bim-viewer-container"> 
+                <model-viewer id="bim-viewer" src="IMG/INTEGRAL.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="45deg 60deg 80%" field-of-view="30deg" style="width: 100%; height: 100%;"></model-viewer>
             </div>
-            <div class="nav-container">
-                <a href="#portada" class="dot" title="Portada"></a>
-                <a href="#indice" class="dot" title="Índice"></a>
-                <a href="#bim" class="dot" title="Desarrollo BIM"></a>
-                <a href="#tesis" class="dot active" title="Gestión Hídrica Urbana"></a>
-                <a href="#rhino" class="dot" title="Diseño Paramétrico"></a>
-                <a href="#carpinteria" class="dot" title="Diseño de Mobiliario"></a>
-                <a href="#mineral" class="dot" title="MINERAL"></a>
+            <div class="text-side">
+                <p>Desarrollo de proyectos ejecutivos y documentación técnica integral. Gestión avanzada de modelos en Archicad, optimización de combinaciones de capas para la supervisión de obra y extracción de cuantificaciones precisas. La centralización de la información permite anticipar resoluciones constructivas en sitio y ofrecer presentaciones claras y eficientes mediante BIMx.</p>
+                <h1>DESARROLLO BIM</h1>
             </div>
-        </div>
-    </section>
+            <div class="footer-nav">
+                <div class="layer-controls">
+                    <button class="layer-btn active" id="btn-integral">INTEGRAL</button>
+                    <button class="layer-btn" id="btn-estructura">Estructura</button>
+                    <button class="layer-btn" id="btn-mep">Red MEP</button>
+                    <button class="layer-btn" id="btn-doc">DOC.</button>
+                </div>
+                <div class="nav-container">
+                    <a href="#portada" class="dot" title="Portada"></a>
+                    <a href="#indice" class="dot" title="Índice"></a>
+                    <a href="#bim" class="dot active" title="Desarrollo BIM"></a>
+                    <a href="#tesis" class="dot" title="Gestión Hídrica Urbana"></a>
+                    <a href="#rhino" class="dot" title="Diseño Paramétrico"></a>
+                    <a href="#carpinteria" class="dot" title="Diseño de Mobiliario"></a>
+                    <a href="#mineral" class="dot" title="MINERAL"></a>
+                </div>
+            </div>
+        </section>
 
-    <section id="rhino">
-        <div class="visual-side" id="rhino-viewer-container">
-            <model-viewer id="rhino-viewer" src="IMG/CUBIERTA.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="-50deg 80deg 80%" field-of-view="30deg" style="width: 100%; height: 100%;"></model-viewer>
-        </div>
-        <div class="text-side">
-            <p>Exploración morfológica y optimización geométrica mediante Rhinoceros y Grasshopper. El desarrollo de algoritmos visuales permite una mayor capacidad de iteraciones en el proceso de diseño para formas complejas o geometrías no convencionales.</p>
-            <h1>DISEÑO PARAMÉTRICO</h1>
-        </div>
-        <div class="footer-nav">
-            <div class="layer-controls">
-                <button class="layer-btn active" id="btn-cubierta">CUBIERTA</button>
-                <button class="layer-btn" id="btn-geom">EXP. GEOMÉTRICA</button>
-                <button class="layer-btn" id="btn-algoritmo">ALGORITMO</button>
+        <section id="tesis">
+            <div class="visual-side" id="tesis-viewer-container"> 
+                <img src="IMG/MAPA.png" class="organic-img">
             </div>
-            <div class="nav-container">
-                <a href="#portada" class="dot" title="Portada"></a>
-                <a href="#indice" class="dot" title="Índice"></a>
-                <a href="#bim" class="dot" title="Desarrollo BIM"></a>
-                <a href="#tesis" class="dot" title="Gestión Hídrica Urbana"></a>
-                <a href="#rhino" class="dot active" title="Diseño Paramétrico"></a>
-                <a href="#carpinteria" class="dot" title="Diseño de Mobiliario"></a>
-                <a href="#mineral" class="dot" title="MINERAL"></a>
+            <div class="text-side">
+                <p>Investigación enfocada en el estudio del aprovechamiento y gestión del agua pluvial para la vivienda en colonias populares de la ciudad de Querétaro. A través del análisis de la actual crisis hídrica del estado, en el cual se destaca la explotación y gestión de este recurso, exponiendo las dinámicas de desigualdad urbana junto con la carencia de infraestructura pluvial de la ciudad. Esta investigación propone estrategias de infraestructura urbana, habitacional sostenible y adaptable para mitigar el estrés hídrico a escala local.</p>
+                <h1>GESTIÓN HÍDRICA URBANA</h1>
             </div>
-        </div>
-    </section>
+            <div class="footer-nav">
+                <div class="layer-controls">
+                    <button class="layer-btn active" id="btn-mapa">MAPA</button>
+                    <button class="layer-btn" id="btn-ciclo">CICLO</button>
+                </div>
+                <div class="nav-container">
+                    <a href="#portada" class="dot" title="Portada"></a>
+                    <a href="#indice" class="dot" title="Índice"></a>
+                    <a href="#bim" class="dot" title="Desarrollo BIM"></a>
+                    <a href="#tesis" class="dot active" title="Gestión Hídrica Urbana"></a>
+                    <a href="#rhino" class="dot" title="Diseño Paramétrico"></a>
+                    <a href="#carpinteria" class="dot" title="Diseño de Mobiliario"></a>
+                    <a href="#mineral" class="dot" title="MINERAL"></a>
+                </div>
+            </div>
+        </section>
 
-    <section id="carpinteria">
-        <div class="visual-side" id="carp-viewer-container">
-            <model-viewer id="carp-viewer" src="IMG/MOD3D.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="45deg 60deg 80%" field-of-view="30deg" style="width: 100%; height: 100%;"></model-viewer>
-        </div>
-        <div class="text-side">
-            <p>Conceptualización y desarrollo técnico de mobiliario. El proceso abarca desde la exploración espacial hasta la planimetría de la fabricación y el armado del mobiliario. Englobando la generación de despieces, tablas de corte y diagramas de ensamble.</p>
-            <h1>DISEÑO DE MOBILIARIO</h1>
-        </div>
-        <div class="footer-nav">
-            <div class="layer-controls">
-                <button class="layer-btn active" id="btn-3d">3D</button>
-                <button class="layer-btn" id="btn-corte">DIAGRAMA DE CORTE</button>
-                <button class="layer-btn" id="btn-ensamble">ENSAMBLE</button>
+        <section id="rhino">
+            <div class="visual-side" id="rhino-viewer-container">
+                <model-viewer id="rhino-viewer" src="IMG/CUBIERTA.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="-50deg 80deg 80%" field-of-view="30deg" style="width: 100%; height: 100%;"></model-viewer>
             </div>
-            <div class="nav-container">
-                <a href="#portada" class="dot" title="Portada"></a>
-                <a href="#indice" class="dot" title="Índice"></a>
-                <a href="#bim" class="dot" title="Desarrollo BIM"></a>
-                <a href="#tesis" class="dot" title="Gestión Hídrica Urbana"></a>
-                <a href="#rhino" class="dot" title="Diseño Paramétrico"></a>
-                <a href="#carpinteria" class="dot active" title="Diseño de Mobiliario"></a>
-                <a href="#mineral" class="dot" title="MINERAL"></a>
+            <div class="text-side">
+                <p>Exploración morfológica y optimización geométrica mediante Rhinoceros y Grasshopper. El desarrollo de algoritmos visuales permite una mayor capacidad de iteraciones en el proceso de diseño para formas complejas o geometrías no convencionales.</p>
+                <h1>DISEÑO PARAMÉTRICO</h1>
             </div>
-        </div>
-    </section>
+            <div class="footer-nav">
+                <div class="layer-controls">
+                    <button class="layer-btn active" id="btn-cubierta">CUBIERTA</button>
+                    <button class="layer-btn" id="btn-geom">EXP. GEOMÉTRICA</button>
+                    <button class="layer-btn" id="btn-algoritmo">ALGORITMO</button>
+                </div>
+                <div class="nav-container">
+                    <a href="#portada" class="dot" title="Portada"></a>
+                    <a href="#indice" class="dot" title="Índice"></a>
+                    <a href="#bim" class="dot" title="Desarrollo BIM"></a>
+                    <a href="#tesis" class="dot" title="Gestión Hídrica Urbana"></a>
+                    <a href="#rhino" class="dot active" title="Diseño Paramétrico"></a>
+                    <a href="#carpinteria" class="dot" title="Diseño de Mobiliario"></a>
+                    <a href="#mineral" class="dot" title="MINERAL"></a>
+                </div>
+            </div>
+        </section>
 
-    <section id="mineral">
-        <div class="visual-side" id="mineral-viewer-container">
-            <!-- La imagen inicial abarca el 100% y se alinea a la izquierda -->
-            <img src="IMG/PAN1.png" style="width: 100%; height: 100%; object-fit: contain; object-position: left center;">
-        </div>
-        <div class="text-side">
-            <p>Proyecto arquitectónico y diseño de interiores donde se prioriza la expresión de los materiales, la luz y la textura. La composición busca una integración armónica entre las áreas públicas y los espacios de servicio, manteniendo una estética cálida y terrosa.</p>
-            <h1>MINERAL</h1>
-        </div>
-        <div class="footer-nav">
-            <div class="layer-controls">
-                <button class="layer-btn active" id="btn-pan1">VISTA PRINCIPAL</button>
-                <button class="layer-btn" id="btn-pan2">COMPOSICIÓN</button>
+        <section id="carpinteria">
+            <div class="visual-side" id="carp-viewer-container">
+                <model-viewer id="carp-viewer" src="IMG/MOD3D.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="45deg 60deg 80%" field-of-view="30deg" style="width: 100%; height: 100%;"></model-viewer>
             </div>
-            <div class="nav-container">
-                <a href="#portada" class="dot" title="Portada"></a>
-                <a href="#indice" class="dot" title="Índice"></a>
-                <a href="#bim" class="dot" title="Desarrollo BIM"></a>
-                <a href="#tesis" class="dot" title="Gestión Hídrica Urbana"></a>
-                <a href="#rhino" class="dot" title="Diseño Paramétrico"></a>
-                <a href="#carpinteria" class="dot" title="Diseño de Mobiliario"></a>
-                <a href="#mineral" class="dot active" title="MINERAL"></a>
+            <div class="text-side">
+                <p>Conceptualización y desarrollo técnico de mobiliario. El proceso abarca desde la exploración espacial hasta la planimetría de la fabricación y el armado del mobiliario. Englobando la generación de despieces, tablas de corte y diagramas de ensamble.</p>
+                <h1>DISEÑO DE MOBILIARIO</h1>
             </div>
-        </div>
-    </section>
+            <div class="footer-nav">
+                <div class="layer-controls">
+                    <button class="layer-btn active" id="btn-3d">3D</button>
+                    <button class="layer-btn" id="btn-corte">DIAGRAMA DE CORTE</button>
+                    <button class="layer-btn" id="btn-ensamble">ENSAMBLE</button>
+                </div>
+                <div class="nav-container">
+                    <a href="#portada" class="dot" title="Portada"></a>
+                    <a href="#indice" class="dot" title="Índice"></a>
+                    <a href="#bim" class="dot" title="Desarrollo BIM"></a>
+                    <a href="#tesis" class="dot" title="Gestión Hídrica Urbana"></a>
+                    <a href="#rhino" class="dot" title="Diseño Paramétrico"></a>
+                    <a href="#carpinteria" class="dot active" title="Diseño de Mobiliario"></a>
+                    <a href="#mineral" class="dot" title="MINERAL"></a>
+                </div>
+            </div>
+        </section>
+
+        <section id="mineral">
+            <div class="visual-side" id="mineral-viewer-container">
+                <img src="IMG/PAN1.png" style="width: 100%; height: 100%; object-fit: contain; object-position: left center;">
+            </div>
+            <div class="text-side">
+                <p>Proyecto arquitectónico y diseño de interiores donde se prioriza la expresión de los materiales, la luz y la textura. La composición busca una integración armónica entre las áreas públicas y los espacios de servicio, manteniendo una estética cálida y terrosa.</p>
+                <h1>MINERAL</h1>
+            </div>
+            <div class="footer-nav">
+                <div class="layer-controls">
+                    <button class="layer-btn active" id="btn-pan1">VISTA PRINCIPAL</button>
+                    <button class="layer-btn" id="btn-pan2">COMPOSICIÓN</button>
+                </div>
+                <div class="nav-container">
+                    <a href="#portada" class="dot" title="Portada"></a>
+                    <a href="#indice" class="dot" title="Índice"></a>
+                    <a href="#bim" class="dot" title="Desarrollo BIM"></a>
+                    <a href="#tesis" class="dot" title="Gestión Hídrica Urbana"></a>
+                    <a href="#rhino" class="dot" title="Diseño Paramétrico"></a>
+                    <a href="#carpinteria" class="dot" title="Diseño de Mobiliario"></a>
+                    <a href="#mineral" class="dot active" title="MINERAL"></a>
+                </div>
+            </div>
+        </section>
+
+    </div>
 
 </div>
 
@@ -497,8 +504,9 @@
     const tapRight = document.getElementById('tap-right');
     const scrollContainer = document.getElementById('scroll-container');
 
-    tapRight.addEventListener('click', () => scrollContainer.scrollBy({ left: window.innerWidth, behavior: 'smooth' }));
-    tapLeft.addEventListener('click', () => scrollContainer.scrollBy({ left: -window.innerWidth, behavior: 'smooth' }));
+    // Modificado para que se desplace basándose en el ancho del nuevo contenedor fijo
+    tapRight.addEventListener('click', () => scrollContainer.scrollBy({ left: scrollContainer.clientWidth, behavior: 'smooth' }));
+    tapLeft.addEventListener('click', () => scrollContainer.scrollBy({ left: -scrollContainer.clientWidth, behavior: 'smooth' }));
 
     function showContent(containerId, is3d, src, orbit = "45deg 60deg 80%") {
         const container = document.getElementById(containerId);
@@ -510,7 +518,6 @@
             } else if (containerId === 'tesis-viewer-container' && src === 'CICLO.png') {
                 container.innerHTML = `<img src="IMG/${src}" class="ciclo-img">`;
             } else if (containerId === 'mineral-viewer-container') {
-                // Alineamos PAN1 a la izquierda, y centramos PAN2
                 if (src === 'PAN1.png') {
                     container.innerHTML = `<img src="IMG/${src}" style="width: 100%; height: 100%; object-fit: contain; object-position: left center;">`;
                 } else {
@@ -546,14 +553,14 @@
 
     btnPan1.addEventListener('click', () => {
         showContent('mineral-viewer-container', false, 'PAN1.png');
-        mineralSection.classList.remove('hide-text'); // Muestra el texto
+        mineralSection.classList.remove('hide-text'); 
         btnPan1.classList.add('active');
         btnPan2.classList.remove('active');
     });
 
     btnPan2.addEventListener('click', () => {
         showContent('mineral-viewer-container', false, 'PAN2.png');
-        mineralSection.classList.add('hide-text'); // Oculta el texto
+        mineralSection.classList.add('hide-text'); 
         btnPan2.classList.add('active');
         btnPan1.classList.remove('active');
     });
