@@ -3,158 +3,562 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV Web - Samuel Ulises García Vega</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Portafolio - Samuel Ulises García Vega</title>
+    <link href="https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@400;700&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
     
     <style>
         :root {
             --red: #9d0000;
             --green: #748251;
-            --green-hover: #5c6841;
-            
             --text-dark: #1a1a1a;
             --text-light: #555555;
-            --bg-page: #f4f7f6;
-            --bg-card: #ffffff;
-            --shadow-md: 0 10px 25px rgba(0,0,0,0.08);
-            --shadow-hover: 0 15px 35px rgba(0,0,0,0.12);
+            --bg-page: #ffffff; 
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        
+        body { 
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden; 
+            background: var(--bg-page); 
+            color: var(--text-dark); 
+        }
+        
+        .portfolio-container { 
+            display: flex; 
+            width: 100vw; 
+            height: 100vh; 
+            overflow-x: auto; 
+            scroll-snap-type: x mandatory; 
+            scroll-behavior: smooth;
+            scrollbar-width: none; 
+        }
+        .portfolio-container::-webkit-scrollbar { display: none; }
 
-        body { background-color: var(--bg-page); color: var(--text-dark); line-height: 1.6; display: flex; justify-content: center; padding: 40px 20px; }
-        
-        .cv-container { background-color: var(--bg-card); max-width: 1100px; width: 100%; display: flex; flex-direction: row; border-radius: 16px; box-shadow: var(--shadow-md); overflow: hidden; }
-        
-        .left-column { width: 65%; padding: 60px; }
-        .right-column { width: 35%; padding: 60px 40px; background-color: #fafafa; border-left: 1px solid #eee; display: flex; flex-direction: column; }
-        
-        /* IZQUIERDA (ROJO) */
-        .title-wrapper { display: inline-block; margin-bottom: 25px; }
-        h1 { font-family: 'Arima Madurai', serif; font-size: 2.8rem; font-weight: 400; letter-spacing: 1px; margin-bottom: 8px; color: var(--text-dark); line-height: 1.1; }
-        .main-divider { height: 4px; background-color: var(--red); width: 100%; border-radius: 2px; }
-        .header-contact { margin-bottom: 40px; }
-        .header-contact .role { font-size: 1.3rem; font-weight: 700; color: var(--red); margin-bottom: 12px; }
-        .contact-info-group { display: flex; gap: 25px; flex-wrap: wrap; }
-        .contact-item { font-size: 0.95rem; color: var(--text-light); display: flex; align-items: center; gap: 8px; font-weight: 500; margin-bottom: 8px; }
-        
-        .section-title { font-size: 1.1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 20px; margin-top: 40px; color: var(--text-dark); border-bottom: 2px solid var(--red); padding-bottom: 8px; }
-        
-        .profile-text { font-size: 1.05rem; color: var(--text-light); text-align: justify; font-weight: 400; }
-        .job-block { margin-bottom: 25px; padding: 20px; border-radius: 10px; background: #fff; border: 1px solid transparent; transition: all 0.3s ease; }
-        .job-block:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); border-color: #f0f0f0; }
-        .job-title { font-weight: 700; font-size: 1.1rem; color: var(--red); margin-bottom: 5px; }
-        .job-date { font-size: 0.85rem; color: #888; margin-bottom: 12px; font-weight: 500; }
-        .job-block ul { padding-left: 20px; font-size: 0.95rem; color: var(--text-light); font-weight: 400; }
-        .job-block ul li { margin-bottom: 6px; }
-        
-        /* DERECHA (VERDE) */
-        .right-title { font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dark); margin-bottom: 15px; margin-top: 35px; padding-bottom: 5px; border-bottom: 2px solid var(--green); }
-        ul.simple-list { list-style: none; font-size: 0.95rem; color: var(--text-light); font-weight: 400; }
-        ul.simple-list li { margin-bottom: 8px; position: relative; padding-left: 15px; }
-        ul.simple-list li::before { content: '•'; color: var(--green); position: absolute; left: 0; font-weight: bold; }
+        section { 
+            flex: 0 0 100vw; 
+            height: 100vh; 
+            display: flex; 
+            scroll-snap-align: start; 
+            position: relative;
+            overflow: hidden; /* Mantiene cada lámina en su lugar */
+        }
 
-        /* Corrección de alineación: align-self: center añadido */
-        .profile-photo { align-self: center; width: 220px; height: 220px; object-fit: cover; object-position: center 15%; border-radius: 0; box-shadow: var(--shadow-md); border: 4px solid #ffffff; margin-bottom: 30px; }
+        /* --- ADAPTACIÓN MÓVIL Y VERTICAL --- */
+        @media (max-width: 900px) {
+            section { flex-direction: column; }
+            .visual-side, .text-side, #tesis .visual-side, #tesis .text-side { width: 100vw !important; height: 50vh !important; }
+            .text-side { padding: 20px; align-items: center; justify-content: flex-start; }
+            .text-side p { width: 90% !important; font-size: 0.9rem !important; }
+            .text-side h1 { position: static; font-size: 1.8rem; margin-top: 10px; }
+            .cover-name { font-size: 1.5rem !important; padding-right: 20px !important; }
+            .cover-title { font-size: 1.2rem !important; padding-right: 20px !important; }
+        }
         
-        .software-category { font-size: 0.9rem; font-weight: 700; color: var(--text-light); margin-top: 20px; margin-bottom: 12px; }
-        .skill { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; border-bottom: 1px dashed #e2e8f0; padding-bottom: 4px; }
-        .skill-name { font-size: 0.9rem; font-weight: 500; color: var(--text-dark); }
-        .skill-level { font-size: 0.75rem; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: 1px; }
+        /* --- LÁMINA PORTADA --- */
+        .cover-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end; 
+            background: #ffffff; 
+            padding-bottom: 60px; 
+        }
+
+        .cover-content { width: 100%; }
+
+        .cover-name {
+            text-align: right;
+            padding-right: 80px;
+            font-size: 2.2rem;
+            font-weight: 300;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .cover-line {
+            width: 100%;
+            height: 3px;
+            background-color: var(--red);
+        }
+
+        .cover-title {
+            text-align: right;
+            padding-right: 80px;
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: var(--text-dark);
+            letter-spacing: 4px;
+            margin-top: 10px;
+        }
+
+        /* --- LÁMINA ÍNDICE --- */
+        .grid-index-container {
+            display: flex;
+            width: 100%;
+            height: calc(100vh - 80px); 
+            background: #ffffff;
+        }
+
+        .grid-column {
+            flex: 1; 
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 80px 40px;
+            border-right: 1px solid #eaeaea;
+            text-decoration: none; 
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .grid-column:hover { background-color: rgba(116, 130, 81, 0.04); }
+
+        .grid-number {
+            font-family: 'Arima Madurai', serif;
+            font-size: 6rem;
+            color: #e2e8f0; 
+            font-weight: 700;
+            line-height: 1;
+            transition: all 0.4s ease;
+        }
+
+        .grid-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.4s ease;
+        }
+
+        .grid-column:hover .grid-number { color: var(--red); transform: translateY(-10px); }
+        .grid-column:hover .grid-title { color: var(--green); }
+
+        /* --- ÁREA VISUAL (IZQUIERDA) --- */
+        .visual-side { 
+            width: 60vw; 
+            background: #ffffff; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            position: relative; 
+            padding-bottom: 80px; 
+            overflow: hidden; 
+            transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
         
-        .portfolio-btn { background-color: var(--green); color: white; text-align: center; padding: 15px; font-size: 1rem; font-weight: 700; letter-spacing: 1px; margin-top: 40px; border-radius: 8px; cursor: pointer; transition: all 0.3s; text-decoration: none; display: block; }
-        .portfolio-btn:hover { background-color: var(--green-hover); transform: translateY(-2px); }
+        /* --- ESTRUCTURA EDITORIAL DE TEXTOS (DERECHA) --- */
+        .text-side { 
+            width: 40vw; 
+            padding: 80px 80px 140px 80px; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: flex-end; 
+            background: transparent; /* TRANSPARENTE PARA QUE EL MAPA FLUYA */
+            position: relative; 
+            transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1), padding 0.6s ease;
+        }
+
+        .text-side p {
+            font-size: 1.05rem; 
+            color: var(--text-light);
+            line-height: 1.7;
+            text-align: justify;
+            margin: 0;
+            transition: all 0.6s ease;
+        }
+
+        .text-side h1 {
+            font-family: 'Arima Madurai', serif;
+            color: var(--red);
+            text-align: right;
+            text-transform: uppercase;
+            position: absolute; 
+            bottom: 85px; 
+            right: 80px;
+            margin: 0;
+            line-height: 1;
+            font-size: 2.8rem; 
+            white-space: nowrap; 
+            transition: all 0.6s ease;
+        }
+        
+        /* --- CONFIGURACIONES INDIVIDUALES --- */
+        #bim .text-side p { width: 95%; } /* Texto ampliado hacia la izquierda */
+        #rhino .text-side p, #carpinteria .text-side p { width: 70%; }
+
+        /* --- LÁMINA MINERAL (NUEVA CONFIGURACIÓN 100%) --- */
+        #mineral .visual-side { width: 100vw; } /* Ocupa el 100% del ancho */
+        #mineral .text-side { 
+            position: absolute; /* Se superpone a la imagen 100% */
+            right: 0; 
+            width: 38vw; 
+            z-index: 2; 
+            background: transparent;
+            transition: opacity 0.5s ease;
+        }
+        #mineral .text-side p { width: 85%; }
+        /* Clase para ocultar el texto en la Pág 2 */
+        #mineral.hide-text .text-side { 
+            opacity: 0; 
+            pointer-events: none; 
+        }
+
+        /* --- LÁMINA TESIS --- */
+        #tesis .visual-side { 
+            width: 50vw; 
+            overflow: visible; 
+        }
+        #tesis .text-side { 
+            width: 50vw; 
+            z-index: 2; 
+        }
+        #tesis .text-side p { width: 80%; column-count: 2; column-gap: 40px; }
+
+        /* --- MAPA GIGANTE Y LIBRE --- */
+        .organic-img {
+            position: absolute;
+            width: 110vw; /* Invade el espacio de forma masiva */
+            height: auto;
+            left: -25vw; /* Posicionamiento natural */
+            z-index: 0;
+            object-fit: contain;
+        }
+
+        /* --- CICLO HÍDRICO AMPLIFICADO (120% + RECORRIDO) --- */
+        .ciclo-img {
+            width: 90%; 
+            height: 90%;
+            object-fit: contain;
+            transform: scale(1.2) translateX(5%); /* Ajuste de tamaño y aire */
+            z-index: 1;
+        }
+
+        /* --- NAVEGACIÓN INFERIOR --- */
+        .footer-nav { 
+            position: absolute; 
+            bottom: 0; 
+            left: 0;
+            width: 100vw; 
+            height: 80px; 
+            background: #ffffff; 
+            display: flex; 
+            align-items: center; 
+            padding: 0 40px; 
+            border-top: 2px solid var(--red); 
+            z-index: 10; 
+        }
+        
+        .layer-controls { 
+            display: flex; 
+            gap: 10px; 
+            margin-right: auto; 
+            width: 70%; 
+        }
+        
+        .layer-btn { 
+            padding: 8px 15px; 
+            background: var(--green); 
+            color: white; 
+            border: none; 
+            cursor: pointer; 
+            font-weight: 600;
+            font-size: 0.8rem;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        
+        .layer-btn:hover, .layer-btn.active { background: #5c6841; }
+
+        .nav-container {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .dot { 
+            width: 12px; 
+            height: 12px; 
+            border-radius: 50%; 
+            background: #d1d5db; 
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .dot.active { background: var(--red); transform: scale(1.3); }
+
+        .tap-zone {
+            position: fixed;
+            top: 0;
+            height: calc(100vh - 80px); 
+            width: 10vw; 
+            z-index: 5;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .tap-zone:hover { background: rgba(0, 0, 0, 0.02); }
+        .tap-left { left: 0; }
+        .tap-right { right: 0; }
     </style>
 </head>
 <body>
 
-<div class="cv-container">
-    <div class="left-column">
-        <div class="title-wrapper">
-            <h1>SAMUEL ULISES<br>GARCÍA VEGA</h1>
-            <div class="main-divider"></div>
-        </div>
+<div class="tap-zone tap-left" id="tap-left" title="Lámina Anterior"></div>
+<div class="tap-zone tap-right" id="tap-right" title="Siguiente Lámina"></div>
 
-        <div class="header-contact">
-            <div class="role">ARQUITECTO</div>
-            <div class="contact-info-group">
-                <div class="contact-item">ulises.gar132@gmail.com</div>
-                <div class="contact-item">4423745573</div>
+<div class="portfolio-container" id="scroll-container">
+    
+    <section id="portada" class="cover-section">
+        <div class="cover-content">
+            <div class="cover-name">Arq. Samuel Ulises García Vega</div>
+            <div class="cover-line"></div>
+            <div class="cover-title">PORTAFOLIO</div>
+        </div>
+    </section>
+
+    <section id="indice">
+        <div class="grid-index-container">
+            <a href="#bim" class="grid-column">
+                <div class="grid-number">01</div>
+                <div class="grid-title">Desarrollo BIM</div>
+            </a>
+            <a href="#tesis" class="grid-column">
+                <div class="grid-number">02</div>
+                <div class="grid-title">Gestión Hídrica Urbana</div>
+            </a>
+            <a href="#rhino" class="grid-column">
+                <div class="grid-number">03</div>
+                <div class="grid-title">Diseño Paramétrico</div>
+            </a>
+            <a href="#carpinteria" class="grid-column">
+                <div class="grid-number">04</div>
+                <div class="grid-title">Diseño de Mobiliario</div>
+            </a>
+            <a href="#mineral" class="grid-column" style="border-right: none;">
+                <div class="grid-number">05</div>
+                <div class="grid-title">MINERAL</div>
+            </a>
+        </div>
+        <div class="footer-nav">
+            <div class="layer-controls"></div>
+            <div class="nav-container">
+                <a href="#portada" class="dot" title="Portada"></a>
+                <a href="#indice" class="dot active" title="Índice"></a>
+                <a href="#bim" class="dot" title="Desarrollo BIM"></a>
+                <a href="#tesis" class="dot" title="Gestión Hídrica Urbana"></a>
+                <a href="#rhino" class="dot" title="Diseño Paramétrico"></a>
+                <a href="#carpinteria" class="dot" title="Diseño de Mobiliario"></a>
+                <a href="#mineral" class="dot" title="MINERAL"></a>
             </div>
         </div>
-        
-        <div class="section-title">Perfil Profesional</div>
-        <p class="profile-text">Arquitecto con experiencia en el desarrollo de proyectos ejecutivos mediante metodología BIM, enfocado en la documentación constructiva, coordinación técnica y seguimiento de proyectos arquitectónicos. He participado en procesos de diseño, modelado 3D, cuantificación y supervisión de obra, integrando herramientas digitales para optimizar la comunicación y ejecución de proyectos.</p>
-        
-        <div class="section-title">Experiencia Laboral</div>
-        
-        <div class="job-block">
-            <div class="job-title">Arquitecto BIM Jr.</div>
-            <div class="job-date">(Mar 2025-Jun 2026) Grupo Conarq</div>
-            <ul>
-                <li>Desarrollo de modelos BIM con información constructiva.</li>
-                <li>Cuantificaciones y catálogos de conceptos desde el modelo.</li>
-                <li>Resoluciones constructivas y apoyo en decisiones de diseño.</li>
-                <li>Producción de renders y VR para presentación.</li>
-                <li>Coordinación con clientes, proveedores y equipo de trabajo.</li>
-                <li>Gestión y seguimiento de actividades del proyecto.</li>
-            </ul>
-        </div>
+    </section>
 
-        <div class="job-block">
-            <div class="job-title">Dibujante Arquitectónico</div>
-            <div class="job-date">(Ene 2024-Mar 2025)</div>
-            <ul>
-                <li>Elaboración de planos arquitectónicos y constructivos.</li>
-                <li>Modelado 3D para visualización de proyectos.</li>
-                <li>Apoyo en cuantificación de generadores.</li>
-                <li>Coordinación con proveedores y seguimiento de materiales.</li>
-                <li>Participación en levantamientos y visitas de obra.</li>
-            </ul>
+    <section id="bim">
+        <div class="visual-side" id="bim-viewer-container"> 
+            <model-viewer id="bim-viewer" src="IMG/INTEGRAL.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="45deg 60deg 80%" field-of-view="30deg" style="width: 100%; height: 100%;"></model-viewer>
         </div>
-
-        <div class="job-block">
-            <div class="job-title">Auxiliar en Supervisión de Obra</div>
-            <div class="job-date">(Jun 2022-Oct 2022) 1i</div>
-            <ul>
-                <li>Supervisión de procesos constructivos en obra.</li>
-                <li>Control de avances y verificación de calidad.</li>
-                <li>Coordinación de personal en sitio.</li>
-                <li>Seguimiento a proveedores y suministros.</li>
-                <li>Apoyo en cuantificación de obra.</li>
-            </ul>
+        <div class="text-side">
+            <p>Desarrollo de proyectos ejecutivos y documentación técnica integral. Gestión avanzada de modelos en Archicad, optimización de combinaciones de capas para la supervisión de obra y extracción de cuantificaciones precisas. La centralización de la información permite anticipar resoluciones constructivas en sitio y ofrecer presentaciones claras y eficientes mediante BIMx.</p>
+            <h1>DESARROLLO BIM</h1>
         </div>
-    </div>
+        <div class="footer-nav">
+            <div class="layer-controls">
+                <button class="layer-btn active" id="btn-integral">INTEGRAL</button>
+                <button class="layer-btn" id="btn-estructura">Estructura</button>
+                <button class="layer-btn" id="btn-mep">Red MEP</button>
+                <button class="layer-btn" id="btn-doc">DOC.</button>
+            </div>
+            <div class="nav-container">
+                <a href="#portada" class="dot" title="Portada"></a>
+                <a href="#indice" class="dot" title="Índice"></a>
+                <a href="#bim" class="dot active" title="Desarrollo BIM"></a>
+                <a href="#tesis" class="dot" title="Gestión Hídrica Urbana"></a>
+                <a href="#rhino" class="dot" title="Diseño Paramétrico"></a>
+                <a href="#carpinteria" class="dot" title="Diseño de Mobiliario"></a>
+                <a href="#mineral" class="dot" title="MINERAL"></a>
+            </div>
+        </div>
+    </section>
 
-    <div class="right-column">
-        <img src="DSC08573.jpg" alt="Samuel" class="profile-photo">
-        <h3 class="right-title" style="margin-top:0;">Intereses</h3>
-        <ul class="simple-list">
-            <li>Urbanismo</li>
-            <li>Sustentabilidad</li>
-            <li>Gestión de proyectos</li>
-            <li>Desarrollo BIM de proyectos ejecutivos</li>
-        </ul>
-        <h3 class="right-title">Certificaciones</h3>
-        <ul class="simple-list">
-            <li><strong>Preparación para CAPM</strong><br>Project Management Institute</li>
-        </ul>
-        <h3 class="right-title">Software</h3>
-        <div class="software-category">Dibujo y Modelado</div>
-        <div class="skill"><span class="skill-name">Archicad</span><span class="skill-level">EXPERTO</span></div>
-        <div class="skill"><span class="skill-name">Sketchup</span><span class="skill-level">AVANZADO</span></div>
-        <div class="skill"><span class="skill-name">AutoCad</span><span class="skill-level">AVANZADO</span></div>
-        <div class="skill"><span class="skill-name">Revit</span><span class="skill-level">INTERMEDIO</span></div>
-        <div class="skill"><span class="skill-name">Rhinoceros</span><span class="skill-level">INTERMEDIO</span></div>
-        <div class="skill"><span class="skill-name">Grasshopper</span><span class="skill-level">BÁSICO</span></div>
-        <div class="software-category">Render y Post-producción</div>
-        <div class="skill"><span class="skill-name">Twinmotion</span><span class="skill-level">AVANZADO</span></div>
-        <div class="skill"><span class="skill-name">Photoshop</span><span class="skill-level">BÁSICO</span></div>
-        <div class="skill"><span class="skill-name">Ilustrator</span><span class="skill-level">BÁSICO</span></div>
-        <a href="portafolio/index.html" class="portfolio-btn">Ir al Portafolio</a>
-    </div>
+    <section id="tesis">
+        <div class="visual-side" id="tesis-viewer-container"> 
+            <img src="IMG/MAPA.png" class="organic-img">
+        </div>
+        <div class="text-side">
+            <p>Investigación enfocada en el estudio del aprovechamiento y gestión del agua pluvial para la vivienda en colonias populares de la ciudad de Querétaro. A través del análisis de la actual crisis hídrica del estado, en el cual se destaca la explotación y gestión de este recurso, exponiendo las dinámicas de desigualdad urbana junto con la carencia de infraestructura pluvial de la ciudad. Esta investigación propone estrategias de infraestructura urbana, habitacional sostenible y adaptable para mitigar el estrés hídrico a escala local.</p>
+            <h1>GESTIÓN HÍDRICA URBANA</h1>
+        </div>
+        <div class="footer-nav">
+            <div class="layer-controls">
+                <button class="layer-btn active" id="btn-mapa">MAPA</button>
+                <button class="layer-btn" id="btn-ciclo">CICLO</button>
+            </div>
+            <div class="nav-container">
+                <a href="#portada" class="dot" title="Portada"></a>
+                <a href="#indice" class="dot" title="Índice"></a>
+                <a href="#bim" class="dot" title="Desarrollo BIM"></a>
+                <a href="#tesis" class="dot active" title="Gestión Hídrica Urbana"></a>
+                <a href="#rhino" class="dot" title="Diseño Paramétrico"></a>
+                <a href="#carpinteria" class="dot" title="Diseño de Mobiliario"></a>
+                <a href="#mineral" class="dot" title="MINERAL"></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="rhino">
+        <div class="visual-side" id="rhino-viewer-container">
+            <model-viewer id="rhino-viewer" src="IMG/CUBIERTA.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="-50deg 80deg 80%" field-of-view="30deg" style="width: 100%; height: 100%;"></model-viewer>
+        </div>
+        <div class="text-side">
+            <p>Exploración morfológica y optimización geométrica mediante Rhinoceros y Grasshopper. El desarrollo de algoritmos visuales permite una mayor capacidad de iteraciones en el proceso de diseño para formas complejas o geometrías no convencionales.</p>
+            <h1>DISEÑO PARAMÉTRICO</h1>
+        </div>
+        <div class="footer-nav">
+            <div class="layer-controls">
+                <button class="layer-btn active" id="btn-cubierta">CUBIERTA</button>
+                <button class="layer-btn" id="btn-geom">EXP. GEOMÉTRICA</button>
+                <button class="layer-btn" id="btn-algoritmo">ALGORITMO</button>
+            </div>
+            <div class="nav-container">
+                <a href="#portada" class="dot" title="Portada"></a>
+                <a href="#indice" class="dot" title="Índice"></a>
+                <a href="#bim" class="dot" title="Desarrollo BIM"></a>
+                <a href="#tesis" class="dot" title="Gestión Hídrica Urbana"></a>
+                <a href="#rhino" class="dot active" title="Diseño Paramétrico"></a>
+                <a href="#carpinteria" class="dot" title="Diseño de Mobiliario"></a>
+                <a href="#mineral" class="dot" title="MINERAL"></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="carpinteria">
+        <div class="visual-side" id="carp-viewer-container">
+            <model-viewer id="carp-viewer" src="IMG/MOD3D.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="45deg 60deg 80%" field-of-view="30deg" style="width: 100%; height: 100%;"></model-viewer>
+        </div>
+        <div class="text-side">
+            <p>Conceptualización y desarrollo técnico de mobiliario. El proceso abarca desde la exploración espacial hasta la planimetría de la fabricación y el armado del mobiliario. Englobando la generación de despieces, tablas de corte y diagramas de ensamble.</p>
+            <h1>DISEÑO DE MOBILIARIO</h1>
+        </div>
+        <div class="footer-nav">
+            <div class="layer-controls">
+                <button class="layer-btn active" id="btn-3d">3D</button>
+                <button class="layer-btn" id="btn-corte">DIAGRAMA DE CORTE</button>
+                <button class="layer-btn" id="btn-ensamble">ENSAMBLE</button>
+            </div>
+            <div class="nav-container">
+                <a href="#portada" class="dot" title="Portada"></a>
+                <a href="#indice" class="dot" title="Índice"></a>
+                <a href="#bim" class="dot" title="Desarrollo BIM"></a>
+                <a href="#tesis" class="dot" title="Gestión Hídrica Urbana"></a>
+                <a href="#rhino" class="dot" title="Diseño Paramétrico"></a>
+                <a href="#carpinteria" class="dot active" title="Diseño de Mobiliario"></a>
+                <a href="#mineral" class="dot" title="MINERAL"></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="mineral">
+        <div class="visual-side" id="mineral-viewer-container">
+            <!-- La imagen inicial abarca el 100% y se alinea a la izquierda -->
+            <img src="IMG/PAN1.png" style="width: 100%; height: 100%; object-fit: contain; object-position: left center;">
+        </div>
+        <div class="text-side">
+            <p>Proyecto arquitectónico y diseño de interiores donde se prioriza la expresión de los materiales, la luz y la textura. La composición busca una integración armónica entre las áreas públicas y los espacios de servicio, manteniendo una estética cálida y terrosa.</p>
+            <h1>MINERAL</h1>
+        </div>
+        <div class="footer-nav">
+            <div class="layer-controls">
+                <button class="layer-btn active" id="btn-pan1">VISTA PRINCIPAL</button>
+                <button class="layer-btn" id="btn-pan2">COMPOSICIÓN</button>
+            </div>
+            <div class="nav-container">
+                <a href="#portada" class="dot" title="Portada"></a>
+                <a href="#indice" class="dot" title="Índice"></a>
+                <a href="#bim" class="dot" title="Desarrollo BIM"></a>
+                <a href="#tesis" class="dot" title="Gestión Hídrica Urbana"></a>
+                <a href="#rhino" class="dot" title="Diseño Paramétrico"></a>
+                <a href="#carpinteria" class="dot" title="Diseño de Mobiliario"></a>
+                <a href="#mineral" class="dot active" title="MINERAL"></a>
+            </div>
+        </div>
+    </section>
+
 </div>
+
+<script>
+    const tapLeft = document.getElementById('tap-left');
+    const tapRight = document.getElementById('tap-right');
+    const scrollContainer = document.getElementById('scroll-container');
+
+    tapRight.addEventListener('click', () => scrollContainer.scrollBy({ left: window.innerWidth, behavior: 'smooth' }));
+    tapLeft.addEventListener('click', () => scrollContainer.scrollBy({ left: -window.innerWidth, behavior: 'smooth' }));
+
+    function showContent(containerId, is3d, src, orbit = "45deg 60deg 80%") {
+        const container = document.getElementById(containerId);
+        if (is3d) {
+            container.innerHTML = `<model-viewer src="IMG/${src}" camera-controls auto-rotate shadow-intensity="1" camera-orbit="${orbit}" field-of-view="30deg" style="width: 100%; height: 100%;"></model-viewer>`;
+        } else {
+            if(containerId === 'tesis-viewer-container' && src === 'MAPA.png') {
+                container.innerHTML = `<img src="IMG/${src}" class="organic-img">`;
+            } else if (containerId === 'tesis-viewer-container' && src === 'CICLO.png') {
+                container.innerHTML = `<img src="IMG/${src}" class="ciclo-img">`;
+            } else if (containerId === 'mineral-viewer-container') {
+                // Alineamos PAN1 a la izquierda, y centramos PAN2
+                if (src === 'PAN1.png') {
+                    container.innerHTML = `<img src="IMG/${src}" style="width: 100%; height: 100%; object-fit: contain; object-position: left center;">`;
+                } else {
+                    container.innerHTML = `<img src="IMG/${src}" style="width: 100%; height: 100%; object-fit: contain; object-position: center;">`;
+                }
+            } else {
+                container.innerHTML = `<img src="IMG/${src}" style="width:98%; height:98%; object-fit:contain;">`;
+            }
+        }
+    }
+
+    document.getElementById('btn-integral').addEventListener('click', () => { showContent('bim-viewer-container', true, 'INTEGRAL.glb', '45deg 60deg 80%'); });
+    document.getElementById('btn-estructura').addEventListener('click', () => { showContent('bim-viewer-container', true, 'ESTRUCTURAL.glb', '45deg 60deg 80%'); });
+    document.getElementById('btn-mep').addEventListener('click', () => { showContent('bim-viewer-container', true, 'MEP.glb', '-45deg 60deg 80%'); });
+    document.getElementById('btn-doc').addEventListener('click', () => { showContent('bim-viewer-container', false, 'DOCUMENTACION.png'); });
+    
+    document.getElementById('btn-mapa').addEventListener('click', () => showContent('tesis-viewer-container', false, 'MAPA.png'));
+    document.getElementById('btn-ciclo').addEventListener('click', () => showContent('tesis-viewer-container', false, 'CICLO.png'));
+
+    const rhinoSection = document.getElementById('rhino');
+    document.getElementById('btn-cubierta').addEventListener('click', () => { showContent('rhino-viewer-container', true, 'CUBIERTA.glb', '-50deg 80deg 80%'); rhinoSection.classList.remove('expand-visual'); });
+    document.getElementById('btn-geom').addEventListener('click', () => { showContent('rhino-viewer-container', true, 'EXP_GEOMETRICA.glb', '-50deg 80deg 80%'); rhinoSection.classList.remove('expand-visual'); });
+    document.getElementById('btn-algoritmo').addEventListener('click', () => { showContent('rhino-viewer-container', false, 'ALGORITMO.png'); rhinoSection.classList.add('expand-visual'); });
+
+    document.getElementById('btn-3d').addEventListener('click', () => showContent('carp-viewer-container', true, 'MOD3D.glb', '45deg 60deg 80%'));
+    document.getElementById('btn-corte').addEventListener('click', () => showContent('carp-viewer-container', false, 'CORTE.jpg'));
+    document.getElementById('btn-ensamble').addEventListener('click', () => showContent('carp-viewer-container', false, 'ENSAMBLE.jpg'));
+
+    // Lógica para los botones de la lámina MINERAL
+    const btnPan1 = document.getElementById('btn-pan1');
+    const btnPan2 = document.getElementById('btn-pan2');
+    const mineralSection = document.getElementById('mineral');
+
+    btnPan1.addEventListener('click', () => {
+        showContent('mineral-viewer-container', false, 'PAN1.png');
+        mineralSection.classList.remove('hide-text'); // Muestra el texto
+        btnPan1.classList.add('active');
+        btnPan2.classList.remove('active');
+    });
+
+    btnPan2.addEventListener('click', () => {
+        showContent('mineral-viewer-container', false, 'PAN2.png');
+        mineralSection.classList.add('hide-text'); // Oculta el texto
+        btnPan2.classList.add('active');
+        btnPan1.classList.remove('active');
+    });
+
+</script>
 
 </body>
 </html>
