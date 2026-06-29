@@ -11,6 +11,8 @@
         :root {
             --red: #9d0000;
             --red-hover: #7a0000; 
+            --green: #748251;
+            --green-hover: #5c6841;
             
             --text-dark: #1a1a1a;
             --text-light: #555555;
@@ -129,7 +131,7 @@
             margin-bottom: 15px; 
             margin-top: 35px;
             padding-bottom: 5px;
-            border-bottom: 2px solid var(--red);
+            border-bottom: 2px solid var(--green);
         }
 
         .right-title.first { margin-top: 0; }
@@ -139,7 +141,7 @@
         
         ul.simple-list li::before {
             content: '•';
-            color: var(--red); 
+            color: var(--green); 
             position: absolute;
             left: 0;
             font-weight: bold;
@@ -182,11 +184,11 @@
         }
         
         .skill-name { font-size: 0.9rem; font-weight: 500; color: var(--text-dark); }
-        .skill-level { font-size: 0.75rem; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: 1px; }
+        .skill-level { font-size: 0.75rem; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: 1px; }
         
         /* --- BOTÓN PORTAFOLIO --- */
         .portfolio-btn { 
-            background-color: var(--red); 
+            background-color: var(--green); 
             color: white; 
             text-align: center; 
             padding: 15px; 
@@ -199,13 +201,13 @@
             transition: all 0.3s;
             text-decoration: none;
             display: block;
-            box-shadow: 0 4px 10px rgba(157, 0, 0, 0.3);
+            box-shadow: 0 4px 10px rgba(116, 130, 81, 0.3);
         }
         
         .portfolio-btn:hover { 
-            background-color: var(--red-hover); 
+            background-color: var(--green-hover); 
             transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(157, 0, 0, 0.4);
+            box-shadow: 0 6px 15px rgba(116, 130, 81, 0.4);
         }
 
         /* --- RESPONSIVO --- */
@@ -357,7 +359,7 @@
             <span class="skill-level">BÁSICO</span>
         </div>
 
-        <a href="#" class="portfolio-btn" style="margin-top: 40px;">Ir al Portafolio</a>
+        <a href="portafolio/index.html" class="portfolio-btn" style="margin-top: 40px;">Ir al Portafolio</a>
         
     </div>
 
