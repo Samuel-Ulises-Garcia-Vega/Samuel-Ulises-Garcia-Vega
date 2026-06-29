@@ -197,7 +197,7 @@
         .preview-box {
             position: relative;
             width: 100%;
-            height: 160px; /* Altura de tu miniatura */
+            height: 160px;
             border-radius: 8px;
             overflow: hidden;
             display: block;
@@ -216,7 +216,6 @@
             height: 100%;
             object-fit: cover;
             object-position: center;
-            /* Se añade transición de opacidad para el fade entre imágenes */
             transition: transform 0.5s ease, opacity 0.4s ease; 
         }
 
@@ -227,7 +226,7 @@
         .preview-overlay {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(116, 130, 81, 0.85); /* Tono verde con transparencia */
+            background: rgba(116, 130, 81, 0.85); 
             color: white;
             display: flex;
             align-items: center;
@@ -242,29 +241,6 @@
 
         .preview-box:hover .preview-overlay {
             opacity: 1;
-        }
-
-        /* --- BOTÓN PORTAFOLIO --- */
-        .portfolio-btn { 
-            background-color: var(--green); 
-            color: white; 
-            text-align: center; 
-            padding: 15px; 
-            font-size: 1rem; 
-            font-weight: 700; 
-            letter-spacing: 1px;
-            border-radius: 8px; 
-            cursor: pointer; 
-            transition: all 0.3s;
-            text-decoration: none;
-            display: block;
-            box-shadow: 0 4px 10px rgba(116, 130, 81, 0.3);
-        }
-        
-        .portfolio-btn:hover { 
-            background-color: var(--green-hover); 
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(116, 130, 81, 0.4);
         }
 
         /* --- RESPONSIVO --- */
@@ -378,7 +354,7 @@
         <div class="software-category">Dibujo y Modelado</div>
         <div class="skill">
             <span class="skill-name">Archicad</span>
-            <span class="skill-level">EXPERTO</span>
+            <span class="skill-level">AVANZADO</span>
         </div>
         <div class="skill">
             <span class="skill-name">Sketchup</span>
@@ -415,13 +391,12 @@
             <span class="skill-level">BÁSICO</span>
         </div>
 
-        <!-- SECCIÓN DE PREVIEW DEL PORTAFOLIO ANIMADO -->
+        <!-- SECCIÓN DE PREVIEW DEL PORTAFOLIO ANIMADO (SIN BOTÓN EXTRA) -->
         <div class="portfolio-preview-container">
             <a href="./portafolio/index.html" class="preview-box" title="Ver Portafolio Completo">
                 <div class="preview-overlay">Explorar Proyectos</div>
                 <img src="./portafolio/IMG/PAN1.png" alt="Vista previa del portafolio" class="preview-img" id="preview-slideshow">
             </a>
-            <a href="./portafolio/index.html" class="portfolio-btn">Ir al Portafolio</a>
         </div>
         
     </div>
@@ -430,31 +405,27 @@
 
 <!-- SCRIPT PARA EL CARRUSEL DEL PREVIEW -->
 <script>
-    // Arreglo con las rutas de las imágenes que quieres mostrar en el slideshow
     const previewImages = [
-        './portafolio/IMG/PAN1.png',        // Mineral Principal
-        './portafolio/IMG/PAN2.png',        // Mineral Composición
-        './portafolio/IMG/MAPA.png',        // Gestión Hídrica
-        './portafolio/IMG/DOCUMENTACION.png'// BIM Planos
+        './portafolio/IMG/PAN1.png',        
+        './portafolio/IMG/PAN2.png',        
+        './portafolio/IMG/MAPA.png',        
+        './portafolio/IMG/DOCUMENTACION.png'
     ];
     
     let currentPreviewIndex = 0;
     const previewImgElement = document.getElementById('preview-slideshow');
 
     setInterval(() => {
-        // 1. Iniciamos el efecto de desvanecimiento (fade out)
         previewImgElement.style.opacity = '0'; 
         
-        // 2. Esperamos un instante a que desaparezca y cambiamos la imagen
         setTimeout(() => {
             currentPreviewIndex = (currentPreviewIndex + 1) % previewImages.length;
             previewImgElement.src = previewImages[currentPreviewIndex];
             
-            // 3. Volvemos a mostrar la imagen suavemente (fade in)
             previewImgElement.style.opacity = '1'; 
-        }, 400); // 400 milisegundos = el tiempo que dura la transición CSS
+        }, 400); 
 
-    }, 3500); // Cambia de imagen cada 3.5 segundos
+    }, 3500); 
 </script>
 
 </body>
