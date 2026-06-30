@@ -211,16 +211,18 @@
         #mineral .visual-side { width: 100%; } 
         #mineral .text-side { 
             position: absolute;
+            top: 0;
             right: 0; 
             width: 38%; 
+            height: 100%; /* Obliga a calcular el bottom desde el borde de la pantalla */
             z-index: 2; 
             background: transparent;
             transition: opacity 0.5s ease;
-            padding: 5rem 2.5rem 8.75rem 2.5rem;
+            padding: 5rem 5rem 8.75rem 2.5rem; /* Margen derecho estandarizado a 5rem */
         }
         #mineral .text-side h1 {
-            right: 2.5rem;
-            font-size: 3.2rem; 
+            right: 5rem; /* Alineación perfecta con las demás láminas */
+            font-size: 3.6rem; 
         }
         #mineral .text-side p { width: 85%; }
         #mineral.hide-text .text-side { 
@@ -256,6 +258,54 @@
             object-fit: contain;
             transform: scale(1.2) translateX(5%);
             z-index: 1;
+        }
+
+        /* --- LÁMINAS EXTRA (PERFIL Y CONTACTO) --- */
+        .profile-photo {
+            width: 35vh;
+            height: 35vh;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border: 0.4rem solid #ffffff;
+        }
+
+        .contact-info-block {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+            width: 100%;
+        }
+
+        .contact-item {
+            font-size: 1.6rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            font-weight: 400;
+        }
+
+        .contact-icon {
+            stroke: var(--green);
+            width: 2.4rem;
+            height: 2.4rem;
+        }
+
+        .graphic-hero {
+            background: var(--green);
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding-left: 5rem;
+        }
+
+        .graphic-hero h2 {
+            font-family: 'Arima Madurai', serif;
+            color: rgba(255,255,255,0.9);
+            font-size: 7rem;
+            line-height: 1;
+            font-weight: 700;
         }
 
         /* --- NAVEGACIÓN INFERIOR --- */
@@ -338,12 +388,40 @@
 
     <div class="portfolio-container" id="scroll-container">
         
+        <!-- LÁMINA 1: PORTADA -->
         <section id="portada" class="cover-section">
             <div class="cover-name">Arq. Samuel Ulises García Vega</div>
             <div class="cover-line"></div>
             <div class="cover-title">PORTAFOLIO</div>
         </section>
 
+        <!-- LÁMINA 2: PERFIL PROFESIONAL -->
+        <section id="perfil">
+            <div class="visual-side" style="background: #fafafa; border-right: 1px solid #eaeaea;">
+                <img src="../DSC08573.jpg" alt="Samuel Ulises García Vega" class="profile-photo">
+            </div>
+            <div class="text-side">
+                <p style="margin-bottom: 2.5rem; width: 100%;"><strong>PERFIL PROFESIONAL</strong><br><br>Pasante de Arquitectura con experiencia en el desarrollo de proyectos ejecutivos mediante metodología BIM, enfocado en la documentación constructiva, coordinación técnica y seguimiento de proyectos arquitectónicos. He participado en procesos de diseño, modelado 3D, cuantificación y supervisión de obra, integrando herramientas digitales para optimizar la comunicación y ejecución de proyectos.</p>
+                <p style="width: 100%;"><strong>INTERESES</strong><br>Urbanismo • Sustentabilidad • Gestión de proyectos • Desarrollo BIM</p>
+                <h1>SOBRE MÍ</h1>
+            </div>
+            <div class="footer-nav">
+                <div class="layer-controls"></div>
+                <div class="nav-container">
+                    <a href="#portada" class="dot" title="Portada"></a>
+                    <a href="#perfil" class="dot active" title="Perfil Profesional"></a>
+                    <a href="#indice" class="dot" title="Índice"></a>
+                    <a href="#bim" class="dot" title="CASA F.A"></a>
+                    <a href="#tesis" class="dot" title="Gestión Hídrica Urbana"></a>
+                    <a href="#rhino" class="dot" title="Diseño Paramétrico"></a>
+                    <a href="#carpinteria" class="dot" title="Diseño de Mobiliario"></a>
+                    <a href="#mineral" class="dot" title="MINERAL"></a>
+                    <a href="#contacto" class="dot" title="Contacto"></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- LÁMINA 3: ÍNDICE -->
         <section id="indice">
             <div class="grid-index-container">
                 <a href="#bim" class="grid-column">
@@ -371,19 +449,22 @@
                 <div class="layer-controls"></div>
                 <div class="nav-container">
                     <a href="#portada" class="dot" title="Portada"></a>
+                    <a href="#perfil" class="dot" title="Perfil Profesional"></a>
                     <a href="#indice" class="dot active" title="Índice"></a>
                     <a href="#bim" class="dot" title="CASA F.A"></a>
                     <a href="#tesis" class="dot" title="Gestión Hídrica Urbana"></a>
                     <a href="#rhino" class="dot" title="Diseño Paramétrico"></a>
                     <a href="#carpinteria" class="dot" title="Diseño de Mobiliario"></a>
                     <a href="#mineral" class="dot" title="MINERAL"></a>
+                    <a href="#contacto" class="dot" title="Contacto"></a>
                 </div>
             </div>
         </section>
 
+        <!-- LÁMINA 4: CASA F.A -->
         <section id="bim">
             <div class="visual-side" id="bim-viewer-container"> 
-                <model-viewer id="bim-viewer" src="IMG/INTEGRAL.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="45deg 60deg 120%" field-of-view="30deg" style="width: 90%; height: 90%;"></model-viewer>
+                <model-viewer id="bim-viewer" src="IMG/INTEGRAL.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="45deg 60deg 90%" field-of-view="30deg" style="width: 95%; height: 95%;"></model-viewer>
             </div>
             <div class="text-side">
                 <p>Desarrollo de proyectos ejecutivos y documentación técnica integral. Gestión avanzada de modelos en Archicad, optimización de combinaciones de capas para la supervisión de obra y extracción de cuantificaciones precisas. La centralización de la información permite anticipar resoluciones constructivas en sitio y ofrecer presentaciones claras y eficientes mediante BIMx.</p>
@@ -398,16 +479,19 @@
                 </div>
                 <div class="nav-container">
                     <a href="#portada" class="dot" title="Portada"></a>
+                    <a href="#perfil" class="dot" title="Perfil Profesional"></a>
                     <a href="#indice" class="dot" title="Índice"></a>
                     <a href="#bim" class="dot active" title="CASA F.A"></a>
                     <a href="#tesis" class="dot" title="Gestión Hídrica Urbana"></a>
                     <a href="#rhino" class="dot" title="Diseño Paramétrico"></a>
                     <a href="#carpinteria" class="dot" title="Diseño de Mobiliario"></a>
                     <a href="#mineral" class="dot" title="MINERAL"></a>
+                    <a href="#contacto" class="dot" title="Contacto"></a>
                 </div>
             </div>
         </section>
 
+        <!-- LÁMINA 5: TESIS -->
         <section id="tesis">
             <div class="visual-side" id="tesis-viewer-container"> 
                 <img src="IMG/MAPA.png" class="organic-img">
@@ -423,19 +507,22 @@
                 </div>
                 <div class="nav-container">
                     <a href="#portada" class="dot" title="Portada"></a>
+                    <a href="#perfil" class="dot" title="Perfil Profesional"></a>
                     <a href="#indice" class="dot" title="Índice"></a>
                     <a href="#bim" class="dot" title="CASA F.A"></a>
                     <a href="#tesis" class="dot active" title="Gestión Hídrica Urbana"></a>
                     <a href="#rhino" class="dot" title="Diseño Paramétrico"></a>
                     <a href="#carpinteria" class="dot" title="Diseño de Mobiliario"></a>
                     <a href="#mineral" class="dot" title="MINERAL"></a>
+                    <a href="#contacto" class="dot" title="Contacto"></a>
                 </div>
             </div>
         </section>
 
+        <!-- LÁMINA 6: DISEÑO PARAMÉTRICO -->
         <section id="rhino">
             <div class="visual-side" id="rhino-viewer-container">
-                <model-viewer id="rhino-viewer" src="IMG/CUBIERTA.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="-50deg 80deg 120%" field-of-view="30deg" style="width: 90%; height: 90%;"></model-viewer>
+                <model-viewer id="rhino-viewer" src="IMG/CUBIERTA.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="-50deg 80deg 90%" field-of-view="30deg" style="width: 95%; height: 95%;"></model-viewer>
             </div>
             <div class="text-side">
                 <p>Exploración morfológica y optimización geométrica mediante Rhinoceros y Grasshopper. El desarrollo de algoritmos visuales permite una mayor capacidad de iteraciones en el proceso de diseño para formas complejas o geometrías no convencionales.</p>
@@ -449,19 +536,22 @@
                 </div>
                 <div class="nav-container">
                     <a href="#portada" class="dot" title="Portada"></a>
+                    <a href="#perfil" class="dot" title="Perfil Profesional"></a>
                     <a href="#indice" class="dot" title="Índice"></a>
                     <a href="#bim" class="dot" title="CASA F.A"></a>
                     <a href="#tesis" class="dot" title="Gestión Hídrica Urbana"></a>
                     <a href="#rhino" class="dot active" title="Diseño Paramétrico"></a>
                     <a href="#carpinteria" class="dot" title="Diseño de Mobiliario"></a>
                     <a href="#mineral" class="dot" title="MINERAL"></a>
+                    <a href="#contacto" class="dot" title="Contacto"></a>
                 </div>
             </div>
         </section>
 
+        <!-- LÁMINA 7: MOBILIARIO -->
         <section id="carpinteria">
             <div class="visual-side" id="carp-viewer-container">
-                <model-viewer id="carp-viewer" src="IMG/MOD3D.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="45deg 60deg 120%" field-of-view="30deg" style="width: 90%; height: 90%;"></model-viewer>
+                <model-viewer id="carp-viewer" src="IMG/MOD3D.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="45deg 60deg 90%" field-of-view="30deg" style="width: 95%; height: 95%;"></model-viewer>
             </div>
             <div class="text-side">
                 <p>Conceptualización y desarrollo técnico de mobiliario. El proceso abarca desde la exploración espacial hasta la planimetría de la fabricación y el armado del mobiliario. Englobando la generación de despieces, tablas de corte y diagramas de ensamble.</p>
@@ -475,16 +565,19 @@
                 </div>
                 <div class="nav-container">
                     <a href="#portada" class="dot" title="Portada"></a>
+                    <a href="#perfil" class="dot" title="Perfil Profesional"></a>
                     <a href="#indice" class="dot" title="Índice"></a>
                     <a href="#bim" class="dot" title="CASA F.A"></a>
                     <a href="#tesis" class="dot" title="Gestión Hídrica Urbana"></a>
                     <a href="#rhino" class="dot" title="Diseño Paramétrico"></a>
                     <a href="#carpinteria" class="dot active" title="Diseño de Mobiliario"></a>
                     <a href="#mineral" class="dot" title="MINERAL"></a>
+                    <a href="#contacto" class="dot" title="Contacto"></a>
                 </div>
             </div>
         </section>
 
+        <!-- LÁMINA 8: MINERAL -->
         <section id="mineral">
             <div class="visual-side" id="mineral-viewer-container">
                 <img src="IMG/PAN1.png" style="width: 100%; height: 100%; object-fit: contain; object-position: left center;">
@@ -500,12 +593,64 @@
                 </div>
                 <div class="nav-container">
                     <a href="#portada" class="dot" title="Portada"></a>
+                    <a href="#perfil" class="dot" title="Perfil Profesional"></a>
                     <a href="#indice" class="dot" title="Índice"></a>
                     <a href="#bim" class="dot" title="CASA F.A"></a>
                     <a href="#tesis" class="dot" title="Gestión Hídrica Urbana"></a>
                     <a href="#rhino" class="dot" title="Diseño Paramétrico"></a>
                     <a href="#carpinteria" class="dot" title="Diseño de Mobiliario"></a>
                     <a href="#mineral" class="dot active" title="MINERAL"></a>
+                    <a href="#contacto" class="dot" title="Contacto"></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- LÁMINA 9: CONTACTO -->
+        <section id="contacto">
+            <div class="visual-side graphic-hero">
+                <h2>ESTAMOS<br>EN<br>CONTACTO</h2>
+            </div>
+            <div class="text-side" style="align-items: flex-start; padding-left: 5rem;">
+                <h2 style="font-family: 'Arima Madurai', serif; font-size: 3.6rem; font-weight: 400; color: var(--text-dark); margin-bottom: 3.5rem; line-height: 1.1;">SAMUEL ULISES<br>GARCÍA VEGA</h2>
+                
+                <div class="contact-info-block">
+                    <div class="contact-item">
+                        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        ulises.gar132@gmail.com
+                    </div>
+                    <div class="contact-item">
+                        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                            <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                        </svg>
+                        4423745576
+                    </div>
+                    <div class="contact-item">
+                        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                            <rect x="2" y="9" width="4" height="12"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                        linkedin.com/in/samuel-garcia
+                    </div>
+                </div>
+                <h1>CONTACTO</h1>
+            </div>
+            <div class="footer-nav">
+                <div class="layer-controls"></div>
+                <div class="nav-container">
+                    <a href="#portada" class="dot" title="Portada"></a>
+                    <a href="#perfil" class="dot" title="Perfil Profesional"></a>
+                    <a href="#indice" class="dot" title="Índice"></a>
+                    <a href="#bim" class="dot" title="CASA F.A"></a>
+                    <a href="#tesis" class="dot" title="Gestión Hídrica Urbana"></a>
+                    <a href="#rhino" class="dot" title="Diseño Paramétrico"></a>
+                    <a href="#carpinteria" class="dot" title="Diseño de Mobiliario"></a>
+                    <a href="#mineral" class="dot" title="MINERAL"></a>
+                    <a href="#contacto" class="dot active" title="Contacto"></a>
                 </div>
             </div>
         </section>
@@ -522,11 +667,11 @@
     tapRight.addEventListener('click', () => scrollContainer.scrollBy({ left: scrollContainer.clientWidth, behavior: 'smooth' }));
     tapLeft.addEventListener('click', () => scrollContainer.scrollBy({ left: -scrollContainer.clientWidth, behavior: 'smooth' }));
 
-    /* El parámetro orbit por defecto también se ajustó a 120% */
-    function showContent(containerId, is3d, src, orbit = "45deg 60deg 120%") {
+    /* El parámetro orbit por defecto se ajustó a 90% */
+    function showContent(containerId, is3d, src, orbit = "45deg 60deg 90%") {
         const container = document.getElementById(containerId);
         if (is3d) {
-            container.innerHTML = `<model-viewer src="IMG/${src}" camera-controls auto-rotate shadow-intensity="1" camera-orbit="${orbit}" field-of-view="30deg" style="width: 90%; height: 90%;"></model-viewer>`;
+            container.innerHTML = `<model-viewer src="IMG/${src}" camera-controls auto-rotate shadow-intensity="1" camera-orbit="${orbit}" field-of-view="30deg" style="width: 95%; height: 95%;"></model-viewer>`;
         } else {
             if(containerId === 'tesis-viewer-container' && src === 'MAPA.png') {
                 container.innerHTML = `<img src="IMG/${src}" class="organic-img">`;
@@ -544,20 +689,20 @@
         }
     }
 
-    document.getElementById('btn-integral').addEventListener('click', () => { showContent('bim-viewer-container', true, 'INTEGRAL.glb', '45deg 60deg 120%'); });
-    document.getElementById('btn-estructura').addEventListener('click', () => { showContent('bim-viewer-container', true, 'ESTRUCTURAL.glb', '45deg 60deg 120%'); });
-    document.getElementById('btn-mep').addEventListener('click', () => { showContent('bim-viewer-container', true, 'MEP.glb', '-45deg 60deg 120%'); });
+    document.getElementById('btn-integral').addEventListener('click', () => { showContent('bim-viewer-container', true, 'INTEGRAL.glb', '45deg 60deg 90%'); });
+    document.getElementById('btn-estructura').addEventListener('click', () => { showContent('bim-viewer-container', true, 'ESTRUCTURAL.glb', '45deg 60deg 90%'); });
+    document.getElementById('btn-mep').addEventListener('click', () => { showContent('bim-viewer-container', true, 'MEP.glb', '-45deg 60deg 90%'); });
     document.getElementById('btn-doc').addEventListener('click', () => { showContent('bim-viewer-container', false, 'DOCUMENTACION.png'); });
     
     document.getElementById('btn-mapa').addEventListener('click', () => showContent('tesis-viewer-container', false, 'MAPA.png'));
     document.getElementById('btn-ciclo').addEventListener('click', () => showContent('tesis-viewer-container', false, 'CICLO.png'));
 
     const rhinoSection = document.getElementById('rhino');
-    document.getElementById('btn-cubierta').addEventListener('click', () => { showContent('rhino-viewer-container', true, 'CUBIERTA.glb', '-50deg 80deg 120%'); rhinoSection.classList.remove('expand-visual'); });
-    document.getElementById('btn-geom').addEventListener('click', () => { showContent('rhino-viewer-container', true, 'EXP_GEOMETRICA.glb', '-50deg 80deg 120%'); rhinoSection.classList.remove('expand-visual'); });
+    document.getElementById('btn-cubierta').addEventListener('click', () => { showContent('rhino-viewer-container', true, 'CUBIERTA.glb', '-50deg 80deg 90%'); rhinoSection.classList.remove('expand-visual'); });
+    document.getElementById('btn-geom').addEventListener('click', () => { showContent('rhino-viewer-container', true, 'EXP_GEOMETRICA.glb', '-50deg 80deg 90%'); rhinoSection.classList.remove('expand-visual'); });
     document.getElementById('btn-algoritmo').addEventListener('click', () => { showContent('rhino-viewer-container', false, 'ALGORITMO.png'); rhinoSection.classList.add('expand-visual'); });
 
-    document.getElementById('btn-3d').addEventListener('click', () => showContent('carp-viewer-container', true, 'MOD3D.glb', '45deg 60deg 120%'));
+    document.getElementById('btn-3d').addEventListener('click', () => showContent('carp-viewer-container', true, 'MOD3D.glb', '45deg 60deg 90%'));
     document.getElementById('btn-corte').addEventListener('click', () => showContent('carp-viewer-container', false, 'CORTE.jpg'));
     document.getElementById('btn-ensamble').addEventListener('click', () => showContent('carp-viewer-container', false, 'ENSAMBLE.jpg'));
 
