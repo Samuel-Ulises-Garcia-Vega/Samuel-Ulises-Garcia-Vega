@@ -16,9 +16,7 @@
             --bg-page: #ffffff; 
         }
 
-        /* ESCALADO MAESTRO RECUPERADO: 
-           Esta proporción devuelve el tamaño original (16px base) a las fuentes
-           mientras preserva la proporción inquebrantable de la caja en móviles */
+        /* ESCALADO MAESTRO RECUPERADO */
         html {
             font-size: min(0.96vw, 1.48vh);
         }
@@ -29,12 +27,12 @@
             width: 100vw;
             height: 100vh;
             overflow: hidden; 
-            background: #f4f7f6; /* Fondo unificado con el CV */
+            background: #f4f7f6; 
             color: var(--text-dark); 
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2vh; /* Pequeño respiro para que la sombra se vea en pantallas ajustadas */
+            padding: 2vh; 
         }
 
         /* --- CONTENEDOR MAESTRO DE PROPORCIÓN FIJA (2500x1615) --- */
@@ -47,7 +45,6 @@
             background: var(--bg-page);
             overflow: hidden;
             
-            /* ESTILOS UNIFICADOS CON EL CV (Sombra, Bisel y Borde Redondeado) */
             border-radius: 16px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.08); 
             border: 1px solid rgba(0,0,0,0.04);
@@ -81,19 +78,19 @@
 
         .cover-name {
             position: absolute;
-            bottom: 5.5rem; /* Justo arriba de la línea roja */
+            bottom: 5.5rem; 
             right: 0;
             width: 100%;
             text-align: right;
             padding-right: 5rem;
-            font-size: 2.2rem;
+            font-size: 2.8rem; 
             font-weight: 300;
             color: var(--text-dark);
         }
 
         .cover-line {
             position: absolute;
-            bottom: 4.85rem; /* Coincide matemáticamente con la barra de navegación (5rem - 0.15rem grosor) */
+            bottom: 4.85rem; 
             right: 0;
             width: 100%;
             height: 0.15rem;
@@ -102,12 +99,12 @@
 
         .cover-title {
             position: absolute;
-            bottom: 2rem; /* Centrado visualmente en el espacio inferior */
+            bottom: 2rem; 
             right: 0;
             width: 100%;
             text-align: right;
             padding-right: 5rem;
-            font-size: 1.6rem;
+            font-size: 2.1rem; 
             font-weight: 400;
             color: var(--text-dark);
             letter-spacing: 0.25rem;
@@ -137,7 +134,7 @@
 
         .grid-number {
             font-family: 'Arima Madurai', serif;
-            font-size: 6rem;
+            font-size: 6rem; 
             color: #e2e8f0; 
             font-weight: 700;
             line-height: 1;
@@ -145,7 +142,7 @@
         }
 
         .grid-title {
-            font-size: 1.2rem;
+            font-size: 1.6rem; 
             font-weight: 700;
             color: var(--text-light);
             text-transform: uppercase;
@@ -183,10 +180,10 @@
         }
 
         .text-side p {
-            font-size: 1.3rem; /* Aumentado ~24% para mayor legibilidad */
+            font-size: 1.7rem; 
             color: var(--text-light);
             line-height: 1.7;
-            text-align: left; /* Alineación limpia a la izquierda */
+            text-align: left; 
             margin: 0;
             transition: all 0.6s ease;
         }
@@ -201,7 +198,7 @@
             right: 5rem;
             margin: 0;
             line-height: 1;
-            font-size: 2.8rem; 
+            font-size: 3.6rem; 
             white-space: nowrap; 
             transition: all 0.6s ease;
         }
@@ -223,7 +220,7 @@
         }
         #mineral .text-side h1 {
             right: 2.5rem;
-            font-size: 2.5rem;
+            font-size: 3.2rem; 
         }
         #mineral .text-side p { width: 85%; }
         #mineral.hide-text .text-side { 
@@ -284,13 +281,13 @@
         }
         
         .layer-btn { 
-            padding: 0.6rem 1rem; /* Padding ajustado para la fuente más grande */
+            padding: 0.8rem 1.2rem; 
             background: var(--green); 
             color: white; 
             border: none; 
             cursor: pointer; 
             font-weight: 600;
-            font-size: 1.05rem; /* Aumentado ~30% */
+            font-size: 1.35rem; 
             border-radius: 0.25rem;
             transition: background 0.3s;
         }
@@ -351,7 +348,7 @@
             <div class="grid-index-container">
                 <a href="#bim" class="grid-column">
                     <div class="grid-number">01</div>
-                    <div class="grid-title">Desarrollo BIM</div>
+                    <div class="grid-title">CASA F.A</div>
                 </a>
                 <a href="#tesis" class="grid-column">
                     <div class="grid-number">02</div>
@@ -375,7 +372,7 @@
                 <div class="nav-container">
                     <a href="#portada" class="dot" title="Portada"></a>
                     <a href="#indice" class="dot active" title="Índice"></a>
-                    <a href="#bim" class="dot" title="Desarrollo BIM"></a>
+                    <a href="#bim" class="dot" title="CASA F.A"></a>
                     <a href="#tesis" class="dot" title="Gestión Hídrica Urbana"></a>
                     <a href="#rhino" class="dot" title="Diseño Paramétrico"></a>
                     <a href="#carpinteria" class="dot" title="Diseño de Mobiliario"></a>
@@ -386,11 +383,11 @@
 
         <section id="bim">
             <div class="visual-side" id="bim-viewer-container"> 
-                <model-viewer id="bim-viewer" src="IMG/INTEGRAL.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="45deg 60deg 80%" field-of-view="30deg" style="width: 100%; height: 100%;"></model-viewer>
+                <model-viewer id="bim-viewer" src="IMG/INTEGRAL.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="45deg 60deg 80%" field-of-view="30deg" style="width: 95%; height: 95%;"></model-viewer>
             </div>
             <div class="text-side">
                 <p>Desarrollo de proyectos ejecutivos y documentación técnica integral. Gestión avanzada de modelos en Archicad, optimización de combinaciones de capas para la supervisión de obra y extracción de cuantificaciones precisas. La centralización de la información permite anticipar resoluciones constructivas en sitio y ofrecer presentaciones claras y eficientes mediante BIMx.</p>
-                <h1>DESARROLLO BIM</h1>
+                <h1>CASA F.A</h1>
             </div>
             <div class="footer-nav">
                 <div class="layer-controls">
@@ -402,7 +399,7 @@
                 <div class="nav-container">
                     <a href="#portada" class="dot" title="Portada"></a>
                     <a href="#indice" class="dot" title="Índice"></a>
-                    <a href="#bim" class="dot active" title="Desarrollo BIM"></a>
+                    <a href="#bim" class="dot active" title="CASA F.A"></a>
                     <a href="#tesis" class="dot" title="Gestión Hídrica Urbana"></a>
                     <a href="#rhino" class="dot" title="Diseño Paramétrico"></a>
                     <a href="#carpinteria" class="dot" title="Diseño de Mobiliario"></a>
@@ -427,7 +424,7 @@
                 <div class="nav-container">
                     <a href="#portada" class="dot" title="Portada"></a>
                     <a href="#indice" class="dot" title="Índice"></a>
-                    <a href="#bim" class="dot" title="Desarrollo BIM"></a>
+                    <a href="#bim" class="dot" title="CASA F.A"></a>
                     <a href="#tesis" class="dot active" title="Gestión Hídrica Urbana"></a>
                     <a href="#rhino" class="dot" title="Diseño Paramétrico"></a>
                     <a href="#carpinteria" class="dot" title="Diseño de Mobiliario"></a>
@@ -438,7 +435,7 @@
 
         <section id="rhino">
             <div class="visual-side" id="rhino-viewer-container">
-                <model-viewer id="rhino-viewer" src="IMG/CUBIERTA.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="-50deg 80deg 80%" field-of-view="30deg" style="width: 100%; height: 100%;"></model-viewer>
+                <model-viewer id="rhino-viewer" src="IMG/CUBIERTA.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="-50deg 80deg 80%" field-of-view="30deg" style="width: 95%; height: 95%;"></model-viewer>
             </div>
             <div class="text-side">
                 <p>Exploración morfológica y optimización geométrica mediante Rhinoceros y Grasshopper. El desarrollo de algoritmos visuales permite una mayor capacidad de iteraciones en el proceso de diseño para formas complejas o geometrías no convencionales.</p>
@@ -453,7 +450,7 @@
                 <div class="nav-container">
                     <a href="#portada" class="dot" title="Portada"></a>
                     <a href="#indice" class="dot" title="Índice"></a>
-                    <a href="#bim" class="dot" title="Desarrollo BIM"></a>
+                    <a href="#bim" class="dot" title="CASA F.A"></a>
                     <a href="#tesis" class="dot" title="Gestión Hídrica Urbana"></a>
                     <a href="#rhino" class="dot active" title="Diseño Paramétrico"></a>
                     <a href="#carpinteria" class="dot" title="Diseño de Mobiliario"></a>
@@ -464,7 +461,7 @@
 
         <section id="carpinteria">
             <div class="visual-side" id="carp-viewer-container">
-                <model-viewer id="carp-viewer" src="IMG/MOD3D.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="45deg 60deg 80%" field-of-view="30deg" style="width: 100%; height: 100%;"></model-viewer>
+                <model-viewer id="carp-viewer" src="IMG/MOD3D.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="45deg 60deg 80%" field-of-view="30deg" style="width: 95%; height: 95%;"></model-viewer>
             </div>
             <div class="text-side">
                 <p>Conceptualización y desarrollo técnico de mobiliario. El proceso abarca desde la exploración espacial hasta la planimetría de la fabricación y el armado del mobiliario. Englobando la generación de despieces, tablas de corte y diagramas de ensamble.</p>
@@ -479,7 +476,7 @@
                 <div class="nav-container">
                     <a href="#portada" class="dot" title="Portada"></a>
                     <a href="#indice" class="dot" title="Índice"></a>
-                    <a href="#bim" class="dot" title="Desarrollo BIM"></a>
+                    <a href="#bim" class="dot" title="CASA F.A"></a>
                     <a href="#tesis" class="dot" title="Gestión Hídrica Urbana"></a>
                     <a href="#rhino" class="dot" title="Diseño Paramétrico"></a>
                     <a href="#carpinteria" class="dot active" title="Diseño de Mobiliario"></a>
@@ -504,7 +501,7 @@
                 <div class="nav-container">
                     <a href="#portada" class="dot" title="Portada"></a>
                     <a href="#indice" class="dot" title="Índice"></a>
-                    <a href="#bim" class="dot" title="Desarrollo BIM"></a>
+                    <a href="#bim" class="dot" title="CASA F.A"></a>
                     <a href="#tesis" class="dot" title="Gestión Hídrica Urbana"></a>
                     <a href="#rhino" class="dot" title="Diseño Paramétrico"></a>
                     <a href="#carpinteria" class="dot" title="Diseño de Mobiliario"></a>
@@ -528,7 +525,7 @@
     function showContent(containerId, is3d, src, orbit = "45deg 60deg 80%") {
         const container = document.getElementById(containerId);
         if (is3d) {
-            container.innerHTML = `<model-viewer src="IMG/${src}" camera-controls auto-rotate shadow-intensity="1" camera-orbit="${orbit}" field-of-view="30deg" style="width: 100%; height: 100%;"></model-viewer>`;
+            container.innerHTML = `<model-viewer src="IMG/${src}" camera-controls auto-rotate shadow-intensity="1" camera-orbit="${orbit}" field-of-view="30deg" style="width: 95%; height: 95%;"></model-viewer>`;
         } else {
             if(containerId === 'tesis-viewer-container' && src === 'MAPA.png') {
                 container.innerHTML = `<img src="IMG/${src}" class="organic-img">`;
