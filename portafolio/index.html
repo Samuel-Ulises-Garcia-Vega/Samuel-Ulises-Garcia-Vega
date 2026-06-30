@@ -383,7 +383,7 @@
 
         <section id="bim">
             <div class="visual-side" id="bim-viewer-container"> 
-                <model-viewer id="bim-viewer" src="IMG/INTEGRAL.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="45deg 60deg 80%" field-of-view="30deg" style="width: 95%; height: 95%;"></model-viewer>
+                <model-viewer id="bim-viewer" src="IMG/INTEGRAL.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="45deg 60deg 120%" field-of-view="30deg" style="width: 90%; height: 90%;"></model-viewer>
             </div>
             <div class="text-side">
                 <p>Desarrollo de proyectos ejecutivos y documentación técnica integral. Gestión avanzada de modelos en Archicad, optimización de combinaciones de capas para la supervisión de obra y extracción de cuantificaciones precisas. La centralización de la información permite anticipar resoluciones constructivas en sitio y ofrecer presentaciones claras y eficientes mediante BIMx.</p>
@@ -435,7 +435,7 @@
 
         <section id="rhino">
             <div class="visual-side" id="rhino-viewer-container">
-                <model-viewer id="rhino-viewer" src="IMG/CUBIERTA.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="-50deg 80deg 80%" field-of-view="30deg" style="width: 95%; height: 95%;"></model-viewer>
+                <model-viewer id="rhino-viewer" src="IMG/CUBIERTA.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="-50deg 80deg 120%" field-of-view="30deg" style="width: 90%; height: 90%;"></model-viewer>
             </div>
             <div class="text-side">
                 <p>Exploración morfológica y optimización geométrica mediante Rhinoceros y Grasshopper. El desarrollo de algoritmos visuales permite una mayor capacidad de iteraciones en el proceso de diseño para formas complejas o geometrías no convencionales.</p>
@@ -461,7 +461,7 @@
 
         <section id="carpinteria">
             <div class="visual-side" id="carp-viewer-container">
-                <model-viewer id="carp-viewer" src="IMG/MOD3D.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="45deg 60deg 80%" field-of-view="30deg" style="width: 95%; height: 95%;"></model-viewer>
+                <model-viewer id="carp-viewer" src="IMG/MOD3D.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="45deg 60deg 120%" field-of-view="30deg" style="width: 90%; height: 90%;"></model-viewer>
             </div>
             <div class="text-side">
                 <p>Conceptualización y desarrollo técnico de mobiliario. El proceso abarca desde la exploración espacial hasta la planimetría de la fabricación y el armado del mobiliario. Englobando la generación de despieces, tablas de corte y diagramas de ensamble.</p>
@@ -522,10 +522,11 @@
     tapRight.addEventListener('click', () => scrollContainer.scrollBy({ left: scrollContainer.clientWidth, behavior: 'smooth' }));
     tapLeft.addEventListener('click', () => scrollContainer.scrollBy({ left: -scrollContainer.clientWidth, behavior: 'smooth' }));
 
-    function showContent(containerId, is3d, src, orbit = "45deg 60deg 80%") {
+    /* El parámetro orbit por defecto también se ajustó a 120% */
+    function showContent(containerId, is3d, src, orbit = "45deg 60deg 120%") {
         const container = document.getElementById(containerId);
         if (is3d) {
-            container.innerHTML = `<model-viewer src="IMG/${src}" camera-controls auto-rotate shadow-intensity="1" camera-orbit="${orbit}" field-of-view="30deg" style="width: 95%; height: 95%;"></model-viewer>`;
+            container.innerHTML = `<model-viewer src="IMG/${src}" camera-controls auto-rotate shadow-intensity="1" camera-orbit="${orbit}" field-of-view="30deg" style="width: 90%; height: 90%;"></model-viewer>`;
         } else {
             if(containerId === 'tesis-viewer-container' && src === 'MAPA.png') {
                 container.innerHTML = `<img src="IMG/${src}" class="organic-img">`;
@@ -543,20 +544,20 @@
         }
     }
 
-    document.getElementById('btn-integral').addEventListener('click', () => { showContent('bim-viewer-container', true, 'INTEGRAL.glb', '45deg 60deg 80%'); });
-    document.getElementById('btn-estructura').addEventListener('click', () => { showContent('bim-viewer-container', true, 'ESTRUCTURAL.glb', '45deg 60deg 80%'); });
-    document.getElementById('btn-mep').addEventListener('click', () => { showContent('bim-viewer-container', true, 'MEP.glb', '-45deg 60deg 80%'); });
+    document.getElementById('btn-integral').addEventListener('click', () => { showContent('bim-viewer-container', true, 'INTEGRAL.glb', '45deg 60deg 120%'); });
+    document.getElementById('btn-estructura').addEventListener('click', () => { showContent('bim-viewer-container', true, 'ESTRUCTURAL.glb', '45deg 60deg 120%'); });
+    document.getElementById('btn-mep').addEventListener('click', () => { showContent('bim-viewer-container', true, 'MEP.glb', '-45deg 60deg 120%'); });
     document.getElementById('btn-doc').addEventListener('click', () => { showContent('bim-viewer-container', false, 'DOCUMENTACION.png'); });
     
     document.getElementById('btn-mapa').addEventListener('click', () => showContent('tesis-viewer-container', false, 'MAPA.png'));
     document.getElementById('btn-ciclo').addEventListener('click', () => showContent('tesis-viewer-container', false, 'CICLO.png'));
 
     const rhinoSection = document.getElementById('rhino');
-    document.getElementById('btn-cubierta').addEventListener('click', () => { showContent('rhino-viewer-container', true, 'CUBIERTA.glb', '-50deg 80deg 80%'); rhinoSection.classList.remove('expand-visual'); });
-    document.getElementById('btn-geom').addEventListener('click', () => { showContent('rhino-viewer-container', true, 'EXP_GEOMETRICA.glb', '-50deg 80deg 80%'); rhinoSection.classList.remove('expand-visual'); });
+    document.getElementById('btn-cubierta').addEventListener('click', () => { showContent('rhino-viewer-container', true, 'CUBIERTA.glb', '-50deg 80deg 120%'); rhinoSection.classList.remove('expand-visual'); });
+    document.getElementById('btn-geom').addEventListener('click', () => { showContent('rhino-viewer-container', true, 'EXP_GEOMETRICA.glb', '-50deg 80deg 120%'); rhinoSection.classList.remove('expand-visual'); });
     document.getElementById('btn-algoritmo').addEventListener('click', () => { showContent('rhino-viewer-container', false, 'ALGORITMO.png'); rhinoSection.classList.add('expand-visual'); });
 
-    document.getElementById('btn-3d').addEventListener('click', () => showContent('carp-viewer-container', true, 'MOD3D.glb', '45deg 60deg 80%'));
+    document.getElementById('btn-3d').addEventListener('click', () => showContent('carp-viewer-container', true, 'MOD3D.glb', '45deg 60deg 120%'));
     document.getElementById('btn-corte').addEventListener('click', () => showContent('carp-viewer-container', false, 'CORTE.jpg'));
     document.getElementById('btn-ensamble').addEventListener('click', () => showContent('carp-viewer-container', false, 'ENSAMBLE.jpg'));
 
