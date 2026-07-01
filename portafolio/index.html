@@ -283,7 +283,7 @@
             width: 20rem;
             height: 20rem;
             object-fit: cover;
-            border-radius: 1.5rem; /* Recuadro con bordes redondeados */
+            border-radius: 1.5rem; 
             box-shadow: var(--shadow-md);
             border: 0.3rem solid #eaeaea;
         }
@@ -410,7 +410,29 @@
             letter-spacing: 0.1rem;
         }
 
-        /* --- LÁMINA DE CONTACTO (FINAL) --- */
+        /* --- LÁMINA DE CONTACTO (ESTILO TARJETA) --- */
+        .business-card {
+            background: #ffffff;
+            padding: 6rem 8rem;
+            border-radius: 1.2rem;
+            /* Sombras profundas para que parezca que flota */
+            box-shadow: 0 25px 50px rgba(0,0,0,0.1), 0 10px 20px rgba(0,0,0,0.06);
+            border: 1px solid rgba(0,0,0,0.03);
+            /* Efecto biselado (luz arriba, sombra abajo) */
+            border-top: 2px solid #ffffff; 
+            border-bottom: 4px solid rgba(0,0,0,0.06); 
+            display: flex;
+            flex-direction: column;
+            transform: translateY(-2.5rem); /* Lo centra tomando en cuenta el menú inferior */
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        /* Interacción sutil al pasar el mouse */
+        .business-card:hover {
+            transform: translateY(-3.5rem);
+            box-shadow: 0 35px 60px rgba(0,0,0,0.12), 0 15px 25px rgba(0,0,0,0.08);
+        }
+
         .contact-info-block {
             display: flex;
             flex-direction: column;
@@ -431,22 +453,6 @@
             stroke: var(--green);
             width: 2.4rem;
             height: 2.4rem;
-        }
-
-        .graphic-hero {
-            background: var(--green);
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            padding-left: 5rem;
-        }
-
-        .graphic-hero h2 {
-            font-family: 'Arima Madurai', serif;
-            color: rgba(255,255,255,0.9);
-            font-size: 7rem;
-            line-height: 1;
-            font-weight: 700;
         }
 
         /* --- NAVEGACIÓN INFERIOR --- */
@@ -856,15 +862,12 @@
             </div>
         </section>
 
-        <!-- LÁMINA 9: CONTACTO -->
-        <section id="contacto">
-            <div class="visual-side graphic-hero">
-                <h2>ESTAMOS<br>EN<br>CONTACTO</h2>
-            </div>
-            <div class="text-side" style="align-items: flex-start; padding-left: 5rem;">
+        <!-- LÁMINA 9: CONTACTO (ESTILO TARJETA) -->
+        <section id="contacto" style="justify-content: center; align-items: center; background: #f4f7f6;">
+            <div class="business-card">
                 <h2 style="font-family: 'Arima Madurai', serif; font-size: 3.6rem; font-weight: 400; color: var(--text-dark); margin-bottom: 3.5rem; line-height: 1.1;">SAMUEL ULISES<br>GARCÍA VEGA</h2>
                 
-                <div class="contact-info-block">
+                <div class="contact-info-block" style="gap: 2rem;">
                     <div class="contact-item">
                         <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
@@ -888,7 +891,6 @@
                         linkedin.com/in/samuel-garcia
                     </div>
                 </div>
-                <h1>CONTACTO</h1>
             </div>
             <div class="footer-nav">
                 <div class="layer-controls"></div>
