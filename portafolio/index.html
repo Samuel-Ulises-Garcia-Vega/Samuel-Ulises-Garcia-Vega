@@ -261,8 +261,8 @@
             width: 100%;
             height: calc(100% - 5rem);
             display: flex;
-            /* Margen equilibrado: 4.5rem arriba/abajo y 6rem a los lados */
-            padding: 4.5rem 6rem; 
+            /* Margen superior reducido y margen inferior ajustado para centrar verticalmente */
+            padding: 2.5rem 6rem 3.5rem 6rem; 
             gap: 5rem;
             background: #ffffff;
         }
@@ -271,17 +271,17 @@
             flex: 1.1;
             display: flex;
             flex-direction: column;
-            gap: 2.5rem; /* Gap reducido para compactar hacia el centro */
+            gap: 2rem; /* Compactado para dar aire abajo */
         }
 
         .resume-top {
             display: flex;
             align-items: center;
-            gap: 3.5rem;
+            gap: 3rem;
         }
 
         .resume-photo {
-            width: 18.5rem; /* Ligeramente más chica para que todo respire */
+            width: 18.5rem; 
             height: 18.5rem;
             object-fit: cover;
             border-radius: 1.5rem; 
@@ -292,11 +292,11 @@
         .resume-contact {
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 1.2rem;
         }
 
         .resume-contact-item {
-            font-size: 1.4rem;
+            font-size: 1.25rem; /* Unificado con el resto del texto */
             color: var(--text-light);
             display: flex;
             align-items: center;
@@ -306,7 +306,7 @@
 
         .resume-bottom {
             display: flex;
-            gap: 4rem;
+            gap: 3.5rem;
             align-items: flex-start;
         }
 
@@ -318,7 +318,7 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 2rem; /* Compactado */
+            gap: 2rem; 
         }
 
         .resume-col-right {
@@ -328,13 +328,11 @@
             padding-left: 4rem;
             border-left: 0.2rem solid var(--red);
             overflow-y: auto;
-            /* Scroll interactivo elegante */
             padding-bottom: 2.5rem;
             mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
             -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
         }
 
-        /* Scrollbar elegante y minimalista */
         .resume-col-right::-webkit-scrollbar { 
             width: 0.5rem; 
         }
@@ -350,7 +348,7 @@
         }
 
         .resume-section-title {
-            font-size: 1.4rem;
+            font-size: 1.3rem; /* Estandarizado */
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.15rem;
@@ -361,19 +359,20 @@
             display: inline-block;
         }
 
+        /* Clase unificada para todos los textos base (Perfil y Experiencia) */
         .resume-text {
-            font-size: 1.35rem;
+            font-size: 1.25rem; 
             color: var(--text-light);
-            line-height: 1.7;
+            line-height: 1.6;
             text-align: left;
         }
 
         .resume-job {
-            margin-bottom: 2.5rem; /* Gap reducido entre trabajos */
+            margin-bottom: 2rem; 
         }
 
         .resume-job-title {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 700;
             color: var(--red);
             margin-bottom: 0.3rem;
@@ -382,7 +381,7 @@
         .resume-job-date {
             font-size: 1.15rem;
             color: #888;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             font-weight: 500;
         }
 
@@ -391,12 +390,12 @@
         }
 
         .resume-job-list li {
-            font-size: 1.25rem;
+            font-size: 1.25rem; /* Unificado con el texto del perfil */
             color: var(--text-light);
             margin-bottom: 0.8rem;
             position: relative;
             padding-left: 1.8rem;
-            line-height: 1.5;
+            line-height: 1.6; /* Unificado con el texto del perfil */
         }
 
         .resume-job-list li::before {
@@ -417,47 +416,64 @@
         }
 
         .resume-skill-name {
-            font-size: 1.25rem;
+            font-size: 1.25rem; /* Unificado */
             font-weight: 500;
             color: var(--text-dark);
         }
 
         .resume-skill-level {
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 700;
             color: var(--green);
             letter-spacing: 0.1rem;
         }
 
-        /* --- LÁMINA DE CONTACTO (ESTILO TARJETA) --- */
+        /* --- LÁMINA DE CONTACTO (ESTILO TARJETA REALISTA) --- */
         .business-card {
             background: #ffffff;
-            padding: 6rem 8rem;
-            border-radius: 1.2rem;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.1), 0 10px 20px rgba(0,0,0,0.06);
-            border: 1px solid rgba(0,0,0,0.03);
-            border-top: 2px solid #ffffff; 
-            border-bottom: 4px solid rgba(0,0,0,0.06); 
+            width: 44rem; /* Proporción horizontal alargada */
+            max-width: 90%;
+            padding: 4rem 5rem; /* Menos relleno masivo */
+            border-radius: 0.8rem; /* Bordes de tarjeta real */
+            /* Sombras realistas de elevación */
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08), 0 8px 16px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.04);
+            border-top: 1px solid #ffffff; 
+            border-bottom: 3px solid rgba(0,0,0,0.05); 
             display: flex;
             flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
             transform: translateY(-2.5rem); 
-            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            transition: all 0.4s ease;
         }
 
         .business-card:hover {
             transform: translateY(-3.5rem);
-            box-shadow: 0 35px 60px rgba(0,0,0,0.12), 0 15px 25px rgba(0,0,0,0.08);
+            box-shadow: 0 30px 50px rgba(0,0,0,0.12), 0 12px 20px rgba(0,0,0,0.06);
         }
 
-        .contact-info-block {
+        .card-name {
+            font-family: 'Arima Madurai', serif;
+            font-size: 2.6rem; /* Tamaño elegante y no abrumador */
+            font-weight: 400;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #f0f0f0; /* Línea sutil de tarjeta */
+            width: 100%;
+            line-height: 1.1;
+        }
+
+        .card-info-block {
             display: flex;
             flex-direction: column;
-            gap: 1.8rem;
+            gap: 1.2rem;
             width: 100%;
         }
 
-        .contact-item {
-            font-size: 1.6rem;
+        .card-item {
+            font-size: 1.3rem; /* Tamaño legible y minimalista */
             color: var(--text-light);
             display: flex;
             align-items: center;
@@ -465,10 +481,10 @@
             font-weight: 400;
         }
 
-        .contact-icon {
+        .card-icon {
             stroke: var(--green);
-            width: 2.4rem;
-            height: 2.4rem;
+            width: 1.8rem;
+            height: 1.8rem;
         }
 
         /* --- NAVEGACIÓN INFERIOR --- */
@@ -664,7 +680,7 @@
                         </ul>
                     </div>
 
-                    <div class="resume-job" style="margin-bottom: 5rem;"> <!-- Extra margen final por la máscara -->
+                    <div class="resume-job" style="margin-bottom: 5rem;"> 
                         <div class="resume-job-title">Auxiliar en Supervisión de Obra 1i</div>
                         <div class="resume-job-date">(Jun 2022 - Oct 2022)</div>
                         <ul class="resume-job-list">
@@ -878,28 +894,28 @@
             </div>
         </section>
 
-        <!-- LÁMINA 9: CONTACTO (ESTILO TARJETA) -->
+        <!-- LÁMINA 9: CONTACTO (ESTILO TARJETA DE PRESENTACIÓN MINIMALISTA) -->
         <section id="contacto" style="justify-content: center; align-items: center; background: #f4f7f6;">
             <div class="business-card">
-                <h2 style="font-family: 'Arima Madurai', serif; font-size: 3.6rem; font-weight: 400; color: var(--text-dark); margin-bottom: 3.5rem; line-height: 1.1;">SAMUEL ULISES<br>GARCÍA VEGA</h2>
+                <div class="card-name">SAMUEL ULISES<br>GARCÍA VEGA</div>
                 
-                <div class="contact-info-block" style="gap: 2rem;">
-                    <div class="contact-item">
-                        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <div class="card-info-block">
+                    <div class="card-item">
+                        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                             <polyline points="22,6 12,13 2,6"></polyline>
                         </svg>
                         ulises.gar132@gmail.com
                     </div>
-                    <div class="contact-item">
-                        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <div class="card-item">
+                        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
                             <line x1="12" y1="18" x2="12.01" y2="18"></line>
                         </svg>
                         4423745576
                     </div>
-                    <div class="contact-item">
-                        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <div class="card-item">
+                        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
                             <rect x="2" y="9" width="4" height="12"></rect>
                             <circle cx="4" cy="4" r="2"></circle>
@@ -944,19 +960,19 @@
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting && !hasAnimatedScroll) {
-                hasAnimatedScroll = true; // Asegura que solo ocurra la primera vez
+                hasAnimatedScroll = true; 
                 
                 setTimeout(() => {
                     resumeScrollCol.scrollBy({ top: 120, behavior: 'smooth' });
                     
                     setTimeout(() => {
                         resumeScrollCol.scrollBy({ top: -120, behavior: 'smooth' });
-                    }, 600); // Regresa después de 0.6s
+                    }, 600); 
                     
-                }, 800); // Espera 0.8s después de que la lámina entra en pantalla
+                }, 800); 
             }
         });
-    }, { threshold: 0.5 }); // Se activa cuando al menos el 50% de la lámina es visible
+    }, { threshold: 0.5 }); 
 
     observer.observe(perfilSection);
 
