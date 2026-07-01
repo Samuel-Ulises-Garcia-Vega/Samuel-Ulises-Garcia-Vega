@@ -261,7 +261,6 @@
             width: 100%;
             height: calc(100% - 5rem);
             display: flex;
-            /* Margen superior reducido y margen inferior ajustado para centrar verticalmente */
             padding: 2.5rem 6rem 3.5rem 6rem; 
             gap: 5rem;
             background: #ffffff;
@@ -271,7 +270,7 @@
             flex: 1.1;
             display: flex;
             flex-direction: column;
-            gap: 2rem; /* Compactado para dar aire abajo */
+            gap: 2rem; 
         }
 
         .resume-top {
@@ -296,7 +295,7 @@
         }
 
         .resume-contact-item {
-            font-size: 1.25rem; /* Unificado con el resto del texto */
+            font-size: 1.25rem; 
             color: var(--text-light);
             display: flex;
             align-items: center;
@@ -348,7 +347,7 @@
         }
 
         .resume-section-title {
-            font-size: 1.3rem; /* Estandarizado */
+            font-size: 1.3rem; 
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.15rem;
@@ -359,7 +358,6 @@
             display: inline-block;
         }
 
-        /* Clase unificada para todos los textos base (Perfil y Experiencia) */
         .resume-text {
             font-size: 1.25rem; 
             color: var(--text-light);
@@ -390,12 +388,12 @@
         }
 
         .resume-job-list li {
-            font-size: 1.25rem; /* Unificado con el texto del perfil */
+            font-size: 1.25rem; 
             color: var(--text-light);
             margin-bottom: 0.8rem;
             position: relative;
             padding-left: 1.8rem;
-            line-height: 1.6; /* Unificado con el texto del perfil */
+            line-height: 1.6; 
         }
 
         .resume-job-list li::before {
@@ -416,7 +414,7 @@
         }
 
         .resume-skill-name {
-            font-size: 1.25rem; /* Unificado */
+            font-size: 1.25rem; 
             font-weight: 500;
             color: var(--text-dark);
         }
@@ -431,11 +429,10 @@
         /* --- LÁMINA DE CONTACTO (ESTILO TARJETA REALISTA) --- */
         .business-card {
             background: #ffffff;
-            width: 44rem; /* Proporción horizontal alargada */
+            width: 44rem; 
             max-width: 90%;
-            padding: 4rem 5rem; /* Menos relleno masivo */
-            border-radius: 0.8rem; /* Bordes de tarjeta real */
-            /* Sombras realistas de elevación */
+            padding: 4rem 5rem; 
+            border-radius: 0.8rem; 
             box-shadow: 0 20px 40px rgba(0,0,0,0.08), 0 8px 16px rgba(0,0,0,0.04);
             border: 1px solid rgba(0,0,0,0.04);
             border-top: 1px solid #ffffff; 
@@ -455,12 +452,12 @@
 
         .card-name {
             font-family: 'Arima Madurai', serif;
-            font-size: 2.6rem; /* Tamaño elegante y no abrumador */
+            font-size: 2.6rem; 
             font-weight: 400;
             color: var(--text-dark);
             margin-bottom: 2rem;
             padding-bottom: 1.5rem;
-            border-bottom: 1px solid #f0f0f0; /* Línea sutil de tarjeta */
+            border-bottom: 1px solid #f0f0f0; 
             width: 100%;
             line-height: 1.1;
         }
@@ -473,7 +470,7 @@
         }
 
         .card-item {
-            font-size: 1.3rem; /* Tamaño legible y minimalista */
+            font-size: 1.3rem; 
             color: var(--text-light);
             display: flex;
             align-items: center;
@@ -485,6 +482,32 @@
             stroke: var(--green);
             width: 1.8rem;
             height: 1.8rem;
+        }
+
+        /* --- ANIMACIÓN LOADER 3 PUNTOS --- */
+        .custom-loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            gap: 0.6rem;
+        }
+        
+        .dot-loader {
+            width: 1rem;
+            height: 1rem;
+            background-color: var(--green);
+            border-radius: 50%;
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+
+        .dot-loader:nth-child(1) { animation-delay: -0.32s; }
+        .dot-loader:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
         }
 
         /* --- NAVEGACIÓN INFERIOR --- */
@@ -567,23 +590,19 @@
 
     <div class="portfolio-container" id="scroll-container">
         
-        <!-- LÁMINA 1: PORTADA -->
         <section id="portada" class="cover-section">
             <div class="cover-name">Arq. Samuel Ulises García Vega</div>
             <div class="cover-line"></div>
             <div class="cover-title">PORTAFOLIO</div>
         </section>
 
-        <!-- LÁMINA 2: PERFIL PROFESIONAL Y EXPERIENCIA -->
         <section id="perfil">
             <div class="resume-container">
                 
                 <div class="resume-col-left">
                     <div class="resume-top">
-                        <!-- FOTO -->
                         <img src="../DSC08573.jpg" alt="Samuel Ulises García Vega" class="resume-photo">
                         
-                        <!-- CONTACTO -->
                         <div class="resume-contact">
                             <div class="resume-contact-item">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -603,13 +622,11 @@
                     </div>
 
                     <div class="resume-bottom">
-                        <!-- PERFIL -->
                         <div class="resume-perfil">
                             <div class="resume-section-title">Perfil Profesional</div>
                             <p class="resume-text">Pasante de Arquitectura con experiencia en el desarrollo de proyectos ejecutivos mediante metodología BIM, enfocado en la documentación constructiva, coordinación técnica y seguimiento de proyectos arquitectónicos. He participado en procesos de diseño, modelado 3D, cuantificación y supervisión de obra, integrando herramientas digitales para optimizar la comunicación y ejecución de proyectos.</p>
                         </div>
 
-                        <!-- INTERESES Y SOFTWARE -->
                         <div class="resume-skills">
                             <div>
                                 <div class="resume-section-title">Intereses</div>
@@ -651,7 +668,6 @@
                     </div>
                 </div>
 
-                <!-- COLUMNA EXPERIENCIA CON ANIMACIÓN SCROLL Y BARRA -->
                 <div class="resume-col-right" id="resume-scroll-col">
                     <div class="resume-section-title" style="border-bottom-color: var(--red);">Experiencia Laboral</div>
 
@@ -710,7 +726,6 @@
             </div>
         </section>
 
-        <!-- LÁMINA 3: ÍNDICE -->
         <section id="indice">
             <div class="grid-index-container">
                 <a href="#bim" class="grid-column">
@@ -750,10 +765,15 @@
             </div>
         </section>
 
-        <!-- LÁMINA 4: CASA F.A -->
         <section id="bim">
             <div class="visual-side" id="bim-viewer-container"> 
-                <model-viewer id="bim-viewer" src="IMG/INTEGRAL.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="45deg 60deg 90%" field-of-view="30deg" style="width: 95%; height: 95%;"></model-viewer>
+                <model-viewer id="bim-viewer" src="IMG/INTEGRAL.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="45deg 60deg 90%" field-of-view="30deg" style="width: 95%; height: 95%;">
+                    <div slot="progress-bar" class="custom-loader">
+                        <div class="dot-loader"></div>
+                        <div class="dot-loader"></div>
+                        <div class="dot-loader"></div>
+                    </div>
+                </model-viewer>
             </div>
             <div class="text-side">
                 <p>Desarrollo de proyectos ejecutivos y documentación técnica integral. Gestión avanzada de modelos en Archicad, optimización de combinaciones de capas para la supervisión de obra y extracción de cuantificaciones precisas. La centralización de la información permite anticipar resoluciones constructivas en sitio y ofrecer presentaciones claras y eficientes mediante BIMx.</p>
@@ -780,7 +800,6 @@
             </div>
         </section>
 
-        <!-- LÁMINA 5: TESIS -->
         <section id="tesis">
             <div class="visual-side" id="tesis-viewer-container"> 
                 <img src="IMG/MAPA.png" class="organic-img">
@@ -808,10 +827,15 @@
             </div>
         </section>
 
-        <!-- LÁMINA 6: DISEÑO PARAMÉTRICO -->
         <section id="rhino">
             <div class="visual-side" id="rhino-viewer-container">
-                <model-viewer id="rhino-viewer" src="IMG/CUBIERTA.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="-50deg 80deg 90%" field-of-view="30deg" style="width: 95%; height: 95%;"></model-viewer>
+                <model-viewer id="rhino-viewer" src="IMG/CUBIERTA.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="-50deg 80deg 90%" field-of-view="30deg" style="width: 95%; height: 95%;">
+                    <div slot="progress-bar" class="custom-loader">
+                        <div class="dot-loader"></div>
+                        <div class="dot-loader"></div>
+                        <div class="dot-loader"></div>
+                    </div>
+                </model-viewer>
             </div>
             <div class="text-side">
                 <p>Exploración morfológica y optimización geométrica mediante Rhinoceros y Grasshopper. El desarrollo de algoritmos visuales permite una mayor capacidad de iteraciones en el proceso de diseño para formas complejas o geometrías no convencionales.</p>
@@ -837,10 +861,15 @@
             </div>
         </section>
 
-        <!-- LÁMINA 7: MOBILIARIO -->
         <section id="carpinteria">
             <div class="visual-side" id="carp-viewer-container">
-                <model-viewer id="carp-viewer" src="IMG/MOD3D.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="45deg 60deg 90%" field-of-view="30deg" style="width: 95%; height: 95%;"></model-viewer>
+                <model-viewer id="carp-viewer" src="IMG/MOD3D.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="45deg 60deg 105%" field-of-view="30deg" style="width: 95%; height: 95%;">
+                    <div slot="progress-bar" class="custom-loader">
+                        <div class="dot-loader"></div>
+                        <div class="dot-loader"></div>
+                        <div class="dot-loader"></div>
+                    </div>
+                </model-viewer>
             </div>
             <div class="text-side">
                 <p>Conceptualización y desarrollo técnico de mobiliario. El proceso abarca desde la exploración espacial hasta la planimetría de la fabricación y el armado del mobiliario. Englobando la generación de despieces, tablas de corte y diagramas de ensamble.</p>
@@ -866,7 +895,6 @@
             </div>
         </section>
 
-        <!-- LÁMINA 8: MINERAL -->
         <section id="mineral">
             <div class="visual-side" id="mineral-viewer-container">
                 <img src="IMG/PAN1.png" style="width: 100%; height: 100%; object-fit: contain; object-position: left center;">
@@ -894,7 +922,6 @@
             </div>
         </section>
 
-        <!-- LÁMINA 9: CONTACTO (ESTILO TARJETA DE PRESENTACIÓN MINIMALISTA) -->
         <section id="contacto" style="justify-content: center; align-items: center; background: #f4f7f6;">
             <div class="business-card">
                 <div class="card-name">SAMUEL ULISES<br>GARCÍA VEGA</div>
@@ -976,11 +1003,18 @@
 
     observer.observe(perfilSection);
 
-    /* --- FUNCIONES DEL MODEL VIEWER --- */
+    /* --- FUNCIONES DEL MODEL VIEWER CON ANIMACIÓN DE CARGA INTEGRADA --- */
     function showContent(containerId, is3d, src, orbit = "45deg 60deg 90%") {
         const container = document.getElementById(containerId);
         if (is3d) {
-            container.innerHTML = `<model-viewer src="IMG/${src}" camera-controls auto-rotate shadow-intensity="1" camera-orbit="${orbit}" field-of-view="30deg" style="width: 95%; height: 95%;"></model-viewer>`;
+            container.innerHTML = `
+                <model-viewer src="IMG/${src}" camera-controls auto-rotate shadow-intensity="1" camera-orbit="${orbit}" field-of-view="30deg" style="width: 95%; height: 95%;">
+                    <div slot="progress-bar" class="custom-loader">
+                        <div class="dot-loader"></div>
+                        <div class="dot-loader"></div>
+                        <div class="dot-loader"></div>
+                    </div>
+                </model-viewer>`;
         } else {
             if(containerId === 'tesis-viewer-container' && src === 'MAPA.png') {
                 container.innerHTML = `<img src="IMG/${src}" class="organic-img">`;
@@ -1011,7 +1045,8 @@
     document.getElementById('btn-geom').addEventListener('click', () => { showContent('rhino-viewer-container', true, 'EXP_GEOMETRICA.glb', '-50deg 80deg 90%'); rhinoSection.classList.remove('expand-visual'); });
     document.getElementById('btn-algoritmo').addEventListener('click', () => { showContent('rhino-viewer-container', false, 'ALGORITMO.png'); rhinoSection.classList.add('expand-visual'); });
 
-    document.getElementById('btn-3d').addEventListener('click', () => showContent('carp-viewer-container', true, 'MOD3D.glb', '45deg 60deg 90%'));
+    /* El botón de Mobiliario 3D usa la órbita alejada al 105% */
+    document.getElementById('btn-3d').addEventListener('click', () => showContent('carp-viewer-container', true, 'MOD3D.glb', '45deg 60deg 105%'));
     document.getElementById('btn-corte').addEventListener('click', () => showContent('carp-viewer-container', false, 'CORTE.jpg'));
     document.getElementById('btn-ensamble').addEventListener('click', () => showContent('carp-viewer-container', false, 'ENSAMBLE.jpg'));
 
