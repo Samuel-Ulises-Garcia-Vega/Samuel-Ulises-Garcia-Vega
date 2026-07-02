@@ -261,7 +261,8 @@
             width: 100%;
             height: calc(100% - 5rem);
             display: flex;
-            padding: 2.5rem 6rem 3.5rem 6rem; 
+            /* Aire superior corregido a 1.5rem para levantar todo el bloque y equilibrar simetría */
+            padding: 1.5rem 6rem 3.5rem 6rem; 
             gap: 5rem;
             background: #ffffff;
         }
@@ -330,14 +331,13 @@
             padding-bottom: 2.5rem;
             mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
             -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
-            /* Ocultamos cualquier scrollbar por defecto para mantenerlo limpio */
             -ms-overflow-style: none;  
             scrollbar-width: none;  
         }
 
-        /* Eliminamos la barra de desplazamiento visual por completo */
+        /* BARRA VERDE ELIMINADA POR COMPLETO */
         .resume-col-right::-webkit-scrollbar { 
-            display: none; 
+            display: none !important; 
         }
 
         .resume-section-title {
@@ -468,7 +468,7 @@
             color: var(--text-light);
             display: flex;
             align-items: center;
-            gap: 1.2rem;
+            gap: 12px;
             font-weight: 400;
         }
 
@@ -486,14 +486,8 @@
             transform: translate(-50%, -50%);
             display: flex;
             gap: 0.6rem;
-            pointer-events: none; /* Evita que estorbe al click */
-            transition: opacity 0.3s ease;
-        }
-        
-        /* Model viewer inyecta esta clase cuando termina de cargar */
-        .custom-loader.hide {
-            display: none !important; 
-            opacity: 0;
+            pointer-events: none; 
+            z-index: 15;
         }
         
         .dot-loader {
@@ -592,23 +586,19 @@
 
     <div class="portfolio-container" id="scroll-container">
         
-        <!-- LÁMINA 1: PORTADA -->
         <section id="portada" class="cover-section">
             <div class="cover-name">Arq. Samuel Ulises García Vega</div>
             <div class="cover-line"></div>
             <div class="cover-title">PORTAFOLIO</div>
         </section>
 
-        <!-- LÁMINA 2: PERFIL PROFESIONAL Y EXPERIENCIA -->
         <section id="perfil">
             <div class="resume-container">
                 
                 <div class="resume-col-left">
                     <div class="resume-top">
-                        <!-- FOTO -->
                         <img src="../DSC08573.jpg" alt="Samuel Ulises García Vega" class="resume-photo">
                         
-                        <!-- CONTACTO -->
                         <div class="resume-contact">
                             <div class="resume-contact-item">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -628,13 +618,11 @@
                     </div>
 
                     <div class="resume-bottom">
-                        <!-- PERFIL -->
                         <div class="resume-perfil">
                             <div class="resume-section-title">Perfil Profesional</div>
                             <p class="resume-text">Pasante de Arquitectura con experiencia en el desarrollo de proyectos ejecutivos mediante metodología BIM, enfocado en la documentación constructiva, coordinación técnica y seguimiento de proyectos arquitectónicos. He participado en procesos de diseño, modelado 3D, cuantificación y supervisión de obra, integrando herramientas digitales para optimizar la comunicación y ejecución de proyectos.</p>
                         </div>
 
-                        <!-- INTERESES Y SOFTWARE -->
                         <div class="resume-skills">
                             <div>
                                 <div class="resume-section-title">Intereses</div>
@@ -676,7 +664,6 @@
                     </div>
                 </div>
 
-                <!-- COLUMNA EXPERIENCIA CON ANIMACIÓN SCROLL -->
                 <div class="resume-col-right" id="resume-scroll-col">
                     <div class="resume-section-title" style="border-bottom-color: var(--red);">Experiencia Laboral</div>
 
@@ -735,7 +722,6 @@
             </div>
         </section>
 
-        <!-- LÁMINA 3: ÍNDICE -->
         <section id="indice">
             <div class="grid-index-container">
                 <a href="#bim" class="grid-column">
@@ -775,15 +761,14 @@
             </div>
         </section>
 
-        <!-- LÁMINA 4: CASA F.A -->
         <section id="bim">
             <div class="visual-side" id="bim-viewer-container"> 
+                <div class="custom-loader">
+                    <div class="dot-loader"></div>
+                    <div class="dot-loader"></div>
+                    <div class="dot-loader"></div>
+                </div>
                 <model-viewer id="bim-viewer" src="IMG/INTEGRAL.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="45deg 60deg 90%" field-of-view="30deg" style="width: 95%; height: 95%;">
-                    <div slot="progress-bar" class="custom-loader">
-                        <div class="dot-loader"></div>
-                        <div class="dot-loader"></div>
-                        <div class="dot-loader"></div>
-                    </div>
                 </model-viewer>
             </div>
             <div class="text-side">
@@ -811,13 +796,12 @@
             </div>
         </section>
 
-        <!-- LÁMINA 5: TESIS -->
         <section id="tesis">
             <div class="visual-side" id="tesis-viewer-container"> 
                 <img src="IMG/MAPA.png" class="organic-img">
             </div>
             <div class="text-side">
-                <p>Investigación enfocada en el estudio del aprovechamiento y gestión del agua pluvial para la vivienda en colonias populares de la ciudad de Querétaro. A través del análisis de la actual crisis hídrica del estado, en el cual se destaca la explotación y gestión de este recurso, exponiendo las dinámicas de desigualdad urbana junto con la carencia de infraestructura pluvial de la ciudad. Esta investigación propone estrategias de infraestructura urbana, habitacional sostenible y adaptable para mitigar el estrés hídrico a escala local.</p>
+                <p id="tesis-text">Investigación enfocada en el estudio del aprovechamiento y gestión del agua pluvial para la vivienda en colonias populares de la ciudad de Querétaro. A través del análisis de la actual crisis hídrica del estado, en el cual se destaca la explotación y gestión de este recurso, exponiendo las dinámicas de desigualdad urbana junto con la carencia de infraestructura pluvial de la ciudad.</p>
                 <h1>GESTIÓN HÍDRICA URBANA</h1>
             </div>
             <div class="footer-nav">
@@ -839,15 +823,14 @@
             </div>
         </section>
 
-        <!-- LÁMINA 6: DISEÑO PARAMÉTRICO -->
         <section id="rhino">
             <div class="visual-side" id="rhino-viewer-container">
+                <div class="custom-loader">
+                    <div class="dot-loader"></div>
+                    <div class="dot-loader"></div>
+                    <div class="dot-loader"></div>
+                </div>
                 <model-viewer id="rhino-viewer" src="IMG/CUBIERTA.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="-50deg 80deg 90%" field-of-view="30deg" style="width: 95%; height: 95%;">
-                    <div slot="progress-bar" class="custom-loader">
-                        <div class="dot-loader"></div>
-                        <div class="dot-loader"></div>
-                        <div class="dot-loader"></div>
-                    </div>
                 </model-viewer>
             </div>
             <div class="text-side">
@@ -874,16 +857,14 @@
             </div>
         </section>
 
-        <!-- LÁMINA 7: MOBILIARIO -->
         <section id="carpinteria">
             <div class="visual-side" id="carp-viewer-container">
-                <!-- Órbita de cámara al 105% para un mueble más pequeño y proporcionado -->
+                <div class="custom-loader">
+                    <div class="dot-loader"></div>
+                    <div class="dot-loader"></div>
+                    <div class="dot-loader"></div>
+                </div>
                 <model-viewer id="carp-viewer" src="IMG/MOD3D.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="45deg 60deg 105%" field-of-view="30deg" style="width: 95%; height: 95%;">
-                    <div slot="progress-bar" class="custom-loader">
-                        <div class="dot-loader"></div>
-                        <div class="dot-loader"></div>
-                        <div class="dot-loader"></div>
-                    </div>
                 </model-viewer>
             </div>
             <div class="text-side">
@@ -910,7 +891,6 @@
             </div>
         </section>
 
-        <!-- LÁMINA 8: MINERAL -->
         <section id="mineral">
             <div class="visual-side" id="mineral-viewer-container">
                 <img src="IMG/PAN1.png" style="width: 100%; height: 100%; object-fit: contain; object-position: left center;">
@@ -938,7 +918,6 @@
             </div>
         </section>
 
-        <!-- LÁMINA 9: CONTACTO (ESTILO TARJETA DE PRESENTACIÓN MINIMALISTA) -->
         <section id="contacto" style="justify-content: center; align-items: center; background: #f4f7f6;">
             <div class="business-card">
                 <div class="card-name">SAMUEL ULISES<br>GARCÍA VEGA</div>
@@ -1020,18 +999,38 @@
 
     observer.observe(perfilSection);
 
+    /* --- FUNCIÓN PARA ELIMINAR EL LOADER DE LOS PUNTOS EN CUANTO CARGA EL 3D --- */
+    function setupLoaderListener(viewerElement, loaderElement) {
+        if (viewerElement && loaderElement) {
+            viewerElement.addEventListener('load', () => {
+                loaderElement.style.display = 'none';
+            });
+        }
+    }
+
+    // Inicializar listeners de los loaders estáticos que cargan al principio
+    document.querySelectorAll('section').forEach(sec => {
+        const mv = sec.querySelector('model-viewer');
+        const loader = sec.querySelector('.custom-loader');
+        if (mv && loader) setupLoaderListener(mv, loader);
+    });
+
     /* --- FUNCIONES DEL MODEL VIEWER CON ANIMACIÓN DE CARGA INTEGRADA --- */
     function showContent(containerId, is3d, src, orbit = "45deg 60deg 90%") {
         const container = document.getElementById(containerId);
         if (is3d) {
             container.innerHTML = `
+                <div class="custom-loader">
+                    <div class="dot-loader"></div>
+                    <div class="dot-loader"></div>
+                    <div class="dot-loader"></div>
+                </div>
                 <model-viewer src="IMG/${src}" camera-controls auto-rotate shadow-intensity="1" camera-orbit="${orbit}" field-of-view="30deg" style="width: 95%; height: 95%;">
-                    <div slot="progress-bar" class="custom-loader">
-                        <div class="dot-loader"></div>
-                        <div class="dot-loader"></div>
-                        <div class="dot-loader"></div>
-                    </div>
                 </model-viewer>`;
+            
+            const newMv = container.querySelector('model-viewer');
+            const newLoader = container.querySelector('.custom-loader');
+            setupLoaderListener(newMv, newLoader);
         } else {
             if(containerId === 'tesis-viewer-container' && src === 'MAPA.png') {
                 container.innerHTML = `<img src="IMG/${src}" class="organic-img">`;
@@ -1054,15 +1053,30 @@
     document.getElementById('btn-mep').addEventListener('click', () => { showContent('bim-viewer-container', true, 'MEP.glb', '-45deg 60deg 90%'); });
     document.getElementById('btn-doc').addEventListener('click', () => { showContent('bim-viewer-container', false, 'DOCUMENTACION.png'); });
     
-    document.getElementById('btn-mapa').addEventListener('click', () => showContent('tesis-viewer-container', false, 'MAPA.png'));
-    document.getElementById('btn-ciclo').addEventListener('click', () => showContent('tesis-viewer-container', false, 'CICLO.png'));
+    /* --- LÓGICA E INTERCAMBIO DE TEXTO DE LA LÁMINA DE TESIS --- */
+    const btnMapa = document.getElementById('btn-mapa');
+    const btnCiclo = document.getElementById('btn-ciclo');
+    const tesisText = document.getElementById('tesis-text');
+
+    btnMapa.addEventListener('click', () => { 
+        showContent('tesis-viewer-container', false, 'MAPA.png');
+        tesisText.innerHTML = "Investigación enfocada en el estudio del aprovechamiento y gestión del agua pluvial para la vivienda en colonias populares de la ciudad de Querétaro. A través del análisis de la actual crisis hídrica del estado, en el cual se destaca la explotación y gestión de este recurso, exponiendo las dinámicas de desigualdad urbana junto con la carencia de infraestructura pluvial de la ciudad.";
+        btnMapa.classList.add('active');
+        btnCiclo.classList.remove('active');
+    });
+
+    btnCiclo.addEventListener('click', () => { 
+        showContent('tesis-viewer-container', false, 'CICLO.png');
+        tesisText.innerHTML = "Esta investigación propone estrategias de infraestructura urbana, habitacional sostenible y adaptable para mitigar el estrés hídrico a escala local.";
+        btnCiclo.classList.add('active');
+        btnMapa.classList.remove('active');
+    });
 
     const rhinoSection = document.getElementById('rhino');
     document.getElementById('btn-cubierta').addEventListener('click', () => { showContent('rhino-viewer-container', true, 'CUBIERTA.glb', '-50deg 80deg 90%'); rhinoSection.classList.remove('expand-visual'); });
     document.getElementById('btn-geom').addEventListener('click', () => { showContent('rhino-viewer-container', true, 'EXP_GEOMETRICA.glb', '-50deg 80deg 90%'); rhinoSection.classList.remove('expand-visual'); });
     document.getElementById('btn-algoritmo').addEventListener('click', () => { showContent('rhino-viewer-container', false, 'ALGORITMO.png'); rhinoSection.classList.add('expand-visual'); });
 
-    /* El botón de Mobiliario 3D usa la órbita alejada al 105% */
     document.getElementById('btn-3d').addEventListener('click', () => showContent('carp-viewer-container', true, 'MOD3D.glb', '45deg 60deg 105%'));
     document.getElementById('btn-corte').addEventListener('click', () => showContent('carp-viewer-container', false, 'CORTE.jpg'));
     document.getElementById('btn-ensamble').addEventListener('click', () => showContent('carp-viewer-container', false, 'ENSAMBLE.jpg'));
