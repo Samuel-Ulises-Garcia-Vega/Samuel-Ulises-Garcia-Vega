@@ -226,7 +226,7 @@
             pointer-events: none; 
         }
 
-        /* --- LÁMINA TESIS --- */
+        /* --- LÁMINA TESIS (Texto a una columna) --- */
         #tesis .visual-side { 
             width: 50%; 
             overflow: visible; 
@@ -235,7 +235,10 @@
             width: 50%; 
             z-index: 2; 
         }
-        #tesis .text-side p { width: 80%; column-count: 2; column-gap: 2.5rem; }
+        #tesis .text-side p { 
+            width: 90%; 
+            /* Se eliminó column-count para mantener un texto continuo y limpio */
+        }
 
         /* --- MAPA GIGANTE Y LIBRE --- */
         .organic-img {
@@ -261,7 +264,6 @@
             width: 100%;
             height: calc(100% - 5rem);
             display: flex;
-            /* Aire superior corregido a 1.5rem para levantar todo el bloque y equilibrar simetría */
             padding: 1.5rem 6rem 3.5rem 6rem; 
             gap: 5rem;
             background: #ffffff;
@@ -335,7 +337,6 @@
             scrollbar-width: none;  
         }
 
-        /* BARRA VERDE ELIMINADA POR COMPLETO */
         .resume-col-right::-webkit-scrollbar { 
             display: none !important; 
         }
@@ -478,7 +479,18 @@
             height: 1.8rem;
         }
 
-        /* --- ANIMACIÓN LOADER 3 PUNTOS --- */
+        /* --- ANIMACIÓN LOADER 3 PUNTOS Y BARRA INVISIBLE --- */
+        
+        /* Hack maestro: Teñir la barra por defecto de blanco para desaparecerla */
+        model-viewer {
+            --progress-bar-color: #ffffff;
+            --progress-bar-height: 5px;
+        }
+        
+        model-viewer::part(default-progress-bar) {
+            background-color: #ffffff;
+        }
+
         .custom-loader {
             position: absolute;
             top: 50%;
@@ -586,19 +598,23 @@
 
     <div class="portfolio-container" id="scroll-container">
         
+        <!-- LÁMINA 1: PORTADA -->
         <section id="portada" class="cover-section">
             <div class="cover-name">Arq. Samuel Ulises García Vega</div>
             <div class="cover-line"></div>
             <div class="cover-title">PORTAFOLIO</div>
         </section>
 
+        <!-- LÁMINA 2: PERFIL PROFESIONAL Y EXPERIENCIA -->
         <section id="perfil">
             <div class="resume-container">
                 
                 <div class="resume-col-left">
                     <div class="resume-top">
+                        <!-- FOTO -->
                         <img src="../DSC08573.jpg" alt="Samuel Ulises García Vega" class="resume-photo">
                         
+                        <!-- CONTACTO -->
                         <div class="resume-contact">
                             <div class="resume-contact-item">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -618,11 +634,13 @@
                     </div>
 
                     <div class="resume-bottom">
+                        <!-- PERFIL -->
                         <div class="resume-perfil">
                             <div class="resume-section-title">Perfil Profesional</div>
                             <p class="resume-text">Pasante de Arquitectura con experiencia en el desarrollo de proyectos ejecutivos mediante metodología BIM, enfocado en la documentación constructiva, coordinación técnica y seguimiento de proyectos arquitectónicos. He participado en procesos de diseño, modelado 3D, cuantificación y supervisión de obra, integrando herramientas digitales para optimizar la comunicación y ejecución de proyectos.</p>
                         </div>
 
+                        <!-- INTERESES Y SOFTWARE -->
                         <div class="resume-skills">
                             <div>
                                 <div class="resume-section-title">Intereses</div>
@@ -664,6 +682,7 @@
                     </div>
                 </div>
 
+                <!-- COLUMNA EXPERIENCIA CON ANIMACIÓN SCROLL -->
                 <div class="resume-col-right" id="resume-scroll-col">
                     <div class="resume-section-title" style="border-bottom-color: var(--red);">Experiencia Laboral</div>
 
@@ -722,6 +741,7 @@
             </div>
         </section>
 
+        <!-- LÁMINA 3: ÍNDICE -->
         <section id="indice">
             <div class="grid-index-container">
                 <a href="#bim" class="grid-column">
@@ -761,14 +781,15 @@
             </div>
         </section>
 
+        <!-- LÁMINA 4: CASA F.A -->
         <section id="bim">
             <div class="visual-side" id="bim-viewer-container"> 
-                <div class="custom-loader">
-                    <div class="dot-loader"></div>
-                    <div class="dot-loader"></div>
-                    <div class="dot-loader"></div>
-                </div>
                 <model-viewer id="bim-viewer" src="IMG/INTEGRAL.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="45deg 60deg 90%" field-of-view="30deg" style="width: 95%; height: 95%;">
+                    <div slot="progress-bar" class="custom-loader">
+                        <div class="dot-loader"></div>
+                        <div class="dot-loader"></div>
+                        <div class="dot-loader"></div>
+                    </div>
                 </model-viewer>
             </div>
             <div class="text-side">
@@ -796,6 +817,7 @@
             </div>
         </section>
 
+        <!-- LÁMINA 5: TESIS (TEXTO FRAGMENTADO POR DEFECTO CON PRIMERA MITAD Y SIN COLUMNAS) -->
         <section id="tesis">
             <div class="visual-side" id="tesis-viewer-container"> 
                 <img src="IMG/MAPA.png" class="organic-img">
@@ -823,14 +845,15 @@
             </div>
         </section>
 
+        <!-- LÁMINA 6: DISEÑO PARAMÉTRICO -->
         <section id="rhino">
             <div class="visual-side" id="rhino-viewer-container">
-                <div class="custom-loader">
-                    <div class="dot-loader"></div>
-                    <div class="dot-loader"></div>
-                    <div class="dot-loader"></div>
-                </div>
                 <model-viewer id="rhino-viewer" src="IMG/CUBIERTA.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="-50deg 80deg 90%" field-of-view="30deg" style="width: 95%; height: 95%;">
+                    <div slot="progress-bar" class="custom-loader">
+                        <div class="dot-loader"></div>
+                        <div class="dot-loader"></div>
+                        <div class="dot-loader"></div>
+                    </div>
                 </model-viewer>
             </div>
             <div class="text-side">
@@ -857,14 +880,15 @@
             </div>
         </section>
 
+        <!-- LÁMINA 7: MOBILIARIO -->
         <section id="carpinteria">
             <div class="visual-side" id="carp-viewer-container">
-                <div class="custom-loader">
-                    <div class="dot-loader"></div>
-                    <div class="dot-loader"></div>
-                    <div class="dot-loader"></div>
-                </div>
                 <model-viewer id="carp-viewer" src="IMG/MOD3D.glb" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral" camera-orbit="45deg 60deg 105%" field-of-view="30deg" style="width: 95%; height: 95%;">
+                    <div slot="progress-bar" class="custom-loader">
+                        <div class="dot-loader"></div>
+                        <div class="dot-loader"></div>
+                        <div class="dot-loader"></div>
+                    </div>
                 </model-viewer>
             </div>
             <div class="text-side">
@@ -891,6 +915,7 @@
             </div>
         </section>
 
+        <!-- LÁMINA 8: MINERAL -->
         <section id="mineral">
             <div class="visual-side" id="mineral-viewer-container">
                 <img src="IMG/PAN1.png" style="width: 100%; height: 100%; object-fit: contain; object-position: left center;">
@@ -918,6 +943,7 @@
             </div>
         </section>
 
+        <!-- LÁMINA 9: CONTACTO -->
         <section id="contacto" style="justify-content: center; align-items: center; background: #f4f7f6;">
             <div class="business-card">
                 <div class="card-name">SAMUEL ULISES<br>GARCÍA VEGA</div>
@@ -1015,17 +1041,17 @@
         if (mv && loader) setupLoaderListener(mv, loader);
     });
 
-    /* --- FUNCIONES DEL MODEL VIEWER CON ANIMACIÓN DE CARGA INTEGRADA --- */
+    /* --- FUNCIONES DEL MODEL VIEWER CON ANIMACIÓN DE CARGA INTEGRADA E INYECCIÓN CORRECTA --- */
     function showContent(containerId, is3d, src, orbit = "45deg 60deg 90%") {
         const container = document.getElementById(containerId);
         if (is3d) {
             container.innerHTML = `
-                <div class="custom-loader">
-                    <div class="dot-loader"></div>
-                    <div class="dot-loader"></div>
-                    <div class="dot-loader"></div>
-                </div>
                 <model-viewer src="IMG/${src}" camera-controls auto-rotate shadow-intensity="1" camera-orbit="${orbit}" field-of-view="30deg" style="width: 95%; height: 95%;">
+                    <div slot="progress-bar" class="custom-loader">
+                        <div class="dot-loader"></div>
+                        <div class="dot-loader"></div>
+                        <div class="dot-loader"></div>
+                    </div>
                 </model-viewer>`;
             
             const newMv = container.querySelector('model-viewer');
